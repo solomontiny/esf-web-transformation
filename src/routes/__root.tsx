@@ -79,11 +79,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ESF Language Service — English, French, Spanish & Italian courses · Caserta" },
       { name: "description", content: "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016." },
-      { property: "og:title", content: "ESF Language Service" },
-      { property: "og:description", content: "Language center in Casagiove, Caserta — courses, certifications and translations." },
+      { property: "og:title", content: "ESF Language Service — English, French, Spanish & Italian courses · Caserta" },
+      { property: "og:description", content: "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ESF Language Service" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "ESF Language Service — English, French, Spanish & Italian courses · Caserta" },
+      { name: "twitter:description", content: "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1001858b-7be2-483a-96b1-181fdbf4fddf/id-preview-d27bc778--d2201965-3f52-4c6c-9c32-8551c702b7fa.lovable.app-1782989296572.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1001858b-7be2-483a-96b1-181fdbf4fddf/id-preview-d27bc778--d2201965-3f52-4c6c-9c32-8551c702b7fa.lovable.app-1782989296572.png" },
     ],
     links: [
       {
