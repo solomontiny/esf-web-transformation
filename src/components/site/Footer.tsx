@@ -23,21 +23,21 @@ export function Footer({ lang }: { lang: Lang }) {
         <div>
           <h4 className="eyebrow">{t.footer.explore}</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            {[
-              { to: "/$lang/about", label: t.nav.about },
-              { to: "/$lang/courses", label: t.nav.courses },
-              { to: "/$lang/services", label: t.nav.services },
-              { to: "/$lang/faq", label: t.nav.faq },
-              { to: "/$lang/payment", label: t.nav.payment },
-              { to: "/$lang/contact", label: t.nav.contact },
-            ].map((l) => (
-              <li key={l.label}>
+            {([
+              ["/$lang/about", t.nav.about],
+              ["/$lang/courses", t.nav.courses],
+              ["/$lang/services", t.nav.services],
+              ["/$lang/faq", t.nav.faq],
+              ["/$lang/payment", t.nav.payment],
+              ["/$lang/contact", t.nav.contact],
+            ] as const).map(([to, label]) => (
+              <li key={label}>
                 <Link
-                  to={l.to as any}
+                  to={to}
                   params={{ lang }}
                   className="text-foreground/80 hover:text-primary transition-colors"
                 >
-                  {l.label}
+                  {label}
                 </Link>
               </li>
             ))}
