@@ -9,38 +9,144 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangServicesRouteImport } from './routes/$lang.services'
+import { Route as LangPaymentRouteImport } from './routes/$lang.payment'
+import { Route as LangFaqRouteImport } from './routes/$lang.faq'
+import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
+import { Route as LangContactRouteImport } from './routes/$lang.contact'
+import { Route as LangAboutRouteImport } from './routes/$lang.about'
 
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangServicesRoute = LangServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPaymentRoute = LangPaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangFaqRoute = LangFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCoursesRoute = LangCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangContactRoute = LangContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangAboutRoute = LangAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/about': typeof LangAboutRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/faq': typeof LangFaqRoute
+  '/$lang/payment': typeof LangPaymentRoute
+  '/$lang/services': typeof LangServicesRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang/about': typeof LangAboutRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/faq': typeof LangFaqRoute
+  '/$lang/payment': typeof LangPaymentRoute
+  '/$lang/services': typeof LangServicesRoute
+  '/$lang': typeof LangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/about': typeof LangAboutRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/faq': typeof LangFaqRoute
+  '/$lang/payment': typeof LangPaymentRoute
+  '/$lang/services': typeof LangServicesRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/$lang'
+    | '/$lang/about'
+    | '/$lang/contact'
+    | '/$lang/courses'
+    | '/$lang/faq'
+    | '/$lang/payment'
+    | '/$lang/services'
+    | '/$lang/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/$lang/about'
+    | '/$lang/contact'
+    | '/$lang/courses'
+    | '/$lang/faq'
+    | '/$lang/payment'
+    | '/$lang/services'
+    | '/$lang'
+  id:
+    | '__root__'
+    | '/'
+    | '/$lang'
+    | '/$lang/about'
+    | '/$lang/contact'
+    | '/$lang/courses'
+    | '/$lang/faq'
+    | '/$lang/payment'
+    | '/$lang/services'
+    | '/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +154,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/services': {
+      id: '/$lang/services'
+      path: '/services'
+      fullPath: '/$lang/services'
+      preLoaderRoute: typeof LangServicesRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/payment': {
+      id: '/$lang/payment'
+      path: '/payment'
+      fullPath: '/$lang/payment'
+      preLoaderRoute: typeof LangPaymentRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/faq': {
+      id: '/$lang/faq'
+      path: '/faq'
+      fullPath: '/$lang/faq'
+      preLoaderRoute: typeof LangFaqRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/courses': {
+      id: '/$lang/courses'
+      path: '/courses'
+      fullPath: '/$lang/courses'
+      preLoaderRoute: typeof LangCoursesRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/contact': {
+      id: '/$lang/contact'
+      path: '/contact'
+      fullPath: '/$lang/contact'
+      preLoaderRoute: typeof LangContactRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/about': {
+      id: '/$lang/about'
+      path: '/about'
+      fullPath: '/$lang/about'
+      preLoaderRoute: typeof LangAboutRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
+interface LangRouteChildren {
+  LangAboutRoute: typeof LangAboutRoute
+  LangContactRoute: typeof LangContactRoute
+  LangCoursesRoute: typeof LangCoursesRoute
+  LangFaqRoute: typeof LangFaqRoute
+  LangPaymentRoute: typeof LangPaymentRoute
+  LangServicesRoute: typeof LangServicesRoute
+  LangIndexRoute: typeof LangIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangAboutRoute: LangAboutRoute,
+  LangContactRoute: LangContactRoute,
+  LangCoursesRoute: LangCoursesRoute,
+  LangFaqRoute: LangFaqRoute,
+  LangPaymentRoute: LangPaymentRoute,
+  LangServicesRoute: LangServicesRoute,
+  LangIndexRoute: LangIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
