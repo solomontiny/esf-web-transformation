@@ -4,9 +4,16 @@ export const DEFAULT_LANG: Lang = "en";
 
 export const IT_PLACEHOLDER = "[Traduzione professionale in arrivo]";
 
+type ServiceDetail = {
+  title: string;
+  intro: string;
+  bullets: string[];
+  outro?: string;
+};
+
 type Dict = {
   nav: { home: string; about: string; courses: string; services: string; faq: string; contact: string; payment: string };
-  cta: { book: string; explore: string; contact: string; enroll: string; discover: string };
+  cta: { book: string; explore: string; contact: string; enroll: string; discover: string; learnMore: string };
   hero: {
     eyebrow: string;
     title: string;
@@ -14,11 +21,7 @@ type Dict = {
     lede: string;
   };
   pillars: { title: string; items: { title: string; body: string }[] };
-  intro: {
-    eyebrow: string;
-    title: string;
-    body: string;
-  };
+  intro: { eyebrow: string; title: string; body: string };
   services: {
     eyebrow: string;
     title: string;
@@ -39,9 +42,19 @@ type Dict = {
     eyebrow: string;
     title: string;
     body: string[];
+    mission: { title: string; body: string };
+    vision: { title: string; body: string };
+    why: { title: string; body: string; bullets: string[] };
+    values: { title: string; body: string };
+    stats: { label: string; value: string }[];
     goalsTitle: string;
     goals: string;
-    stats: { label: string; value: string }[];
+  };
+  detailed: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    services: ServiceDetail[];
   };
   testimonials: { eyebrow: string; title: string; items: { quote: string; name: string; role: string }[] };
   faq: { eyebrow: string; title: string; items: { q: string; a: string }[] };
@@ -71,15 +84,15 @@ type Dict = {
 
 export const en: Dict = {
   nav: { home: "Home", about: "About", courses: "Courses", services: "Services", faq: "FAQ", contact: "Contact", payment: "Enrol" },
-  cta: { book: "Book a consultation", explore: "Explore courses", contact: "Get in touch", enroll: "Enrol now", discover: "Discover" },
+  cta: { book: "Book a consultation", explore: "Explore courses", contact: "Get in touch", enroll: "Enrol now", discover: "Discover", learnMore: "Learn more" },
   hero: {
-    eyebrow: "Language Center · Casagiove, Caserta",
-    title: "The art of speaking",
-    titleAccent: "another language",
-    lede: "ESF Language Service is a boutique language studio offering English, French, Spanish and Italian instruction, translations and certifications — tailored to every learner, from first-time speakers to executives.",
+    eyebrow: "Language Center · Casagiove, Caserta · Italy",
+    title: "Language, education and",
+    titleAccent: "opportunity",
+    lede: "ESF Language Services is a trusted provider of language education, international student support, and educational consultancy — helping students, professionals and organisations succeed in a global society.",
   },
   pillars: {
-    title: "A studio built on four principles",
+    title: "Built on four principles",
     items: [
       { title: "Individual education", body: "Every lesson plan is structured around the learner's level, goals and pace." },
       { title: "Certified teachers", body: "All of our instructors hold the qualifications that confirm their teaching expertise." },
@@ -88,53 +101,347 @@ export const en: Dict = {
     ],
   },
   intro: {
-    eyebrow: "ESF Language Service",
+    eyebrow: "ESF Language Services",
     title: "Foreign language courses, thoughtfully designed.",
-    body: "Courses in English, French and Spanish for children, teenagers and adults who want to learn a new language — or refine one they already speak — whether in the classroom or remotely.",
+    body: "English, Italian, Spanish, French and other foreign language courses for children, teenagers, adults, professionals and corporate clients — in the classroom or online, at every level from A1 to C2.",
   },
   services: {
     eyebrow: "What we do",
-    title: "Six services, one standard of care",
-    lede: "From private tuition to sworn translations, every service we offer is delivered with the same rigour and warmth.",
+    title: "One studio, twenty specialised services",
+    lede: "From private tuition and internationally recognised certifications to translation, editing, study-abroad and residence-permit assistance — every service is delivered with the same rigour and warmth.",
     items: [
-      { title: "Language courses", body: "Foreign language courses in the classroom or online, at every level from A1 to C2." },
-      { title: "Certifications", body: "Prepare for and certify your language skills with internationally recognised examinations." },
-      { title: "Translations", body: "Literary, sworn and certified translation services delivered by native specialists." },
-      { title: "Editing service", body: "Editing and proofreading for any type of text, in both Italian and English." },
-      { title: "Italian for foreigners", body: "Courses, certifications and study holidays for those learning the Italian language." },
-      { title: "Courses for companies", body: "A reference partner for your organisation, tailored to teams and executives." },
+      { title: "Language Courses", body: "English, Italian, Spanish, French and other languages — every level, every learner." },
+      { title: "Certification Preparation", body: "Accredited Cambridge centre; UNIDA CECOL accredited for Italian A2–C2." },
+      { title: "Student Visa Assistance", body: "From admission to arrival — full support across the student visa process." },
+      { title: "University Admissions", body: "Personalised guidance to select the right university and prepare a winning application." },
+      { title: "Residence Permit Support", body: "Practical help with residence permit applications and renewals." },
+      { title: "Study Abroad Consulting", body: "Choose the right country, programme and institution — with expert guidance at every step." },
+      { title: "Translations", body: "Professional, sworn and certified translation services in multiple languages." },
+      { title: "Editing & Proofreading", body: "Academic, business and professional editing to elevate every document." },
+      { title: "Corporate Language Training", body: "Bespoke language training for teams, executives and organisations." },
     ],
   },
   courses: {
     eyebrow: "Foreign language courses",
-    title: "Four languages. Every level. Your pace.",
-    lede: "Courses are designed for adults who want to grow personally or professionally, teenagers who need academic or career support, and children who show an early curiosity for language.",
+    title: "Four core languages. Every level. Your pace.",
+    lede: "Courses designed for adults growing personally or professionally, teenagers who need academic support, children with an early curiosity for language, and companies training their teams.",
     languages: [
-      { name: "English", body: "From conversational fluency to business English and Cambridge / IELTS preparation." },
-      { name: "French", body: "General and professional French, with DELF and DALF certification pathways." },
-      { name: "Spanish", body: "Modern Spanish for travel, work and study, aligned with DELE certifications." },
-      { name: "Italian", body: "Italian for foreigners — from A1 immersion to CILS and CELI preparation." },
+      { name: "English", body: "General, academic and business English — with preparation for Cambridge, IELTS and TOEFL." },
+      { name: "Italian", body: "Italian for foreigners aligned with UNIDA CECOL accreditation, from A2 to C2 certification." },
+      { name: "Spanish", body: "Modern Spanish for travel, work and study, aligned with international certifications." },
+      { name: "French", body: "General and professional French, with structured DELF and DALF preparation." },
     ],
     levelsTitle: "Aligned with the Common European Framework",
     levels: ["Beginner · A1", "Elementary · A2", "Intermediate · B1", "Upper Intermediate · B2", "Advanced · C1", "Proficiency · C2"],
-    distanceTitle: "Distance learning",
-    distanceBody: "Work, study or family life leaving little room for a fixed schedule? Our online classes flex around you, without compromising on quality.",
+    distanceTitle: "Online lessons",
+    distanceBody: "Availability and training possibilities at any time for you — our online classes flex around your schedule, without compromising on quality.",
   },
   about: {
     eyebrow: "About ESF",
-    title: "Your reference language studio in Caserta.",
+    title: "Who we are",
     body: [
-      "ESF Language Service opened in early 2016 with a simple mission: to provide linguistic services — training, laboratories, teaching, editorial support, intermediation and translation — while contributing to the social and cultural life of our community.",
-      "We work one to one or in small groups, and every teaching plan is tailored either in advance or as the course unfolds. The Centre also partners with kindergartens, primary and secondary schools, where we lead laboratories and extracurricular activities with an educational and community-building purpose.",
-      "What defines us is reliability. Quality is guaranteed by personalised solutions and attentive support, delivering results that regularly exceed expectations.",
+      "ESF Language Services is a trusted provider of language education, international student support, and educational consultancy services. We help students, professionals, businesses, and educational institutions achieve their academic and career goals through expert guidance, personalised solutions, and high-quality language services.",
+      "Our expertise includes language courses, internationally recognised language certification preparation, study abroad consulting, university admissions, student visa and residence permit assistance, translation and interpretation, academic support, career development, and intercultural consulting.",
+    ],
+    mission: {
+      title: "Our Mission",
+      body: "To empower individuals and organisations through high-quality education, language training, and professional consultancy — making international education, communication and career opportunities accessible through reliable guidance and personalised support.",
+    },
+    vision: {
+      title: "Our Vision",
+      body: "To become a leading international provider of language and educational services, recognised for excellence, innovation, and a commitment to helping people succeed in an increasingly global society.",
+    },
+    why: {
+      title: "Why Choose Us",
+      body: "We combine educational expertise with personalised support to ensure every client receives practical solutions tailored to their needs.",
+      bullets: [
+        "Comprehensive education and language services under one roof.",
+        "Personalised guidance from experienced professionals.",
+        "Accredited language training and certification preparation.",
+        "Expert support for study abroad, university admissions, visas and residence permits.",
+        "Professional translation, interpretation and academic support.",
+        "Flexible online and in-person learning opportunities.",
+        "A welcoming, multicultural environment dedicated to student and client success.",
+      ],
+    },
+    values: {
+      title: "Our Core Values",
+      body: "Excellence, integrity, professionalism, inclusivity, innovation and lifelong learning. We believe that education and language are powerful tools for personal growth, cultural understanding and global opportunity.",
+    },
+    stats: [
+      { value: "9+", label: "Years of practice" },
+      { value: "1,200+", label: "Learners supported" },
+      { value: "20+", label: "Specialised services" },
+      { value: "4+", label: "Core languages" },
     ],
     goalsTitle: "Our goals",
-    goals: "The Centre's main objective is the satisfaction of every learner, and building — from the very first lesson — a relationship that respects their expectations.",
-    stats: [
-      { value: "1,200+", label: "Students taught" },
-      { value: "40+", label: "Course programmes" },
-      { value: "9", label: "Years of practice" },
-      { value: "4", label: "Languages offered" },
+    goals: "The Centre's main objective is the satisfaction of every learner, and building — from the very first lesson — a relationship that respects their expectations and delivers measurable results.",
+  },
+  detailed: {
+    eyebrow: "Our services in detail",
+    title: "A single studio for every step of your journey",
+    lede: "Explore the full breadth of what ESF Language Services delivers — from language learning and certification to visa, admissions, translation and integration support.",
+    services: [
+      {
+        title: "Language Courses",
+        intro: "High-quality language courses for learners of all ages and proficiency levels — for education, work, travel or personal development. Our experienced instructors provide practical, engaging and personalised lessons to help you achieve your goals.",
+        bullets: [
+          "English, Italian, Spanish, French and other foreign language courses.",
+          "Beginner, Intermediate, Advanced and Proficiency levels.",
+          "General, academic and business language programmes.",
+          "Individual and small group classes.",
+          "Online and in-person learning options.",
+          "Flexible weekday, evening and weekend schedules.",
+          "Italian programmes aligned with UNIDA CECOL accreditation (A2 to C2).",
+          "Preparation for Cambridge English, IELTS and TOEFL.",
+        ],
+        outro: "We help learners develop the confidence and communication skills needed to succeed in academic, professional and everyday environments.",
+      },
+      {
+        title: "Language Certification Preparation Center",
+        intro: "Specialised preparation courses for internationally recognised language certification exams. We are an accredited Cambridge preparation and examination centre, and UNIDA CECOL accredited for Italian A2 to C2 certification.",
+        bullets: [
+          "Preparation for Cambridge English Qualifications, IELTS and TOEFL.",
+          "Italian certification preparation from A2 to C2 (UNIDA CECOL).",
+          "Diagnostic assessments to determine your current level.",
+          "Comprehensive training in reading, writing, listening and speaking.",
+          "Exam techniques, time management and simulated practice tests.",
+          "Individual feedback and progress monitoring.",
+          "Small group and one-to-one preparation classes.",
+          "Online and in-person preparation courses.",
+        ],
+      },
+      {
+        title: "Language Certification Services",
+        intro: "We guide students, professionals and organisations through the full certification process — from selecting the right examination to registration and preparation.",
+        bullets: [
+          "Guidance in selecting the most suitable language certification.",
+          "Assistance with examination registration and application.",
+          "Information on dates, fees and test centres.",
+          "Coordination with authorised examination centres.",
+          "Advice on validity and recognition by universities, employers and authorities.",
+          "Support for Cambridge English (A2 Key to C2 Proficiency, Business B1/B2/C1), IELTS, TOEFL and UNIDA CECOL Italian.",
+        ],
+      },
+      {
+        title: "Student Visa Assistance",
+        intro: "Comprehensive support to international students throughout the student visa process — from the initial application to arrival in their study destination.",
+        bullets: [
+          "Guidance in selecting the right school, college, university or language institution.",
+          "Support with applications to obtain the required admission letter.",
+          "Preparation and organisation of all required visa documentation.",
+          "Review of visa application forms for accuracy and completeness.",
+          "Advice on financial documents, accommodation and travel insurance.",
+          "Guidance on embassy and consulate requirements.",
+          "Pre-departure information and travel preparation.",
+          "Ongoing support until the visa decision is received.",
+        ],
+      },
+      {
+        title: "University Guidance and Admissions Support",
+        intro: "Personalised university guidance and admissions support at every stage of the process, so you make informed decisions about your academic future.",
+        bullets: [
+          "Personalised consultation to identify the most suitable universities and programmes.",
+          "Guidance on admission requirements, eligibility criteria and deadlines.",
+          "Support with completing and submitting application forms.",
+          "Preparation of academic transcripts, personal statements, motivation letters, CVs and references.",
+          "Document review to meet institutional requirements.",
+          "Communication with universities regarding admissions.",
+          "Guidance on acceptance offers, enrolment procedures and next steps.",
+          "Advice on scholarships, tuition fees and funding opportunities.",
+        ],
+      },
+      {
+        title: "Residence Permit Assistance",
+        intro: "Practical guidance and support for international students and foreign nationals applying for or renewing their residence permits.",
+        bullets: [
+          "Guidance on residence permit requirements and procedures.",
+          "Preparation and organisation of required documentation.",
+          "Support in completing application forms accurately.",
+          "Information on deadlines and renewal procedures.",
+          "Assistance with booking appointments.",
+          "Guidance on health insurance, proof of accommodation and enrolment certificates.",
+          "Help tracking application progress and status changes.",
+          "General information on rights and responsibilities.",
+        ],
+      },
+      {
+        title: "Study Abroad Consulting",
+        intro: "Expert guidance from choosing the right destination to successfully beginning your studies abroad — tailored to your academic background, career aspirations and budget.",
+        bullets: [
+          "Personalised counselling on academic goals and budget.",
+          "Guidance in selecting country, university, college or language school.",
+          "Information on programmes, admission requirements and deadlines.",
+          "Advice on tuition fees, living costs, scholarships and financial planning.",
+          "Support with applications, visa and pre-departure preparation.",
+          "Information on accommodation, health insurance and travel arrangements.",
+          "Ongoing support before departure and after arrival.",
+        ],
+      },
+      {
+        title: "Student Accommodation Assistance",
+        intro: "We help international students find safe, comfortable and affordable accommodation that suits their needs and budget.",
+        bullets: [
+          "Options across student residences, shared apartments, homestays and private rentals.",
+          "Accommodation close to universities, colleges and language schools.",
+          "Advice on rental costs, contracts, deposits and utilities.",
+          "Communication support with landlords and agencies.",
+          "Information on neighbourhoods, transport and amenities.",
+          "Guidance on temporary accommodation before permanent housing.",
+          "Advice on tenant rights and responsibilities.",
+        ],
+      },
+      {
+        title: "International Student Reception and Integration",
+        intro: "Reception and integration services designed to make the transition into a new country as smooth and stress-free as possible.",
+        bullets: [
+          "Airport pickup arrangements and arrival assistance where available.",
+          "Orientation sessions on the city and educational institution.",
+          "Guidance on transport, banking, healthcare and essential services.",
+          "Assistance with registration and administrative formalities.",
+          "Cultural orientation on customs, traditions and everyday life.",
+          "Access to social, cultural and networking opportunities.",
+          "Ongoing guidance during academic and social adaptation.",
+        ],
+      },
+      {
+        title: "Private Tutoring & After-School Programs",
+        intro: "Personalised private tutoring and after-school programmes designed to help students achieve academic goals and build confidence.",
+        bullets: [
+          "Individual and small group tutoring sessions.",
+          "Support for primary, secondary, college and university students.",
+          "Homework assistance and exam preparation.",
+          "Study techniques and time-management skills.",
+          "Supervised homework and academic reinforcement.",
+          "Reading, writing and creative workshops.",
+          "Online and in-person options with flexible scheduling.",
+        ],
+      },
+      {
+        title: "Professional, Sworn and Certified Translation",
+        intro: "Accurate, reliable and confidential translation services for individuals, businesses, educational institutions and public organisations.",
+        bullets: [
+          "Personal, academic, legal, medical, technical and business documents.",
+          "Sworn (official) translations accepted by courts and authorities.",
+          "Certified translations for immigration, visa, universities and professional purposes.",
+          "Diplomas, transcripts, certificates, contracts and civil status documents.",
+          "Multilingual services in English, Italian, Spanish, French and more.",
+          "Fast turnaround with strict quality control and confidentiality.",
+        ],
+      },
+      {
+        title: "Proofreading, Text Revision and Editing",
+        intro: "Professional proofreading, revision and editing to ensure your documents are accurate, clear and polished — while preserving your original message and style.",
+        bullets: [
+          "Grammar, spelling, punctuation and syntax correction.",
+          "Improvement of sentence structure, clarity and readability.",
+          "Structural and content editing for essays, dissertations and articles.",
+          "Business editing of reports, proposals and presentations.",
+          "Formatting according to institutional or publication guidelines.",
+          "Multilingual proofreading and revision.",
+        ],
+      },
+      {
+        title: "Thesis Support & Academic Assistance",
+        intro: "Comprehensive support for undergraduate, postgraduate and doctoral students, from research topic to oral defence — always upholding academic integrity.",
+        bullets: [
+          "Guidance on selecting and refining research topics.",
+          "Thesis planning, structure and organisation.",
+          "Support with research proposals and outlines.",
+          "Literature reviews and citation styles (APA, MLA, Harvard, Chicago).",
+          "Proofreading, editing and language improvement.",
+          "Preparation for thesis presentations and oral defences.",
+        ],
+      },
+      {
+        title: "Summer and Winter Camps",
+        intro: "Engaging camps that combine language learning, education, cultural experiences and recreational activities in a fun and supportive environment.",
+        bullets: [
+          "Intensive language learning programmes.",
+          "Interactive workshops and classroom activities.",
+          "Sports, games and outdoor recreation.",
+          "Arts, music and creative projects.",
+          "Educational excursions and cultural visits.",
+          "Team-building and leadership activities.",
+          "International participants and safe, supervised environments.",
+        ],
+      },
+      {
+        title: "Language Immersion Programs",
+        intro: "Immersion programmes that develop language proficiency through real-life communication and cultural experiences.",
+        bullets: [
+          "Full and partial immersion experiences.",
+          "English, Italian, Spanish, French and other languages.",
+          "Practical communication with native or fluent speakers.",
+          "Cultural workshops and local excursions.",
+          "Short-term and long-term options.",
+          "Customised programmes for schools and groups.",
+        ],
+      },
+      {
+        title: "Educational and Cultural Activities for Young People",
+        intro: "Programmes that inspire young people to learn, explore and develop valuable life skills through creativity, teamwork, leadership and intercultural understanding.",
+        bullets: [
+          "Educational workshops and seminars.",
+          "Language clubs and conversation groups.",
+          "Cultural exchange activities and museum visits.",
+          "Arts, music and creative workshops.",
+          "Public speaking, leadership and personal development.",
+          "Community engagement and international exchanges.",
+        ],
+      },
+      {
+        title: "Career Guidance, CV Writing & Interview Preparation",
+        intro: "Personalised career guidance to help students, graduates and professionals identify strengths, build professional documents and succeed in interviews.",
+        bullets: [
+          "One-to-one career counselling and skills assessment.",
+          "Professional, modern CVs tailored to industry standards.",
+          "Customised cover letters for specific job applications.",
+          "Adaptation of CVs for international job markets.",
+          "Mock interview sessions with feedback.",
+          "Communication, body language and professional etiquette training.",
+          "Internship and placement support with partner organisations.",
+        ],
+      },
+      {
+        title: "Codice Fiscale & Administrative Support",
+        intro: "Assistance in obtaining the Italian Tax Code (Codice Fiscale) and completing essential administrative procedures.",
+        bullets: [
+          "Guidance on the Codice Fiscale application process.",
+          "Assistance with forms, documentation and appointments.",
+          "Completion of official forms and applications.",
+          "Document preparation, verification and translation.",
+          "Support with appointments at public offices and institutions.",
+          "General administrative advice for students and foreign residents.",
+        ],
+      },
+      {
+        title: "Integration Services & Intercultural Consulting",
+        intro: "Support for foreign nationals to integrate successfully — plus intercultural training for individuals and organisations navigating diverse environments.",
+        bullets: [
+          "Orientation and welcome support for newcomers.",
+          "Guidance on local culture, customs and daily life.",
+          "Assistance with healthcare, transport and banking.",
+          "Community engagement and social integration.",
+          "Cultural awareness training for individuals and organisations.",
+          "Cross-cultural communication and etiquette guidance.",
+          "Conflict resolution in intercultural settings.",
+        ],
+      },
+      {
+        title: "Corporate Language Training & Educational Services",
+        intro: "Tailored corporate language training and customised educational solutions for schools, universities, businesses and organisations.",
+        bullets: [
+          "Customised language courses for companies and employees.",
+          "Business English, Italian, Spanish, French and more.",
+          "Industry-specific vocabulary and communication training.",
+          "Meetings, presentations, negotiations and business writing.",
+          "Professional development for teachers, educators and corporate staff.",
+          "Workshops, seminars and educational events.",
+          "Curriculum development and international education initiatives.",
+          "On-site, online or hybrid delivery.",
+        ],
+      },
     ],
   },
   testimonials: {
@@ -151,11 +458,11 @@ export const en: Dict = {
     title: "Answers, before you ask",
     items: [
       { q: "How do I know which level I should start at?", a: "Every new learner takes a short complimentary placement — a written test and a brief conversation — so we can recommend the right level and study plan." },
-      { q: "Can I take lessons entirely online?", a: "Yes. Every course we offer runs both in the classroom in Casagiove and fully online, with the same teachers and materials." },
-      { q: "Do you prepare for official certifications?", a: "We prepare learners for Cambridge, IELTS, DELF/DALF, DELE, CILS and CELI, with dedicated exam-focused modules." },
-      { q: "Are courses available for children?", a: "Yes — we run age-appropriate programmes for children, teenagers and adults, either individually or in small groups." },
-      { q: "Do you work with companies?", a: "Absolutely. We build bespoke corporate programmes for teams and executives, on site or online." },
-      { q: "How can I pay for a course?", a: "You can enrol and pay online through our secure Enrol page, by bank transfer or in person at the studio." },
+      { q: "Can I take lessons entirely online?", a: "Yes. Every course we offer runs both in the classroom and fully online, with the same teachers and materials." },
+      { q: "Do you prepare for official certifications?", a: "We are an accredited Cambridge preparation and examination centre, and UNIDA CECOL accredited for Italian A2–C2. We also prepare learners for IELTS, TOEFL, DELF/DALF and DELE." },
+      { q: "Do you support student visas and residence permits?", a: "Yes — we provide comprehensive support across the student visa process and residence permit applications and renewals." },
+      { q: "Do you work with companies?", a: "Absolutely. We build bespoke corporate programmes for teams and executives, on site or online, in every major business language." },
+      { q: "Do you provide certified and sworn translations?", a: "Yes — professional, sworn and certified translations accepted by courts, universities, employers and public authorities." },
     ],
   },
   contact: {
@@ -184,10 +491,10 @@ export const en: Dict = {
       { name: "Studio", price: "€220", period: "per month", features: ["2 private lessons per week", "Personal study plan", "Certification prep modules", "Priority scheduling"], featured: true },
       { name: "Executive", price: "On request", period: "bespoke", features: ["Corporate & 1-to-1 programmes", "On-site or online delivery", "Dedicated account manager", "Progress reporting for HR"] },
     ],
-    disclaimer: "Online payments are processed securely via Stripe. VAT is included where applicable. This is a placeholder — final integration will be enabled at launch.",
+    disclaimer: "Online payments will be processed securely via Stripe. VAT is included where applicable. This is a placeholder — final integration will be enabled at launch.",
   },
   footer: {
-    tagline: "Language center · Casagiove, Caserta, Italy. Founded 2016.",
+    tagline: "ESF Language Services — trusted provider of language education, international student support and educational consultancy.",
     explore: "Explore",
     languages: "Languages",
     contact: "Contact",
@@ -204,7 +511,7 @@ export const en: Dict = {
 const p = IT_PLACEHOLDER;
 export const it: Dict = {
   nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
-  cta: { book: p, explore: p, contact: p, enroll: p, discover: p },
+  cta: { book: p, explore: p, contact: p, enroll: p, discover: p, learnMore: p },
   hero: { eyebrow: "Centro linguistico · Casagiove, Caserta", title: p, titleAccent: p, lede: p },
   pillars: {
     title: p,
@@ -215,51 +522,45 @@ export const it: Dict = {
       { title: "Online e in presenza", body: p },
     ],
   },
-  intro: { eyebrow: "ESF Language Service", title: p, body: p },
+  intro: { eyebrow: "ESF Language Services", title: p, body: p },
   services: {
     eyebrow: p, title: p, lede: p,
-    items: [
-      { title: "Corsi di lingua", body: p },
-      { title: "Certificazioni", body: p },
-      { title: "Traduzioni", body: p },
-      { title: "Editing", body: p },
-      { title: "Italiano per stranieri", body: p },
-      { title: "Corsi aziendali", body: p },
-    ],
+    items: en.services.items.map((s) => ({ title: s.title, body: p })),
   },
   courses: {
     eyebrow: p, title: p, lede: p,
     languages: [
       { name: "Inglese", body: p },
-      { name: "Francese", body: p },
-      { name: "Spagnolo", body: p },
       { name: "Italiano", body: p },
+      { name: "Spagnolo", body: p },
+      { name: "Francese", body: p },
     ],
     levelsTitle: p,
     levels: ["Base · A1", "Elementare · A2", "Intermedio · B1", "Intermedio superiore · B2", "Avanzato · C1", "Padronanza · C2"],
     distanceTitle: p, distanceBody: p,
   },
   about: {
-    eyebrow: "Chi siamo", title: p, body: [p, p, p],
+    eyebrow: "Chi siamo", title: p, body: [p, p],
+    mission: { title: "La nostra missione", body: p },
+    vision: { title: "La nostra visione", body: p },
+    why: { title: "Perché sceglierci", body: p, bullets: en.about.why.bullets.map(() => p) },
+    values: { title: "I nostri valori", body: p },
+    stats: en.about.stats.map((s) => ({ value: s.value, label: p })),
     goalsTitle: "I nostri obiettivi", goals: p,
-    stats: [
-      { value: "1.200+", label: "Studenti" },
-      { value: "40+", label: "Corsi" },
-      { value: "9", label: "Anni di attività" },
-      { value: "4", label: "Lingue" },
-    ],
+  },
+  detailed: {
+    eyebrow: p, title: p, lede: p,
+    services: en.detailed.services.map((s) => ({
+      title: s.title, intro: p, bullets: s.bullets.map(() => p), outro: p,
+    })),
   },
   testimonials: {
     eyebrow: p, title: p,
-    items: [
-      { quote: p, name: "Chiara R.", role: "Marketing Manager" },
-      { quote: p, name: "Marco T.", role: "Studente di Medicina" },
-      { quote: p, name: "Elena D.", role: "HR Director" },
-    ],
+    items: en.testimonials.items.map((t) => ({ quote: p, name: t.name, role: t.role })),
   },
   faq: {
     eyebrow: p, title: p,
-    items: Array.from({ length: 6 }, () => ({ q: p, a: p })),
+    items: en.faq.items.map(() => ({ q: p, a: p })),
   },
   contact: {
     eyebrow: "Contatti", title: p, lede: p,
@@ -277,7 +578,7 @@ export const it: Dict = {
     disclaimer: p,
   },
   footer: {
-    tagline: "Centro linguistico · Casagiove, Caserta. Dal 2016.",
+    tagline: p,
     explore: "Naviga", languages: "Lingue", contact: "Contatti",
     rights: "Tutti i diritti riservati.",
   },
