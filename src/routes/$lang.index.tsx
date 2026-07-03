@@ -40,7 +40,14 @@ function Home() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="container-page grid gap-16 pt-16 pb-24 md:pt-24 md:pb-32 lg:grid-cols-12 lg:gap-12">
+        <div
+          className="absolute inset-0 -z-10 opacity-60"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 15% 10%, oklch(0.72 0.13 78 / 0.15), transparent 60%), radial-gradient(50% 50% at 90% 90%, oklch(0.24 0.09 265 / 0.12), transparent 60%)",
+          }}
+        />
+        <div className="container-page grid gap-14 pt-14 pb-24 md:pt-20 md:pb-32 lg:grid-cols-12 lg:gap-16 items-center">
           <div className="lg:col-span-7 fade-up">
             <div className="eyebrow flex items-center gap-2">
               <Sparkles size={12} className="text-[color:var(--gold)]" />
@@ -48,7 +55,7 @@ function Home() {
             </div>
             <h1 className="mt-6 font-serif text-5xl md:text-7xl leading-[1.02] tracking-tight text-ink">
               {t.hero.title}{" "}
-              <em className="not-italic bg-gradient-to-r from-[color:var(--gold)] to-[oklch(0.55_0.08_155)] bg-clip-text text-transparent italic">
+              <em className="not-italic bg-gradient-to-r from-[color:var(--gold)] to-[oklch(0.55_0.12_78)] bg-clip-text text-transparent italic">
                 {t.hero.titleAccent}
               </em>
               .
@@ -60,7 +67,7 @@ function Home() {
               <Link
                 to="/$lang/contact"
                 params={{ lang: l }}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 shadow-soft"
               >
                 {t.cta.book} <ArrowRight size={16} />
               </Link>
@@ -78,7 +85,7 @@ function Home() {
                   <Star key={i} size={14} fill="currentColor" />
                 ))}
               </div>
-              <span>Rated 4.9 · 200+ students since 2016</span>
+              <span>Rated 4.9 · 1,200+ learners since 2016</span>
             </div>
           </div>
 
@@ -88,7 +95,7 @@ function Home() {
               <div className="absolute -right-6 -bottom-6 hidden md:block h-32 w-32 rounded-full bg-cream" />
               <img
                 src={heroImg}
-                alt="A quiet study desk with an open notebook and fountain pen"
+                alt="International flags on a study desk"
                 width={1600}
                 height={1200}
                 className="relative rounded-3xl object-cover aspect-[4/5] shadow-elegant"

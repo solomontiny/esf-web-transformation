@@ -1,25 +1,27 @@
 import { Link } from "@tanstack/react-router";
 import type { Lang } from "@/i18n/dictionaries";
+import logoImg from "@/assets/logo.jpg";
 
-export function Logo({ lang, tone = "dark" }: { lang: Lang; tone?: "dark" | "light" }) {
-  const color = tone === "light" ? "text-cream" : "text-primary";
+export function Logo({ lang, tone = "dark", size = "md" }: { lang: Lang; tone?: "dark" | "light"; size?: "sm" | "md" | "lg" }) {
+  const textColor = tone === "light" ? "text-cream" : "text-primary";
+  const h = size === "lg" ? "h-16 md:h-20" : size === "sm" ? "h-9" : "h-12 md:h-14";
   return (
-    <Link to="/$lang" params={{ lang }} className={`group inline-flex items-center gap-3 ${color}`}>
-      <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true" className="shrink-0">
-        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" strokeWidth="1.25" />
-        <text
-          x="50%" y="53%" textAnchor="middle" dominantBaseline="middle"
-          fontFamily="Playfair Display, serif" fontSize="16" fontStyle="italic" fontWeight="500"
-          fill="currentColor"
-        >
-          esf
-        </text>
-        <circle cx="30" cy="12" r="1.6" fill="var(--gold)" />
-      </svg>
-      <span className="flex flex-col leading-tight">
-        <span className="font-serif text-base tracking-tight">ESF Language Service</span>
+    <Link
+      to="/$lang"
+      params={{ lang }}
+      aria-label="ESF Language Service — Home"
+      className={`group inline-flex items-center gap-3 ${textColor}`}
+    >
+      <img
+        src={logoImg}
+        alt="ESF Language Service"
+        className={`${h} w-auto object-contain transition-transform group-hover:scale-105`}
+        style={{ mixBlendMode: tone === "light" ? "screen" : "multiply" }}
+      />
+      <span className="hidden sm:flex flex-col leading-tight">
+        <span className="font-serif text-base md:text-lg tracking-tight">ESF Language Service</span>
         <span className="text-[10px] font-medium tracking-[0.22em] uppercase opacity-70">
-          Est. 2016 · Casagiove
+          Luigia Almiero · Studio Linguistico
         </span>
       </span>
     </Link>

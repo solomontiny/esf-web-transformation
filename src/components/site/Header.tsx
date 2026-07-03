@@ -29,11 +29,11 @@ export function Header({ lang }: { lang: Lang }) {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border/60"
-          : "bg-transparent"
+          ? "bg-background/90 backdrop-blur-md border-b border-border/60 shadow-soft"
+          : "bg-background/70 backdrop-blur-sm"
       }`}
     >
-      <div className="container-page flex h-20 items-center justify-between gap-6">
+      <div className="container-page flex h-24 items-center justify-between gap-6">
         <Logo lang={lang} />
 
         <nav className="hidden lg:flex items-center gap-8">
