@@ -32,7 +32,27 @@ type Dict = {
     eyebrow: string;
     title: string;
     lede: string;
-    languages: { name: string; body: string }[];
+    languages: {
+      name: string;
+      tagline: string;
+      body: string;
+      priceFrom: string;
+      duration: string;
+      format: string;
+      levels: string;
+      highlights: string[];
+      syllabus: string[];
+      certifications: string[];
+    }[];
+    detailsLabel: string;
+    hideLabel: string;
+    priceLabel: string;
+    durationLabel: string;
+    formatLabel: string;
+    levelsLabel: string;
+    includesLabel: string;
+    syllabusLabel: string;
+    certificationsLabel: string;
     levelsTitle: string;
     levels: string[];
     distanceTitle: string;
@@ -69,8 +89,10 @@ type Dict = {
     eyebrow: string;
     title: string;
     lede: string;
-    plans: { name: string; price: string; period: string; features: string[]; featured?: boolean }[];
+    plans: { name: string; price: string; period: string; description: string; features: string[]; featured?: boolean }[];
     disclaimer: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
   };
   footer: {
     tagline: string;
@@ -125,11 +147,108 @@ export const en: Dict = {
     eyebrow: "Foreign language courses",
     title: "Four core languages. Every level. Your pace.",
     lede: "Courses designed for adults growing personally or professionally, teenagers who need academic support, children with an early curiosity for language, and companies training their teams.",
+    detailsLabel: "View full details",
+    hideLabel: "Hide details",
+    priceLabel: "From",
+    durationLabel: "Duration",
+    formatLabel: "Format",
+    levelsLabel: "Levels",
+    includesLabel: "What's included",
+    syllabusLabel: "Course syllabus",
+    certificationsLabel: "Certifications",
     languages: [
-      { name: "English", body: "General, academic and business English — with preparation for Cambridge, IELTS and TOEFL." },
-      { name: "Italian", body: "Italian for foreigners aligned with UNIDA CECOL accreditation, from A2 to C2 certification." },
-      { name: "Spanish", body: "Modern Spanish for travel, work and study, aligned with international certifications." },
-      { name: "French", body: "General and professional French, with structured DELF and DALF preparation." },
+      {
+        name: "English",
+        tagline: "General · Business · Academic",
+        body: "From confident daily conversation to Cambridge, IELTS and TOEFL preparation — English at every level, taught by certified native and near-native speakers.",
+        priceFrom: "€120 / month",
+        duration: "3 · 6 · 12 month tracks",
+        format: "In studio · Online · Hybrid",
+        levels: "A1 → C2",
+        highlights: [
+          "Small group (max 6) or 1-to-1 lessons",
+          "Weekly conversation clinic with native teacher",
+          "Digital course book + audio library",
+          "Free placement test and progress review every 6 weeks",
+        ],
+        syllabus: [
+          "Grammar in context — practical, not memorised",
+          "Listening & pronunciation labs",
+          "Business writing: emails, reports, presentations",
+          "Academic writing & IELTS/TOEFL essay technique",
+          "Interview & public speaking practice",
+        ],
+        certifications: ["Cambridge A2 Key → C2 Proficiency", "IELTS Academic & General", "TOEFL iBT", "Business B1 / B2 / C1"],
+      },
+      {
+        name: "Italian",
+        tagline: "Italiano for foreigners · UNIDA CECOL",
+        body: "Structured Italian for foreigners aligned with the UNIDA CECOL framework, from A2 survival Italian to full C2 proficiency and certification.",
+        priceFrom: "€130 / month",
+        duration: "10 weeks · 20 weeks · intensive",
+        format: "In studio · Online · Intensive",
+        levels: "A2 → C2",
+        highlights: [
+          "UNIDA CECOL accredited preparation and examination",
+          "Cultural immersion sessions (cinema, cucina, storia)",
+          "Support for university admissions in Italy",
+          "Codice fiscale and residence permit help included",
+        ],
+        syllabus: [
+          "Everyday Italian for living and working in Italy",
+          "Grammar, verbi and syntax with guided practice",
+          "Reading Italian literature and current affairs",
+          "Academic Italian for university and research",
+          "Simulated CECOL A2 → C2 exam practice",
+        ],
+        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2"],
+      },
+      {
+        name: "Spanish",
+        tagline: "Español para viajar, trabajar, vivir",
+        body: "Modern, communicative Spanish taught with a Latin-American and Iberian balance — for travel, career mobility, study and certification.",
+        priceFrom: "€110 / month",
+        duration: "3 · 6 · 12 month tracks",
+        format: "In studio · Online · Hybrid",
+        levels: "A1 → C2",
+        highlights: [
+          "Conversation-first methodology",
+          "Native teachers from Spain and Latin America",
+          "DELE and SIELE examination preparation",
+          "Cultural workshops: música, cine, gastronomía",
+        ],
+        syllabus: [
+          "Practical vocabulary for daily life and travel",
+          "Grammar built through real dialogue",
+          "Professional Spanish for business and negotiation",
+          "Academic reading and writing",
+          "DELE / SIELE exam strategy and mock tests",
+        ],
+        certifications: ["Instituto Cervantes DELE A1 → C2", "SIELE"],
+      },
+      {
+        name: "French",
+        tagline: "Français général et professionnel",
+        body: "General and professional French with structured DELF and DALF preparation — from your first bonjour to full academic and business fluency.",
+        priceFrom: "€120 / month",
+        duration: "3 · 6 · 12 month tracks",
+        format: "In studio · Online · Hybrid",
+        levels: "A1 → C2",
+        highlights: [
+          "Certified francophone teachers",
+          "Phonetics lab for authentic pronunciation",
+          "DELF / DALF preparation and mock exams",
+          "French for hospitality, fashion and diplomacy",
+        ],
+        syllabus: [
+          "Practical French for travel and everyday life",
+          "Grammar, conjugation and syntax",
+          "Business French: correspondence and meetings",
+          "Academic French for universities in France & Belgium",
+          "DELF / DALF exam practice with feedback",
+        ],
+        certifications: ["DELF A1 → B2", "DALF C1 · C2", "TCF"],
+      },
     ],
     levelsTitle: "Aligned with the Common European Framework",
     levels: ["Beginner · A1", "Elementary · A2", "Intermediate · B1", "Upper Intermediate · B2", "Advanced · C1", "Proficiency · C2"],
@@ -487,11 +606,57 @@ export const en: Dict = {
     title: "Choose your programme",
     lede: "Secure your place with a simple online enrolment. Prices are indicative starting points — every course is tailored, and we will confirm the final quote after your placement.",
     plans: [
-      { name: "Discovery", price: "€120", period: "per month", features: ["1 private lesson per week", "Personal study plan", "Digital materials", "Progress reviews every 6 weeks"] },
-      { name: "Studio", price: "€220", period: "per month", features: ["2 private lessons per week", "Personal study plan", "Certification prep modules", "Priority scheduling"], featured: true },
-      { name: "Executive", price: "On request", period: "bespoke", features: ["Corporate & 1-to-1 programmes", "On-site or online delivery", "Dedicated account manager", "Progress reporting for HR"] },
+      {
+        name: "Discovery",
+        price: "€120",
+        period: "per month",
+        description: "The perfect entry point — one focused private lesson each week to build steady, confident progress.",
+        features: [
+          "1 private lesson per week (60 min)",
+          "Personalised study plan after placement",
+          "Full digital course book and audio library",
+          "Progress reviews every 6 weeks",
+          "In studio or online",
+        ],
+      },
+      {
+        name: "Studio",
+        price: "€220",
+        period: "per month",
+        description: "Our most chosen programme — twice the practice, dedicated certification support, priority scheduling.",
+        features: [
+          "2 private lessons per week (60 min each)",
+          "Personalised study plan and weekly homework review",
+          "Certification prep modules (Cambridge · IELTS · TOEFL · CECOL · DELF · DELE)",
+          "Weekly conversation clinic with a native teacher",
+          "Priority scheduling and rescheduling",
+          "In studio, online or hybrid",
+        ],
+        featured: true,
+      },
+      {
+        name: "Executive",
+        price: "On request",
+        period: "bespoke",
+        description: "Fully tailored 1-to-1 or corporate programmes for professionals, executives and teams.",
+        features: [
+          "Custom-designed 1-to-1 or team programme",
+          "On-site, online or hybrid delivery",
+          "Industry-specific vocabulary (legal, medical, finance, hospitality)",
+          "Dedicated account manager",
+          "Monthly progress reporting for HR",
+          "Flexible scheduling across time zones",
+        ],
+      },
     ],
-    disclaimer: "Online payments will be processed securely via Stripe. VAT is included where applicable. This is a placeholder — final integration will be enabled at launch.",
+    disclaimer: "Prices are indicative. After enrolment we confirm the final quote based on your placement, schedule and objectives. VAT included where applicable.",
+    faqTitle: "Enrolment questions",
+    faq: [
+      { q: "How does enrolment work?", a: "Choose a programme, fill in your details, and your enrolment request is sent directly to our team via WhatsApp or email. We reply within one business day to schedule your free placement and confirm your quote." },
+      { q: "Can I try a lesson before enrolling?", a: "Yes — every new learner receives a complimentary placement session (written test + short conversation) so we can recommend the right level and study plan." },
+      { q: "How do I pay?", a: "You can pay in studio, by bank transfer, or online via secure card payment. Monthly and quarterly billing available." },
+      { q: "Can I switch plans later?", a: "Absolutely. You can move up or down at any point — we simply adjust your next monthly billing cycle." },
+    ],
   },
   footer: {
     tagline: "ESF Language Services — trusted provider of language education, international student support and educational consultancy.",
@@ -529,12 +694,18 @@ export const it: Dict = {
   },
   courses: {
     eyebrow: p, title: p, lede: p,
-    languages: [
-      { name: "Inglese", body: p },
-      { name: "Italiano", body: p },
-      { name: "Spagnolo", body: p },
-      { name: "Francese", body: p },
-    ],
+    detailsLabel: "Vedi dettagli", hideLabel: "Nascondi",
+    priceLabel: "Da", durationLabel: "Durata", formatLabel: "Formato",
+    levelsLabel: "Livelli", includesLabel: "Cosa è incluso",
+    syllabusLabel: "Programma", certificationsLabel: "Certificazioni",
+    languages: en.courses.languages.map((c) => ({
+      name: c.name === "English" ? "Inglese" : c.name === "Italian" ? "Italiano" : c.name === "Spanish" ? "Spagnolo" : "Francese",
+      tagline: p, body: p,
+      priceFrom: c.priceFrom, duration: c.duration, format: c.format, levels: c.levels,
+      highlights: c.highlights.map(() => p),
+      syllabus: c.syllabus.map(() => p),
+      certifications: c.certifications,
+    })),
     levelsTitle: p,
     levels: ["Base · A1", "Elementare · A2", "Intermedio · B1", "Intermedio superiore · B2", "Avanzato · C1", "Padronanza · C2"],
     distanceTitle: p, distanceBody: p,
@@ -570,12 +741,15 @@ export const it: Dict = {
   },
   payment: {
     eyebrow: "Iscriviti", title: p, lede: p,
-    plans: [
-      { name: "Discovery", price: "€120", period: "al mese", features: [p, p, p, p] },
-      { name: "Studio", price: "€220", period: "al mese", features: [p, p, p, p], featured: true },
-      { name: "Executive", price: "Su richiesta", period: "personalizzato", features: [p, p, p, p] },
-    ],
+    plans: en.payment.plans.map((plan) => ({
+      name: plan.name, price: plan.price, period: plan.period,
+      description: p,
+      features: plan.features.map(() => p),
+      featured: plan.featured,
+    })),
     disclaimer: p,
+    faqTitle: p,
+    faq: en.payment.faq.map(() => ({ q: p, a: p })),
   },
   footer: {
     tagline: p,
