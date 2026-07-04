@@ -32,7 +32,27 @@ type Dict = {
     eyebrow: string;
     title: string;
     lede: string;
-    languages: { name: string; body: string }[];
+    languages: {
+      name: string;
+      tagline: string;
+      body: string;
+      priceFrom: string;
+      duration: string;
+      format: string;
+      levels: string;
+      highlights: string[];
+      syllabus: string[];
+      certifications: string[];
+    }[];
+    detailsLabel: string;
+    hideLabel: string;
+    priceLabel: string;
+    durationLabel: string;
+    formatLabel: string;
+    levelsLabel: string;
+    includesLabel: string;
+    syllabusLabel: string;
+    certificationsLabel: string;
     levelsTitle: string;
     levels: string[];
     distanceTitle: string;
@@ -69,8 +89,10 @@ type Dict = {
     eyebrow: string;
     title: string;
     lede: string;
-    plans: { name: string; price: string; period: string; features: string[]; featured?: boolean }[];
+    plans: { name: string; price: string; period: string; description: string; features: string[]; featured?: boolean }[];
     disclaimer: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
   };
   footer: {
     tagline: string;
