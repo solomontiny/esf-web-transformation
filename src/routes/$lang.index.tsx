@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowRight, Sparkles, GraduationCap, Award, Languages, PenLine, Flag, Building2, Check, Star } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import classroomImg from "@/assets/classroom.jpg";
+import slideStudents from "@/assets/slide-students.jpg";
+import slideBooks from "@/assets/slide-books.jpg";
+import slideCertificate from "@/assets/slide-certificate.jpg";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
@@ -90,21 +94,7 @@ function Home() {
           </div>
 
           <div className="lg:col-span-5 fade-up" style={{ animationDelay: "120ms" }}>
-            <div className="relative">
-              <div className="absolute -left-6 -top-6 hidden md:block h-24 w-24 rounded-full border border-[color:var(--gold)]/50" />
-              <div className="absolute -right-6 -bottom-6 hidden md:block h-32 w-32 rounded-full bg-cream" />
-              <img
-                src={heroImg}
-                alt="International flags on a study desk"
-                width={1600}
-                height={1200}
-                className="relative rounded-3xl object-cover aspect-[4/5] shadow-elegant"
-              />
-              <div className="absolute -left-4 bottom-8 md:-left-10 rounded-2xl border border-border bg-background/95 backdrop-blur px-5 py-4 shadow-soft w-56">
-                <div className="text-3xl font-serif text-primary">A1 → C2</div>
-                <div className="mt-1 text-xs text-muted-foreground">Every CEFR level, one studio</div>
-              </div>
-            </div>
+            <HeroSlider />
           </div>
         </div>
       </section>
