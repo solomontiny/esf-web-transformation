@@ -238,3 +238,55 @@ function Home() {
     </>
   );
 }
+
+const SLIDES = [
+  { img: heroImg, badge: "A1 → C2", caption: "Every CEFR level, one studio" },
+  { img: slideStudents, badge: "1,200+", caption: "Learners since 2016" },
+  { img: slideBooks, badge: "4 langs", caption: "English · Italian · Spanish · French" },
+  { img: slideCertificate, badge: "Cambridge · CECOL", caption: "Accredited exam centre" },
+  { img: classroomImg, badge: "In studio · Online", caption: "Casagiove & worldwide" },
+];
+
+function HeroSlider() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 4500);
+    return () => clearInterval(t);
+  }, []);
+  const current = SLIDES[idx];
+  return (
+    <div className="relative">
+      <div className="absolute -left-6 -top-6 hidden md:block h-24 w-24 rounded-full border border-[color:var(--gold)]/50" />
+      <div className="absolute -right-6 -bottom-6 hidden md:block h-32 w-32 rounded-full bg-cream" />
+      <div className="relative overflow-hidden rounded-3xl shadow-elegant aspect-[4/5]">
+        {SLIDES.map((s, i) => (
+          <img
+            key={i}
+            src={s.img}
+            alt=""
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/40 to-transparent" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setIdx(i)}
+              aria-label={`Slide ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all ${i === idx ? "w-8 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"}`}
+            />
+          ))}
+        </div>
+      </div>
+      <div
+        key={idx}
+        className="absolute -left-4 bottom-8 md:-left-10 rounded-2xl border border-border bg-background/95 backdrop-blur px-5 py-4 shadow-soft w-60 animate-fade-in"
+      >
+        <div className="text-2xl font-serif text-primary">{current.badge}</div>
+        <div className="mt-1 text-xs text-muted-foreground">{current.caption}</div>
+      </div>
+    </div>
+  );
+}
