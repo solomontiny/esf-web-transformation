@@ -16,12 +16,15 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
+
         <h2 className="mt-4 text-xl font-semibold text-foreground">
           Page not found
         </h2>
+
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
+
         <div className="mt-6">
           <Link
             to="/"
@@ -86,28 +89,32 @@ export const Route =
     head: () => ({
       meta: [
         { charSet: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
+        },
 
         {
           title:
-            "ESF Language Service — English, French, Spanish & Italian Courses",
+            "ESF Language Service — English, French, Spanish & Italian courses · Caserta",
         },
 
         {
           name: "description",
           content:
-            "Professional language courses, certifications and translation services by ESF Language Service.",
+            "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016.",
         },
 
         {
           property: "og:title",
-          content: "ESF Language Service",
+          content:
+            "ESF Language Service — English, French, Spanish & Italian courses · Caserta",
         },
 
         {
           property: "og:description",
           content:
-            "Professional language courses, certifications and translation services.",
+            "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016.",
         },
 
         {
@@ -127,13 +134,14 @@ export const Route =
 
         {
           name: "twitter:title",
-          content: "ESF Language Service",
+          content:
+            "ESF Language Service — English, French, Spanish & Italian courses · Caserta",
         },
 
         {
           name: "twitter:description",
           content:
-            "Professional language courses, certifications and translation services.",
+            "Boutique language studio in Casagiove, Caserta. Private and group courses, certifications and translations since 2016.",
         },
       ],
 
@@ -141,11 +149,6 @@ export const Route =
         {
           rel: "stylesheet",
           href: appCss,
-        },
-        {
-          rel: "icon",
-          href: "/favicon.ico",
-          type: "image/x-icon",
         },
       ],
     }),
