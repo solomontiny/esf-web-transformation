@@ -590,10 +590,10 @@ export const en: Dict = {
   contact: {
     eyebrow: "Get in touch",
     title: "Come and say hello",
-    lede: "Visit our studio in Casagiove, call, message us on WhatsApp or drop us a line — we typically reply within one business day.",
+    lede: "Visit our studio in Casagiove, call, message us on WhatsApp or drop us a line. We typically reply within one business day.",
     address: "Via Milano, 18 · 81022 Casagiove (CE), Italy",
-    phone: "+39 0823 1410601",
-    whatsapp: "+39 0823 1410601",
+    phone: "+39 338 922 8520",
+    whatsapp: "+39 0823 141 0601",
     email: "info@esflanguageservice.com",
     form: {
       name: "Your name",
