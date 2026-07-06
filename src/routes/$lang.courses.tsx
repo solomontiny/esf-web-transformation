@@ -27,7 +27,7 @@ export const Route = createFileRoute("/$lang/courses")({
   component: CoursesPage,
 });
 
-const COURSE_IMAGES = [englishImg, italianImg, spanishImg, frenchImg];
+const COURSE_IMAGES = [englishAsset.url, spanishImg, frenchAsset.url, italianImg];
 
 function CoursesPage() {
   const { lang } = Route.useParams();
