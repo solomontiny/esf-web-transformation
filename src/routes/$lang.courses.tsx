@@ -4,10 +4,10 @@ import { ArrowRight, Check, ChevronDown, Award, Clock, Monitor, Layers, Sparkles
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import englishImg from "@/assets/course-english.jpg";
-import italianImg from "@/assets/course-italian.jpg";
+import englishAsset from "@/assets/course-english.jpg.asset.json";
 import spanishImg from "@/assets/course-spanish.jpg";
-import frenchImg from "@/assets/course-french.jpg";
+import frenchAsset from "@/assets/course-french.jpg.asset.json";
+import italianImg from "@/assets/course-italian.jpg";
 
 export const Route = createFileRoute("/$lang/courses")({
   head: ({ params }) => {
