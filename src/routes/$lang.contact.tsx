@@ -88,8 +88,18 @@ function ContactPage() {
           <SectionHeader eyebrow={t.contact.eyebrow} title={isEnrollment ? (l === "it" ? "Completa la tua iscrizione" : "Complete your enrolment") : t.contact.title} lede={isEnrollment ? (l === "it" ? "Inserisci i tuoi dati — il tuo messaggio arriverà direttamente al nostro team via WhatsApp." : "Fill in your details — your message goes straight to our team via WhatsApp.") : t.contact.lede} />
           <div className="mt-12 space-y-6">
             <Info icon={<MapPin size={18} />} label="Address" value={t.contact.address} />
-            <Info icon={<Phone size={18} />} label="Phone" value={t.contact.phone} href={`tel:${t.contact.phone.replace(/\s/g, "")}`} />
-            <Info icon={<MessageCircle size={18} />} label="WhatsApp" value={t.contact.whatsapp} href={`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`} />
+            <DualContact
+              label={l === "it" ? "Mobile" : "Mobile"}
+              display="+39 338 922 8520"
+              telHref="tel:+393389228520"
+              waHref="https://api.whatsapp.com/send?phone=393389228520"
+            />
+            <DualContact
+              label={l === "it" ? "Ufficio" : "Office"}
+              display="+39 0823 141 0601"
+              telHref="tel:+390823141061"
+              waHref="https://api.whatsapp.com/send?phone=3908231410601"
+            />
             <Info icon={<Mail size={18} />} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
           </div>
         </div>
@@ -195,6 +205,31 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="mb-2 block text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
       {children}
     </label>
+  );
+}
+
+function DualContact({ label, display, telHref, waHref }: { label: string; display: string; telHref: string; waHref: string }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+        <Phone size={18} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{label}</div>
+        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <a href={telHref} className="text-sm font-medium text-foreground hover:text-primary transition-colors">{display}</a>
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`WhatsApp ${display}`}
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#25D366]/10 px-2.5 py-1 text-[11px] font-medium text-[#128C7E] hover:bg-[#25D366]/20 transition"
+          >
+            <MessageCircle size={12} /> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 

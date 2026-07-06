@@ -20,8 +20,8 @@ export function Logo({ lang, tone = "dark", size = "md" }: { lang: Lang; tone?: 
       />
       <span className="hidden sm:flex flex-col leading-tight">
         <span className="font-serif text-base md:text-lg tracking-tight">ESF Language Service</span>
-        <span className="text-[10px] font-medium tracking-[0.22em] uppercase opacity-70">
-          Luigia Almiero · Studio Linguistico
+        <span className="text-[10px] font-medium tracking-[0.16em] uppercase opacity-70">
+          Di Palmiero Luigia &amp; C. · Studio Linguistico
         </span>
       </span>
     </Link>

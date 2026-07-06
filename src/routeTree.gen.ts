@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangServicesRouteImport } from './routes/$lang.services'
 import { Route as LangPaymentRouteImport } from './routes/$lang.payment'
+import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
 import { Route as LangFaqRouteImport } from './routes/$lang.faq'
 import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
 import { Route as LangContactRouteImport } from './routes/$lang.contact'
@@ -44,6 +45,11 @@ const LangPaymentRoute = LangPaymentRouteImport.update({
   path: '/payment',
   getParentRoute: () => LangRoute,
 } as any)
+const LangGalleryRoute = LangGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangFaqRoute = LangFaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/$lang/contact': typeof LangContactRoute
   '/$lang/courses': typeof LangCoursesRoute
   '/$lang/faq': typeof LangFaqRoute
+  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang/': typeof LangIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/$lang/contact': typeof LangContactRoute
   '/$lang/courses': typeof LangCoursesRoute
   '/$lang/faq': typeof LangFaqRoute
+  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang': typeof LangIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/$lang/contact': typeof LangContactRoute
   '/$lang/courses': typeof LangCoursesRoute
   '/$lang/faq': typeof LangFaqRoute
+  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang/': typeof LangIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/$lang/contact'
     | '/$lang/courses'
     | '/$lang/faq'
+    | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/$lang/contact'
     | '/$lang/courses'
     | '/$lang/faq'
+    | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/$lang/contact'
     | '/$lang/courses'
     | '/$lang/faq'
+    | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang/'
@@ -175,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPaymentRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/gallery': {
+      id: '/$lang/gallery'
+      path: '/gallery'
+      fullPath: '/$lang/gallery'
+      preLoaderRoute: typeof LangGalleryRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/faq': {
       id: '/$lang/faq'
       path: '/faq'
@@ -211,6 +230,7 @@ interface LangRouteChildren {
   LangContactRoute: typeof LangContactRoute
   LangCoursesRoute: typeof LangCoursesRoute
   LangFaqRoute: typeof LangFaqRoute
+  LangGalleryRoute: typeof LangGalleryRoute
   LangPaymentRoute: typeof LangPaymentRoute
   LangServicesRoute: typeof LangServicesRoute
   LangIndexRoute: typeof LangIndexRoute
@@ -221,6 +241,7 @@ const LangRouteChildren: LangRouteChildren = {
   LangContactRoute: LangContactRoute,
   LangCoursesRoute: LangCoursesRoute,
   LangFaqRoute: LangFaqRoute,
+  LangGalleryRoute: LangGalleryRoute,
   LangPaymentRoute: LangPaymentRoute,
   LangServicesRoute: LangServicesRoute,
   LangIndexRoute: LangIndexRoute,

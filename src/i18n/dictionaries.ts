@@ -12,7 +12,7 @@ type ServiceDetail = {
 };
 
 type Dict = {
-  nav: { home: string; about: string; courses: string; services: string; faq: string; contact: string; payment: string };
+  nav: { home: string; about: string; courses: string; services: string; gallery: string; faq: string; contact: string; payment: string };
   cta: { book: string; explore: string; contact: string; enroll: string; discover: string; learnMore: string };
   hero: {
     eyebrow: string;
@@ -105,7 +105,7 @@ type Dict = {
 };
 
 export const en: Dict = {
-  nav: { home: "Home", about: "About", courses: "Courses", services: "Services", faq: "FAQ", contact: "Contact", payment: "Enrol" },
+  nav: { home: "Home", about: "About", courses: "Courses", services: "Services", gallery: "Gallery", faq: "FAQ", contact: "Contact", payment: "Enrol" },
   cta: { book: "Book a consultation", explore: "Explore courses", contact: "Get in touch", enroll: "Enrol now", discover: "Discover", learnMore: "Learn more" },
   hero: {
     eyebrow: "Language Center · Casagiove, Caserta · Italy",
@@ -159,58 +159,35 @@ export const en: Dict = {
     languages: [
       {
         name: "English",
-        tagline: "General · Business · Academic",
-        body: "From confident daily conversation to Cambridge, IELTS and TOEFL preparation — English at every level, taught by certified native and near-native speakers.",
-        priceFrom: "€120 / month",
+        tagline: "ESF · General · Business · Academic",
+        body: "From confident daily conversation to Cambridge, IELTS and TOEFL preparation. English at every level, taught by certified native and near-native speakers.",
+        priceFrom: "From €50 / month",
         duration: "3 · 6 · 12 month tracks",
         format: "In studio · Online · Hybrid",
-        levels: "A1 → C2",
+        levels: "A1 to C2",
         highlights: [
           "Small group (max 6) or 1-to-1 lessons",
-          "Weekly conversation clinic with native teacher",
-          "Digital course book + audio library",
+          "Weekly conversation clinic with a native teacher",
+          "Digital course book and audio library",
           "Free placement test and progress review every 6 weeks",
         ],
         syllabus: [
-          "Grammar in context — practical, not memorised",
-          "Listening & pronunciation labs",
+          "Grammar in context, practical rather than memorised",
+          "Listening and pronunciation labs",
           "Business writing: emails, reports, presentations",
-          "Academic writing & IELTS/TOEFL essay technique",
-          "Interview & public speaking practice",
+          "Academic writing and IELTS / TOEFL essay technique",
+          "Interview and public speaking practice",
         ],
-        certifications: ["Cambridge A2 Key → C2 Proficiency", "IELTS Academic & General", "TOEFL iBT", "Business B1 / B2 / C1"],
-      },
-      {
-        name: "Italian",
-        tagline: "Italiano for foreigners · UNIDA CECOL",
-        body: "Structured Italian for foreigners aligned with the UNIDA CECOL framework, from A2 survival Italian to full C2 proficiency and certification.",
-        priceFrom: "€130 / month",
-        duration: "10 weeks · 20 weeks · intensive",
-        format: "In studio · Online · Intensive",
-        levels: "A2 → C2",
-        highlights: [
-          "UNIDA CECOL accredited preparation and examination",
-          "Cultural immersion sessions (cinema, cucina, storia)",
-          "Support for university admissions in Italy",
-          "Codice fiscale and residence permit help included",
-        ],
-        syllabus: [
-          "Everyday Italian for living and working in Italy",
-          "Grammar, verbi and syntax with guided practice",
-          "Reading Italian literature and current affairs",
-          "Academic Italian for university and research",
-          "Simulated CECOL A2 → C2 exam practice",
-        ],
-        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2"],
+        certifications: ["Cambridge A2 Key to C2 Proficiency", "Gatehouse Awards", "IELTS Academic & General", "TOEFL iBT"],
       },
       {
         name: "Spanish",
-        tagline: "Español para viajar, trabajar, vivir",
-        body: "Modern, communicative Spanish taught with a Latin-American and Iberian balance — for travel, career mobility, study and certification.",
-        priceFrom: "€110 / month",
+        tagline: "ESF · Español para viajar, trabajar, vivir",
+        body: "Modern, communicative Spanish taught with a Latin American and Iberian balance for travel, career mobility, study and certification.",
+        priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
         format: "In studio · Online · Hybrid",
-        levels: "A1 → C2",
+        levels: "A1 to C2",
         highlights: [
           "Conversation-first methodology",
           "Native teachers from Spain and Latin America",
@@ -224,16 +201,16 @@ export const en: Dict = {
           "Academic reading and writing",
           "DELE / SIELE exam strategy and mock tests",
         ],
-        certifications: ["Instituto Cervantes DELE A1 → C2", "SIELE"],
+        certifications: ["Instituto Cervantes DELE A1 to C2", "SIELE"],
       },
       {
         name: "French",
-        tagline: "Français général et professionnel",
-        body: "General and professional French with structured DELF and DALF preparation — from your first bonjour to full academic and business fluency.",
-        priceFrom: "€120 / month",
+        tagline: "ESF · Français général et professionnel",
+        body: "General and professional French with structured DELF and DALF preparation, from your first bonjour to full academic and business fluency.",
+        priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
         format: "In studio · Online · Hybrid",
-        levels: "A1 → C2",
+        levels: "A1 to C2",
         highlights: [
           "Certified francophone teachers",
           "Phonetics lab for authentic pronunciation",
@@ -244,10 +221,36 @@ export const en: Dict = {
           "Practical French for travel and everyday life",
           "Grammar, conjugation and syntax",
           "Business French: correspondence and meetings",
-          "Academic French for universities in France & Belgium",
+          "Academic French for universities in France and Belgium",
           "DELF / DALF exam practice with feedback",
         ],
-        certifications: ["DELF A1 → B2", "DALF C1 · C2", "TCF"],
+        certifications: ["DELF A1 to B2", "DALF C1 and C2", "TCF"],
+      },
+      {
+        name: "Italian",
+        tagline: "ESF · Accredited by UNIDA — Università per Stranieri \"Dante Alighieri\" di Reggio Calabria",
+        body: "Learn Italian through an internationally recognised programme accredited by UNIDA, the official issuer of the CECOL Italian Language Certification. Our courses combine practical language training, cultural immersion, and expert preparation for internationally recognised certification from A2 to C2.",
+        priceFrom: "From €60 / month",
+        duration: "10 weeks · 20 weeks · Intensive",
+        format: "In studio · Online · Intensive",
+        levels: "A2 to C2",
+        highlights: [
+          "Official UNIDA CECOL preparation and examination",
+          "Italian culture sessions (cinema, cuisine, history and traditions)",
+          "University admissions guidance for Italy",
+          "Assistance with Codice Fiscale applications",
+          "Assistance with Residence Permit applications",
+          "Experienced instructors",
+          "Personalised learning support",
+        ],
+        syllabus: [
+          "Everyday Italian for living and working in Italy",
+          "Grammar, verbi and syntax with guided practice",
+          "Reading Italian literature and current affairs",
+          "Academic Italian for university and research",
+          "Simulated CECOL A2 to C2 exam practice",
+        ],
+        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2"],
       },
     ],
     levelsTitle: "Aligned with the Common European Framework",
@@ -587,10 +590,10 @@ export const en: Dict = {
   contact: {
     eyebrow: "Get in touch",
     title: "Come and say hello",
-    lede: "Visit our studio in Casagiove, call, message us on WhatsApp or drop us a line — we typically reply within one business day.",
+    lede: "Visit our studio in Casagiove, call, message us on WhatsApp or drop us a line. We typically reply within one business day.",
     address: "Via Milano, 18 · 81022 Casagiove (CE), Italy",
-    phone: "+39 0823 1410601",
-    whatsapp: "+39 0823 1410601",
+    phone: "+39 338 922 8520",
+    whatsapp: "+39 0823 141 0601",
     email: "info@esflanguageservice.com",
     form: {
       name: "Your name",
@@ -604,30 +607,30 @@ export const en: Dict = {
   payment: {
     eyebrow: "Enrol",
     title: "Choose your programme",
-    lede: "Secure your place with a simple online enrolment. Prices are indicative starting points — every course is tailored, and we will confirm the final quote after your placement.",
+    lede: "Secure your place with a simple online enrolment. Prices start from the rates below. Every course is tailored, and we will confirm the final quote after your placement.",
     plans: [
       {
-        name: "Discovery",
-        price: "€120",
+        name: "Group Programme",
+        price: "From €50",
         period: "per month",
-        description: "The perfect entry point — one focused private lesson each week to build steady, confident progress.",
+        description: "Small group classes with a certified teacher, perfect for steady, sociable progress.",
         features: [
-          "1 private lesson per week (60 min)",
-          "Personalised study plan after placement",
-          "Full digital course book and audio library",
-          "Progress reviews every 6 weeks",
+          "Small group (max 6 learners)",
+          "Weekly conversation practice",
+          "Digital course book and audio library",
+          "Placement test and progress review every 6 weeks",
           "In studio or online",
         ],
       },
       {
-        name: "Studio",
-        price: "€220",
+        name: "Yearly Programme",
+        price: "From €60",
         period: "per month",
-        description: "Our most chosen programme — twice the practice, dedicated certification support, priority scheduling.",
+        description: "Our most chosen programme. 20 hours per week of structured tuition with dedicated certification support.",
         features: [
-          "2 private lessons per week (60 min each)",
+          "20 hours per week",
           "Personalised study plan and weekly homework review",
-          "Certification prep modules (Cambridge · IELTS · TOEFL · CECOL · DELF · DELE)",
+          "Certification prep (Cambridge · Gatehouse · IELTS · TOEFL · CECOL · DELF · DELE)",
           "Weekly conversation clinic with a native teacher",
           "Priority scheduling and rescheduling",
           "In studio, online or hybrid",
@@ -635,12 +638,12 @@ export const en: Dict = {
         featured: true,
       },
       {
-        name: "Executive",
-        price: "On request",
+        name: "Private & Corporate",
+        price: "Price on Request",
         period: "bespoke",
         description: "Fully tailored 1-to-1 or corporate programmes for professionals, executives and teams.",
         features: [
-          "Custom-designed 1-to-1 or team programme",
+          "Custom 1-to-1 or team programme",
           "On-site, online or hybrid delivery",
           "Industry-specific vocabulary (legal, medical, finance, hospitality)",
           "Dedicated account manager",
@@ -649,13 +652,13 @@ export const en: Dict = {
         ],
       },
     ],
-    disclaimer: "Prices are indicative. After enrolment we confirm the final quote based on your placement, schedule and objectives. VAT included where applicable.",
+    disclaimer: "Prices are indicative starting rates. After enrolment we confirm the final quote based on your placement, schedule and objectives. VAT included where applicable.",
     faqTitle: "Enrolment questions",
     faq: [
       { q: "How does enrolment work?", a: "Choose a programme, fill in your details, and your enrolment request is sent directly to our team via WhatsApp or email. We reply within one business day to schedule your free placement and confirm your quote." },
-      { q: "Can I try a lesson before enrolling?", a: "Yes — every new learner receives a complimentary placement session (written test + short conversation) so we can recommend the right level and study plan." },
+      { q: "Can I try a lesson before enrolling?", a: "Yes. Every new learner receives a complimentary placement session (written test and short conversation) so we can recommend the right level and study plan." },
       { q: "How do I pay?", a: "You can pay in studio, by bank transfer, or online via secure card payment. Monthly and quarterly billing available." },
-      { q: "Can I switch plans later?", a: "Absolutely. You can move up or down at any point — we simply adjust your next monthly billing cycle." },
+      { q: "Can I switch plans later?", a: "Absolutely. You can move up or down at any point. We simply adjust your next monthly billing cycle." },
     ],
   },
   footer: {
@@ -675,7 +678,7 @@ export const en: Dict = {
 // Italian skeleton — real translations to be provided by the client.
 const p = IT_PLACEHOLDER;
 export const it: Dict = {
-  nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
+  nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", gallery: "Galleria", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
   cta: { book: p, explore: p, contact: p, enroll: p, discover: p, learnMore: p },
   hero: { eyebrow: "Centro linguistico · Casagiove, Caserta", title: p, titleAccent: p, lede: p },
   pillars: {

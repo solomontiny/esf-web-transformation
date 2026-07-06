@@ -21,6 +21,7 @@ export function Header({ lang }: { lang: Lang }) {
     { to: "/$lang/about", params: { lang }, label: t.nav.about },
     { to: "/$lang/courses", params: { lang }, label: t.nav.courses },
     { to: "/$lang/services", params: { lang }, label: t.nav.services },
+    { to: "/$lang/gallery", params: { lang }, label: t.nav.gallery },
     { to: "/$lang/faq", params: { lang }, label: t.nav.faq },
     { to: "/$lang/contact", params: { lang }, label: t.nav.contact },
   ];
