@@ -12,7 +12,7 @@ type ServiceDetail = {
 };
 
 type Dict = {
-  nav: { home: string; about: string; courses: string; services: string; faq: string; contact: string; payment: string };
+  nav: { home: string; about: string; courses: string; services: string; gallery: string; faq: string; contact: string; payment: string };
   cta: { book: string; explore: string; contact: string; enroll: string; discover: string; learnMore: string };
   hero: {
     eyebrow: string;
