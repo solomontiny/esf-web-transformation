@@ -88,8 +88,18 @@ function ContactPage() {
           <SectionHeader eyebrow={t.contact.eyebrow} title={isEnrollment ? (l === "it" ? "Completa la tua iscrizione" : "Complete your enrolment") : t.contact.title} lede={isEnrollment ? (l === "it" ? "Inserisci i tuoi dati — il tuo messaggio arriverà direttamente al nostro team via WhatsApp." : "Fill in your details — your message goes straight to our team via WhatsApp.") : t.contact.lede} />
           <div className="mt-12 space-y-6">
             <Info icon={<MapPin size={18} />} label="Address" value={t.contact.address} />
-            <Info icon={<Phone size={18} />} label="Phone" value={t.contact.phone} href={`tel:${t.contact.phone.replace(/\s/g, "")}`} />
-            <Info icon={<MessageCircle size={18} />} label="WhatsApp" value={t.contact.whatsapp} href={`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`} />
+            <DualContact
+              label={l === "it" ? "Mobile" : "Mobile"}
+              display="+39 338 922 8520"
+              telHref="tel:+393389228520"
+              waHref="https://api.whatsapp.com/send?phone=393389228520"
+            />
+            <DualContact
+              label={l === "it" ? "Ufficio" : "Office"}
+              display="+39 0823 141 0601"
+              telHref="tel:+390823141061"
+              waHref="https://api.whatsapp.com/send?phone=3908231410601"
+            />
             <Info icon={<Mail size={18} />} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
           </div>
         </div>
