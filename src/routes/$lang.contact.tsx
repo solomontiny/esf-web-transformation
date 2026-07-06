@@ -208,6 +208,31 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
+function DualContact({ label, display, telHref, waHref }: { label: string; display: string; telHref: string; waHref: string }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+        <Phone size={18} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{label}</div>
+        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <a href={telHref} className="text-sm font-medium text-foreground hover:text-primary transition-colors">{display}</a>
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`WhatsApp ${display}`}
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#25D366]/10 px-2.5 py-1 text-[11px] font-medium text-[#128C7E] hover:bg-[#25D366]/20 transition"
+          >
+            <MessageCircle size={12} /> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Info({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
   const inner = (
     <>
