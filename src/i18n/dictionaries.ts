@@ -678,7 +678,7 @@ export const en: Dict = {
 // Italian skeleton — real translations to be provided by the client.
 const p = IT_PLACEHOLDER;
 export const it: Dict = {
-  nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
+  nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", gallery: "Galleria", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
   cta: { book: p, explore: p, contact: p, enroll: p, discover: p, learnMore: p },
   hero: { eyebrow: "Centro linguistico · Casagiove, Caserta", title: p, titleAccent: p, lede: p },
   pillars: {
