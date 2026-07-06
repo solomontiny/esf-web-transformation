@@ -105,7 +105,7 @@ type Dict = {
 };
 
 export const en: Dict = {
-  nav: { home: "Home", about: "About", courses: "Courses", services: "Services", faq: "FAQ", contact: "Contact", payment: "Enrol" },
+  nav: { home: "Home", about: "About", courses: "Courses", services: "Services", gallery: "Gallery", faq: "FAQ", contact: "Contact", payment: "Enrol" },
   cta: { book: "Book a consultation", explore: "Explore courses", contact: "Get in touch", enroll: "Enrol now", discover: "Discover", learnMore: "Learn more" },
   hero: {
     eyebrow: "Language Center · Casagiove, Caserta · Italy",
