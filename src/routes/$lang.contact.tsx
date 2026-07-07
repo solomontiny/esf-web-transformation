@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Phone, MessageCircle, Mail, Send } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { getDict, type Lang } from "@/i18n/dictionaries";
 
