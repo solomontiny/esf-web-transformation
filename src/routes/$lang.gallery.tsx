@@ -27,9 +27,9 @@ const ITEMS: Item[] = [
   { src: slideCert, alt: "Certification day", category: "certifications" },
   { src: courseFrench.url, alt: "French destinations", category: "destinations", span: "md:col-span-2" },
   { src: slideBooks, alt: "Course materials", category: "studio" },
-  { src: courseSpanish, alt: "Spanish learning", category: "destinations" },
+  { src: courseSpanish.url, alt: "Spanish learning", category: "destinations" },
   { src: naples, alt: "Naples", category: "destinations" },
-  { src: courseItalian, alt: "Italian culture", category: "destinations" },
+  { src: courseItalian.url, alt: "Italian culture", category: "destinations" },
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
