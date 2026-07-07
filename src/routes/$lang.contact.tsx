@@ -97,7 +97,7 @@ function ContactPage() {
             <DualContact
               label={l === "it" ? "Ufficio" : "Office"}
               display="+39 0823 141 0601"
-              telHref="tel:+390823141061"
+              telHref="tel:+3908231410601"
               waHref="https://api.whatsapp.com/send?phone=3908231410601"
             />
             <Info icon={<Mail size={18} />} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
