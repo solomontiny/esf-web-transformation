@@ -12,8 +12,8 @@ import slideBooks from "@/assets/slide-books.jpg";
 import slideCert from "@/assets/slide-certificate.jpg";
 import courseEnglish from "@/assets/course-english.jpg.asset.json";
 import courseFrench from "@/assets/course-french.jpg.asset.json";
-import courseSpanish from "@/assets/course-spanish.jpg";
-import courseItalian from "@/assets/course-italian.jpg";
+import courseSpanish from "@/assets/course-spanish.jpg.asset.json";
+import courseItalian from "@/assets/course-italian.jpg.asset.json";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
