@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Phone, MessageCircle, Mail, Send } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { getDict, type Lang } from "@/i18n/dictionaries";
 
@@ -97,10 +97,13 @@ function ContactPage() {
             <DualContact
               label={l === "it" ? "Ufficio" : "Office"}
               display="+39 0823 141 0601"
-              telHref="tel:+390823141061"
+              telHref="tel:+3908231410601"
               waHref="https://api.whatsapp.com/send?phone=3908231410601"
             />
             <Info icon={<Mail size={18} />} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
+            <Info icon={<ShieldCheck size={18} />} label="PEC" value="esflanguageservice@pec.it" href="mailto:esflanguageservice@pec.it" />
+            <Info icon={<FileText size={18} />} label="Codice Fiscale" value="04964450615" />
+            <Info icon={<Building2 size={18} />} label="Partita IVA" value="04964450615" />
           </div>
         </div>
 

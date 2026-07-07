@@ -159,7 +159,7 @@ export const en: Dict = {
     languages: [
       {
         name: "English",
-        tagline: "ESF · General · Business · Academic",
+        tagline: "ESF Language Service",
         body: "From confident daily conversation to Cambridge, IELTS and TOEFL preparation. English at every level, taught by certified native and near-native speakers.",
         priceFrom: "From €50 / month",
         duration: "3 · 6 · 12 month tracks",
@@ -182,7 +182,7 @@ export const en: Dict = {
       },
       {
         name: "Spanish",
-        tagline: "ESF · Español para viajar, trabajar, vivir",
+        tagline: "ESF Language Service",
         body: "Modern, communicative Spanish taught with a Latin American and Iberian balance for travel, career mobility, study and certification.",
         priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
@@ -205,7 +205,7 @@ export const en: Dict = {
       },
       {
         name: "French",
-        tagline: "ESF · Français général et professionnel",
+        tagline: "ESF Language Service",
         body: "General and professional French with structured DELF and DALF preparation, from your first bonjour to full academic and business fluency.",
         priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
@@ -228,8 +228,8 @@ export const en: Dict = {
       },
       {
         name: "Italian",
-        tagline: "ESF · Accredited by UNIDA — Università per Stranieri \"Dante Alighieri\" di Reggio Calabria",
-        body: "Learn Italian through an internationally recognised programme accredited by UNIDA, the official issuer of the CECOL Italian Language Certification. Our courses combine practical language training, cultural immersion, and expert preparation for internationally recognised certification from A2 to C2.",
+        tagline: "ESF Language Service",
+        body: "Learn Italian through an internationally recognised programme accredited by UNIDA — Università per Stranieri \"Dante Alighieri\" di Reggio Calabria, the official issuer of the CECOL Italian Language Certification. Our courses combine practical language training, cultural immersion, and expert preparation for internationally recognised certification from A2 to C2.",
         priceFrom: "From €60 / month",
         duration: "10 weeks · 20 weeks · Intensive",
         format: "In studio · Online · Intensive",
@@ -250,7 +250,7 @@ export const en: Dict = {
           "Academic Italian for university and research",
           "Simulated CECOL A2 to C2 exam practice",
         ],
-        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2"],
+        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2", "Gatehouse Awards", "Cambridge English"],
       },
     ],
     levelsTitle: "Aligned with the Common European Framework",

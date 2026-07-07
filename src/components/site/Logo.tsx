@@ -19,7 +19,7 @@ export function Logo({ lang, tone = "dark", size = "md" }: { lang: Lang; tone?: 
         style={{ mixBlendMode: tone === "light" ? "screen" : "multiply" }}
       />
       <span className="hidden sm:flex flex-col leading-tight">
-        <span className="font-serif text-base md:text-lg tracking-tight">ESF Language Service</span>
+        <span className="font-serif text-base md:text-lg tracking-tight">ESF Language Service S.a.s</span>
         <span className="text-[10px] font-medium tracking-[0.16em] uppercase opacity-70">
           Di Palmiero Luigia &amp; C. · Studio Linguistico
         </span>

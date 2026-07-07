@@ -12,8 +12,8 @@ import slideBooks from "@/assets/slide-books.jpg";
 import slideCert from "@/assets/slide-certificate.jpg";
 import courseEnglish from "@/assets/course-english.jpg.asset.json";
 import courseFrench from "@/assets/course-french.jpg.asset.json";
-import courseSpanish from "@/assets/course-spanish.jpg";
-import courseItalian from "@/assets/course-italian.jpg";
+import courseSpanish from "@/assets/course-spanish.jpg.asset.json";
+import courseItalian from "@/assets/course-italian.jpg.asset.json";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
@@ -27,9 +27,9 @@ const ITEMS: Item[] = [
   { src: slideCert, alt: "Certification day", category: "certifications" },
   { src: courseFrench.url, alt: "French destinations", category: "destinations", span: "md:col-span-2" },
   { src: slideBooks, alt: "Course materials", category: "studio" },
-  { src: courseSpanish, alt: "Spanish learning", category: "destinations" },
+  { src: courseSpanish.url, alt: "Spanish learning", category: "destinations" },
   { src: naples, alt: "Naples", category: "destinations" },
-  { src: courseItalian, alt: "Italian culture", category: "destinations" },
+  { src: courseItalian.url, alt: "Italian culture", category: "destinations" },
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
