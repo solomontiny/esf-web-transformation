@@ -182,7 +182,7 @@ export const en: Dict = {
       },
       {
         name: "Spanish",
-        tagline: "ESF · Español para viajar, trabajar, vivir",
+        tagline: "ESF Language Service",
         body: "Modern, communicative Spanish taught with a Latin American and Iberian balance for travel, career mobility, study and certification.",
         priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
