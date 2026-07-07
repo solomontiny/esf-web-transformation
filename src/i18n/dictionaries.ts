@@ -205,7 +205,7 @@ export const en: Dict = {
       },
       {
         name: "French",
-        tagline: "ESF · Français général et professionnel",
+        tagline: "ESF Language Service",
         body: "General and professional French with structured DELF and DALF preparation, from your first bonjour to full academic and business fluency.",
         priceFrom: "From €60 / month",
         duration: "3 · 6 · 12 month tracks",
