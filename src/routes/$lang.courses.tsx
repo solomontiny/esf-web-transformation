@@ -172,16 +172,15 @@ function CoursesPage() {
             : "We are an accredited preparation and examination centre partnered with globally recognised awarding bodies."}
           align="center"
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { name: "Cambridge", desc: l === "it" ? "Preparazione ed esami A2 Key → C2 Proficiency" : "A2 Key to C2 Proficiency preparation & exams" },
-            { name: "Gatehouse Awards", desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
-            { name: "UNIDA CECOL", desc: l === "it" ? "Certificazione ufficiale di italiano A2 → C2" : "Official Italian certification A2 to C2" },
-            { name: "IELTS · TOEFL · DELF · DELE", desc: l === "it" ? "Preparazione completa agli esami" : "Full exam preparation" },
+            { name: "Cambridge English", logo: cambridgeAsset.url, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
+            { name: "Gatehouse Awards", logo: gatehouseAsset.url, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
+            { name: "UNIDA", logo: unidaAsset.url, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
           ].map((c) => (
-            <div key={c.name} className="rounded-2xl border border-border bg-background p-6 text-center transition hover:shadow-elegant hover:-translate-y-1">
-              <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
-                <Award size={22} />
+            <div key={c.name} className="rounded-2xl border border-border bg-background p-8 text-center transition hover:shadow-elegant hover:-translate-y-1">
+              <div className="mx-auto flex h-24 items-center justify-center">
+                <img src={c.logo} alt={c.name} loading="lazy" className="max-h-20 w-auto object-contain" />
               </div>
               <div className="mt-5 font-serif text-lg text-primary">{c.name}</div>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{c.desc}</p>
