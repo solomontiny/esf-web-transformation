@@ -159,7 +159,7 @@ export const en: Dict = {
     languages: [
       {
         name: "English",
-        tagline: "ESF · General · Business · Academic",
+        tagline: "ESF Language Service",
         body: "From confident daily conversation to Cambridge, IELTS and TOEFL preparation. English at every level, taught by certified native and near-native speakers.",
         priceFrom: "From €50 / month",
         duration: "3 · 6 · 12 month tracks",
