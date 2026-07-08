@@ -38,22 +38,32 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
 
   const isEnrollment = Boolean(plan || course);
+  const defaultSubject = isEnrollment
+    ? l === "it"
+      ? `Iscrizione${course ? ` — ${course}` : ""}${plan ? ` (${plan})` : ""}`
+      : `Enrolment${course ? ` — ${course}` : ""}${plan ? ` (${plan})` : ""}`
+    : "";
+  const defaultMessage = isEnrollment
+    ? l === "it"
+      ? `Ciao ESF, vorrei iscrivermi${course ? ` al corso di ${course}` : ""}${plan ? ` con il piano ${plan}` : ""}. Potete contattarmi per confermare?`
+      : `Hello ESF, I would like to enrol${course ? ` in the ${course} course` : ""}${plan ? ` on the ${plan} plan` : ""}. Please get in touch to confirm.`
+    : "";
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    subject: isEnrollment
-      ? l === "it"
-        ? `Iscrizione${course ? ` — ${course}` : ""}${plan ? ` (${plan})` : ""}`
-        : `Enrolment${course ? ` — ${course}` : ""}${plan ? ` (${plan})` : ""}`
-      : "",
-    message: isEnrollment
-      ? l === "it"
-        ? `Ciao ESF, vorrei iscrivermi${course ? ` al corso di ${course}` : ""}${plan ? ` con il piano ${plan}` : ""}. Potete contattarmi per confermare?`
-        : `Hello ESF, I would like to enrol${course ? ` in the ${course} course` : ""}${plan ? ` on the ${plan} plan` : ""}. Please get in touch to confirm.`
-      : "",
+    subject: defaultSubject,
+    message: defaultMessage,
   });
+
+  useEffect(() => {
+    setForm((f) => ({
+      ...f,
+      subject: defaultSubject,
+      message: defaultMessage,
+    }));
+  }, [defaultSubject, defaultMessage]);
 
   useEffect(() => {
     if (isEnrollment) {
@@ -92,7 +102,7 @@ function ContactPage() {
               label={l === "it" ? "Mobile" : "Mobile"}
               display="+39 338 922 8520"
               telHref="tel:+393389228520"
-              waHref="https://api.whatsapp.com/send?phone=393389228520"
+              waHref="https://api.whatsapp.com/send?phone=3908231410601"
             />
             <DualContact
               label={l === "it" ? "Ufficio" : "Office"}
