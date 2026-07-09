@@ -25,9 +25,9 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="mt-8">
             <h4 className="eyebrow">{lang === "it" ? "Accreditamenti" : "Accreditations"}</h4>
             <div className="mt-4 flex flex-wrap items-center gap-6">
-              <img src={cambridgeAsset.url} alt="Cambridge English" className="h-10 w-auto object-contain" />
-              <img src={gatehouseAsset.url} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
-              <img src={unidaAsset.url} alt="UNIDA" className="h-10 w-auto object-contain" />
+              <img src={cambridgeImg} alt="Cambridge English" className="h-10 w-auto object-contain" />
+              <img src={gatehouseImg} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
+              <img src={unidaImg} alt="UNIDA" className="h-10 w-auto object-contain" />
             </div>
           </div>
         </div>
