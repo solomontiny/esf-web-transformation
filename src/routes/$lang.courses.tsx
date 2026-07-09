@@ -4,11 +4,13 @@ import { ArrowRight, Check, ChevronDown, Award, Clock, Monitor, Layers, Sparkles
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import englishImg from "@/assets/slide-students.jpg";
-import spanishImg from "@/assets/naples.jpg";
-import frenchImg from "@/assets/slide-books.jpg";
-import italianImg from "@/assets/classroom.jpg";
-import certificationImg from "@/assets/slide-certificate.jpg";
+import englishAsset from "@/assets/course-english.jpg.asset.json";
+import spanishAsset from "@/assets/course-spanish.jpg.asset.json";
+import frenchAsset from "@/assets/course-french.jpg.asset.json";
+import italianAsset from "@/assets/course-italian.jpg.asset.json";
+import unidaAsset from "@/assets/cert-unida.jpg.asset.json";
+import gatehouseAsset from "@/assets/cert-gatehouse.jpg.asset.json";
+import cambridgeAsset from "@/assets/cert-cambridge.jpg.asset.json";
 
 export const Route = createFileRoute("/$lang/courses")({
   head: ({ params }) => {
@@ -28,7 +30,7 @@ export const Route = createFileRoute("/$lang/courses")({
   component: CoursesPage,
 });
 
-const COURSE_IMAGES = [englishImg, spanishImg, frenchImg, italianImg];
+const COURSE_IMAGES = [englishAsset.url, spanishAsset.url, frenchAsset.url, italianAsset.url];
 
 function CoursesPage() {
   const { lang } = Route.useParams();
@@ -172,9 +174,9 @@ function CoursesPage() {
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { name: "Cambridge English", logo: certificationImg, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
-            { name: "Gatehouse Awards", logo: certificationImg, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
-            { name: "UNIDA", logo: certificationImg, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
+            { name: "Cambridge English", logo: cambridgeAsset.url, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
+            { name: "Gatehouse Awards", logo: gatehouseAsset.url, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
+            { name: "UNIDA", logo: unidaAsset.url, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
           ].map((c) => (
             <div key={c.name} className="rounded-2xl border border-border bg-background p-8 text-center transition hover:shadow-elegant hover:-translate-y-1">
               <div className="mx-auto flex h-24 items-center justify-center">

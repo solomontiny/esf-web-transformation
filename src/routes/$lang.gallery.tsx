@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
@@ -10,10 +10,10 @@ import naples from "@/assets/naples.jpg";
 import slideStudents from "@/assets/slide-students.jpg";
 import slideBooks from "@/assets/slide-books.jpg";
 import slideCert from "@/assets/slide-certificate.jpg";
-import courseEnglishImage from "@/assets/naples.jpg";
-import courseFrenchImage from "@/assets/hero.jpg";
-import courseSpanishImage from "@/assets/slide-books.jpg";
-import courseItalianImage from "@/assets/classroom.jpg";
+import courseEnglish from "@/assets/course-english.jpg.asset.json";
+import courseFrench from "@/assets/course-french.jpg.asset.json";
+import courseSpanish from "@/assets/course-spanish.jpg.asset.json";
+import courseItalian from "@/assets/course-italian.jpg.asset.json";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
@@ -22,14 +22,14 @@ type Item = { src: string; alt: string; category: Exclude<Category, "all">; span
 const ITEMS: Item[] = [
   { src: hero, alt: "ESF studio interior", category: "studio", span: "md:col-span-2 md:row-span-2" },
   { src: slideStudents, alt: "Students in class", category: "students" },
-  { src: courseEnglishImage, alt: "English destinations", category: "destinations" },
+  { src: courseEnglish.url, alt: "English destinations", category: "destinations" },
   { src: classroom, alt: "Classroom", category: "studio" },
   { src: slideCert, alt: "Certification day", category: "certifications" },
-  { src: courseFrenchImage, alt: "French destinations", category: "destinations", span: "md:col-span-2" },
+  { src: courseFrench.url, alt: "French destinations", category: "destinations", span: "md:col-span-2" },
   { src: slideBooks, alt: "Course materials", category: "studio" },
-  { src: courseSpanishImage, alt: "Spanish learning", category: "destinations" },
+  { src: courseSpanish.url, alt: "Spanish learning", category: "destinations" },
   { src: naples, alt: "Naples", category: "destinations" },
-  { src: courseItalianImage, alt: "Italian culture", category: "destinations" },
+  { src: courseItalian.url, alt: "Italian culture", category: "destinations" },
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
@@ -57,10 +57,6 @@ function GalleryPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const filtered = useMemo(() => (cat === "all" ? ITEMS : ITEMS.filter((i) => i.category === cat)), [cat]);
-
-  useEffect(() => {
-    setOpenIdx(null);
-  }, [cat]);
 
   const cats: { id: Category; label: string }[] = [
     { id: "all", label: l === "it" ? "Tutte" : "All" },

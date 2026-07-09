@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, MessageCircle, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import unidaLogo from "@/assets/naples.jpg";
-import gatehouseLogo from "@/assets/slide-books.jpg";
-import cambridgeLogo from "@/assets/slide-certificate.jpg";
+import unidaAsset from "@/assets/cert-unida.jpg.asset.json";
+import gatehouseAsset from "@/assets/cert-gatehouse.jpg.asset.json";
+import cambridgeAsset from "@/assets/cert-cambridge.jpg.asset.json";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
@@ -25,9 +25,9 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="mt-8">
             <h4 className="eyebrow">{lang === "it" ? "Accreditamenti" : "Accreditations"}</h4>
             <div className="mt-4 flex flex-wrap items-center gap-6">
-              <img src={cambridgeLogo} alt="Cambridge English" className="h-10 w-auto object-contain" />
-              <img src={gatehouseLogo} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
-              <img src={unidaLogo} alt="UNIDA" className="h-10 w-auto object-contain" />
+              <img src={cambridgeAsset.url} alt="Cambridge English" className="h-10 w-auto object-contain" />
+              <img src={gatehouseAsset.url} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
+              <img src={unidaAsset.url} alt="UNIDA" className="h-10 w-auto object-contain" />
             </div>
           </div>
         </div>
@@ -71,9 +71,6 @@ export function Footer({ lang }: { lang: Lang }) {
             <li className="flex items-center gap-2 text-foreground/80">
               <Mail size={14} className="text-primary shrink-0" />
               <a href="mailto:info@esflanguageservice.com" className="hover:text-primary transition-colors truncate">info@esflanguageservice.com</a>
-            </li>
-            <li className="flex items-center gap-2 text-foreground/80">
-              <a href="https://esflanguageservice.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">esflanguageservice.com</a>
             </li>
             <li className="flex items-center gap-2 text-foreground/80">
               <ShieldCheck size={14} className="text-primary shrink-0" />
