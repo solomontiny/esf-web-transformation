@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import type { Lang } from "@/i18n/dictionaries";
+<<<<<<< Updated upstream
 import classroom from "@/assets/classroom.jpg";
 import hero from "@/assets/hero.jpg";
 import naples from "@/assets/naples.jpg";
@@ -18,12 +19,21 @@ import photoPalace from "@/assets/photo-palace.jpg";
 import photoMuseum from "@/assets/photo-museum.jpg";
 import photoCorporea from "@/assets/photo-corporea.jpg";
 import photoBuilding from "@/assets/photo-building.jpg";
+=======
+import classroomImg from "@/assets/classroom.jpg";
+import heroImg from "@/assets/hero.jpg";
+import naplesImg from "@/assets/naples.jpg";
+import slideStudentsImg from "@/assets/slide-students.jpg";
+import slideBooksImg from "@/assets/slide-books.jpg";
+import slideCertImg from "@/assets/slide-certificate.jpg";
+>>>>>>> Stashed changes
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
 type Item = { src: string; alt: string; category: Exclude<Category, "all">; span?: string };
 
 const ITEMS: Item[] = [
+<<<<<<< Updated upstream
   { src: hero, alt: "ESF students on a class trip", category: "students", span: "md:col-span-2 md:row-span-2" },
   { src: slideStudents, alt: "Students at the museum", category: "students" },
   { src: photoBuilding, alt: "ESF studio exterior in Casagiove", category: "studio" },
@@ -38,6 +48,60 @@ const ITEMS: Item[] = [
   { src: courseFrench, alt: "French destinations", category: "destinations" },
   { src: courseSpanish, alt: "Spanish destinations", category: "destinations" },
   { src: courseItalian, alt: "Italian destinations", category: "destinations" },
+=======
+  {
+    src: heroImg,
+    alt: "ESF studio interior",
+    category: "studio",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    src: slideStudentsImg,
+    alt: "Students in class",
+    category: "students",
+  },
+  {
+    src: naplesImg,
+    alt: "English destinations",
+    category: "destinations",
+  },
+  {
+    src: classroomImg,
+    alt: "Classroom",
+    category: "studio",
+  },
+  {
+    src: slideCertImg,
+    alt: "Certification day",
+    category: "certifications",
+  },
+  {
+    src: heroImg,
+    alt: "French destinations",
+    category: "destinations",
+    span: "md:col-span-2",
+  },
+  {
+    src: slideBooksImg,
+    alt: "Course materials",
+    category: "studio",
+  },
+  {
+    src: slideBooksImg,
+    alt: "Spanish learning",
+    category: "destinations",
+  },
+  {
+    src: naplesImg,
+    alt: "Naples",
+    category: "destinations",
+  },
+  {
+    src: classroomImg,
+    alt: "Italian culture",
+    category: "destinations",
+  },
+>>>>>>> Stashed changes
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({

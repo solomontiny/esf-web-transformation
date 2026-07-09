@@ -2,13 +2,25 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, MessageCircle, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+<<<<<<< Updated upstream
 import unidaImg from "@/assets/cert-unida.jpg";
 import gatehouseImg from "@/assets/cert-gatehouse.jpg";
 import cambridgeImg from "@/assets/cert-cambridge.jpg";
+=======
+import certCambridge from "@/assets/cert-cambridge.jpg";
+import certGatehouse from "@/assets/cert-gatehouse.jpg";
+import certUnida from "@/assets/cert-unida.jpg";
+>>>>>>> Stashed changes
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
   const year = new Date().getFullYear();
+  const accreditationLogos = [
+    { src: certCambridge, alt: "Cambridge English" },
+    { src: certGatehouse, alt: "Gatehouse Awards" },
+    { src: certUnida, alt: "UNIDA" },
+  ];
+
   return (
     <footer className="mt-32 border-t border-border bg-cream">
       <div className="container-page py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -25,9 +37,15 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="mt-8">
             <h4 className="eyebrow">{lang === "it" ? "Accreditamenti" : "Accreditations"}</h4>
             <div className="mt-4 flex flex-wrap items-center gap-6">
+<<<<<<< Updated upstream
               <img src={cambridgeImg} alt="Cambridge English" className="h-10 w-auto object-contain" />
               <img src={gatehouseImg} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
               <img src={unidaImg} alt="UNIDA" className="h-10 w-auto object-contain" />
+=======
+              {accreditationLogos.map((logo) => (
+                <img key={logo.alt} src={logo.src} alt={logo.alt} className="h-10 w-auto object-contain" />
+              ))}
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>
