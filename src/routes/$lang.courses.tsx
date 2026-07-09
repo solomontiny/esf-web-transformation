@@ -4,13 +4,13 @@ import { ArrowRight, Check, ChevronDown, Award, Clock, Monitor, Layers, Sparkles
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import englishAsset from "@/assets/course-english.jpg.asset.json";
-import spanishAsset from "@/assets/course-spanish.jpg.asset.json";
-import frenchAsset from "@/assets/course-french.jpg.asset.json";
-import italianAsset from "@/assets/course-italian.jpg.asset.json";
-import unidaAsset from "@/assets/cert-unida.jpg.asset.json";
-import gatehouseAsset from "@/assets/cert-gatehouse.jpg.asset.json";
-import cambridgeAsset from "@/assets/cert-cambridge.jpg.asset.json";
+import englishImg from "@/assets/course-english.jpg";
+import spanishImg from "@/assets/course-spanish.jpg";
+import frenchImg from "@/assets/course-french.jpg";
+import italianImg from "@/assets/course-italian.jpg";
+import unidaImg from "@/assets/cert-unida.jpg";
+import gatehouseImg from "@/assets/cert-gatehouse.jpg";
+import cambridgeImg from "@/assets/cert-cambridge.jpg";
 
 export const Route = createFileRoute("/$lang/courses")({
   head: ({ params }) => {
