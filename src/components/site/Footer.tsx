@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, MessageCircle, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import unidaAsset from "@/assets/cert-unida.jpg.asset.json";
-import gatehouseAsset from "@/assets/cert-gatehouse.jpg.asset.json";
-import cambridgeAsset from "@/assets/cert-cambridge.jpg.asset.json";
+import unidaImg from "@/assets/cert-unida.jpg";
+import gatehouseImg from "@/assets/cert-gatehouse.jpg";
+import cambridgeImg from "@/assets/cert-cambridge.jpg";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
@@ -25,9 +25,9 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="mt-8">
             <h4 className="eyebrow">{lang === "it" ? "Accreditamenti" : "Accreditations"}</h4>
             <div className="mt-4 flex flex-wrap items-center gap-6">
-              <img src={cambridgeAsset.url} alt="Cambridge English" className="h-10 w-auto object-contain" />
-              <img src={gatehouseAsset.url} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
-              <img src={unidaAsset.url} alt="UNIDA" className="h-10 w-auto object-contain" />
+              <img src={cambridgeImg} alt="Cambridge English" className="h-10 w-auto object-contain" />
+              <img src={gatehouseImg} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
+              <img src={unidaImg} alt="UNIDA" className="h-10 w-auto object-contain" />
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export function Footer({ lang }: { lang: Lang }) {
 
       <div className="border-t border-border/70">
         <div className="container-page flex flex-col md:flex-row items-center justify-between gap-3 py-6 text-xs text-muted-foreground">
-          <span>© {year} ESF Language Service S.a.s · Di Palmiero Luigia &amp; C. · Studio Linguistico. {t.footer.rights}</span>
+          <span>© {year} ESF Language Service S.a.s · Di Palmiero Luigia &amp; C. Studio Linguistico. {t.footer.rights}</span>
           <span>Casagiove · Caserta · Italia</span>
         </div>
       </div>

@@ -250,7 +250,7 @@ export const en: Dict = {
           "Academic Italian for university and research",
           "Simulated CECOL A2 to C2 exam practice",
         ],
-        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2", "Gatehouse Awards", "Cambridge English"],
+        certifications: ["UNIDA CECOL A2 · B1 · B2 · C1 · C2", "CELI A2 · B1 · B2 · C1 · C2"],
       },
     ],
     levelsTitle: "Aligned with the Common European Framework",
