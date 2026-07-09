@@ -10,26 +10,34 @@ import naples from "@/assets/naples.jpg";
 import slideStudents from "@/assets/slide-students.jpg";
 import slideBooks from "@/assets/slide-books.jpg";
 import slideCert from "@/assets/slide-certificate.jpg";
-import courseEnglish from "@/assets/course-english.jpg.asset.json";
-import courseFrench from "@/assets/course-french.jpg.asset.json";
-import courseSpanish from "@/assets/course-spanish.jpg.asset.json";
-import courseItalian from "@/assets/course-italian.jpg.asset.json";
+import courseEnglish from "@/assets/course-english.jpg";
+import courseFrench from "@/assets/course-french.jpg";
+import courseSpanish from "@/assets/course-spanish.jpg";
+import courseItalian from "@/assets/course-italian.jpg";
+import photoPalace from "@/assets/photo-palace.jpg";
+import photoMuseum from "@/assets/photo-museum.jpg";
+import photoCorporea from "@/assets/photo-corporea.jpg";
+import photoBuilding from "@/assets/photo-building.jpg";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
 type Item = { src: string; alt: string; category: Exclude<Category, "all">; span?: string };
 
 const ITEMS: Item[] = [
-  { src: hero, alt: "ESF studio interior", category: "studio", span: "md:col-span-2 md:row-span-2" },
-  { src: slideStudents, alt: "Students in class", category: "students" },
-  { src: courseEnglish.url, alt: "English destinations", category: "destinations" },
-  { src: classroom, alt: "Classroom", category: "studio" },
-  { src: slideCert, alt: "Certification day", category: "certifications" },
-  { src: courseFrench.url, alt: "French destinations", category: "destinations", span: "md:col-span-2" },
-  { src: slideBooks, alt: "Course materials", category: "studio" },
-  { src: courseSpanish.url, alt: "Spanish learning", category: "destinations" },
-  { src: naples, alt: "Naples", category: "destinations" },
-  { src: courseItalian.url, alt: "Italian culture", category: "destinations" },
+  { src: hero, alt: "ESF students on a class trip", category: "students", span: "md:col-span-2 md:row-span-2" },
+  { src: slideStudents, alt: "Students at the museum", category: "students" },
+  { src: photoBuilding, alt: "ESF studio exterior in Casagiove", category: "studio" },
+  { src: classroom, alt: "ESF classroom with world map", category: "studio" },
+  { src: slideCert, alt: "Study room with library", category: "studio" },
+  { src: photoCorporea, alt: "Students visiting Corporea museum", category: "students", span: "md:col-span-2" },
+  { src: slideBooks, alt: "Study lounge and bookshelf", category: "studio" },
+  { src: photoMuseum, alt: "Interactive museum visit", category: "students" },
+  { src: naples, alt: "Reggia di Caserta gardens", category: "destinations" },
+  { src: photoPalace, alt: "Reggia di Caserta palace", category: "destinations" },
+  { src: courseEnglish, alt: "English destinations", category: "destinations" },
+  { src: courseFrench, alt: "French destinations", category: "destinations" },
+  { src: courseSpanish, alt: "Spanish destinations", category: "destinations" },
+  { src: courseItalian, alt: "Italian destinations", category: "destinations" },
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
