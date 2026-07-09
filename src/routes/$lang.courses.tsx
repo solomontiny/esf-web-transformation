@@ -174,9 +174,9 @@ function CoursesPage() {
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { name: "Cambridge English", logo: cambridgeAsset.url, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
-            { name: "Gatehouse Awards", logo: gatehouseAsset.url, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
-            { name: "UNIDA", logo: unidaAsset.url, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
+            { name: "Cambridge English", logo: cambridgeImg, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
+            { name: "Gatehouse Awards", logo: gatehouseImg, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
+            { name: "UNIDA", logo: unidaImg, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
           ].map((c) => (
             <div key={c.name} className="rounded-2xl border border-border bg-background p-8 text-center transition hover:shadow-elegant hover:-translate-y-1">
               <div className="mx-auto flex h-24 items-center justify-center">
