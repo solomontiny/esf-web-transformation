@@ -93,7 +93,7 @@ export function Footer({ lang }: { lang: Lang }) {
 
       <div className="border-t border-border/70">
         <div className="container-page flex flex-col md:flex-row items-center justify-between gap-3 py-6 text-xs text-muted-foreground">
-          <span>© {year} ESF Language Service S.a.s · Di Palmiero Luigia &amp; C. · Studio Linguistico. {t.footer.rights}</span>
+          <span>© {year} ESF Language Service S.a.s · Di Palmiero Luigia &amp; C. Studio Linguistico. {t.footer.rights}</span>
           <span>Casagiove · Caserta · Italia</span>
         </div>
       </div>
