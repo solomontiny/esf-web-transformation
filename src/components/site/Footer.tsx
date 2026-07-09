@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, MessageCircle, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-import unidaAsset from "@/assets/cert-unida.jpg.asset.json";
-import gatehouseAsset from "@/assets/cert-gatehouse.jpg.asset.json";
-import cambridgeAsset from "@/assets/cert-cambridge.jpg.asset.json";
+import unidaImg from "@/assets/cert-unida.jpg";
+import gatehouseImg from "@/assets/cert-gatehouse.jpg";
+import cambridgeImg from "@/assets/cert-cambridge.jpg";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
