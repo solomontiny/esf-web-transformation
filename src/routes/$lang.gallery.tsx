@@ -10,6 +10,11 @@ import naplesImg from "@/assets/naples.jpg";
 import slideStudentsImg from "@/assets/slide-students.jpg";
 import slideBooksImg from "@/assets/slide-books.jpg";
 import slideCertImg from "@/assets/slide-certificate.jpg";
+import destination1Img from "@/assets/destination-1.jpeg";
+import destination2Img from "@/assets/destination-2.jpeg";
+import destination3Img from "@/assets/destination-3.jpeg";
+import destination4Img from "@/assets/destination-4.jpeg";
+import destination5Img from "@/assets/destination-5.jpeg";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
@@ -68,6 +73,31 @@ const ITEMS: Item[] = [
     alt: "Italian culture",
     category: "destinations",
   },
+  {
+  src: destination1Img,
+  alt: "ESF Destination 1",
+  category: "destinations",
+},
+{
+  src: destination2Img,
+  alt: "ESF Destination 2",
+  category: "destinations",
+},
+{
+  src: destination3Img,
+  alt: "ESF Destination 3",
+  category: "destinations",
+},
+{
+  src: destination4Img,
+  alt: "ESF Destination 4",
+  category: "destinations",
+},
+{
+  src: destination5Img,
+  alt: "ESF Destination 5",
+  category: "destinations",
+},
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
