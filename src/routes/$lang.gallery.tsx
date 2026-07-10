@@ -15,6 +15,10 @@ import destination2Img from "@/assets/destination-2.jpeg";
 import destination3Img from "@/assets/destination-3.jpeg";
 import destination4Img from "@/assets/destination-4.jpeg";
 import destination5Img from "@/assets/destination-5.jpeg";
+import studio1Img from "@/assets/studio-1.jpeg";
+import studio2Img from "@/assets/studio-2.jpeg";
+import studio3Img from "@/assets/studio-3.jpeg";
+import studio4Img from "@/assets/studio-4.jpeg";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
@@ -97,6 +101,28 @@ const ITEMS: Item[] = [
   src: destination5Img,
   alt: "ESF Destination 5",
   category: "destinations",
+},
+{
+  src: studio1Img,
+  alt: "ESF language studio interior",
+  category: "studio",
+  span: "md:col-span-2",
+},
+{
+  src: studio2Img,
+  alt: "ESF classroom environment",
+  category: "studio",
+},
+{
+  src: studio3Img,
+  alt: "ESF learning space",
+  category: "studio",
+},
+{
+  src: studio4Img,
+  alt: "ESF student study area",
+  category: "studio",
+  span: "md:row-span-2",
 },
 ];
 
