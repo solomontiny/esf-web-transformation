@@ -6,9 +6,6 @@ import classroomImg from "@/assets/classroom.jpg";
 import slideStudents from "@/assets/slide-students.jpg";
 import slideBooks from "@/assets/slide-books.jpg";
 import slideCertificate from "@/assets/slide-certificate.jpg";
-import certCambridge from "@/assets/cert-cambridge.jpg";
-import certGatehouse from "@/assets/cert-gatehouse.jpg";
-import certUnida from "@/assets/cert-unida.jpg";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
@@ -42,11 +39,6 @@ function Home() {
   const { lang } = Route.useParams();
   const l = lang as Lang;
   const t = getDict(l);
-  const accreditationLogos = [
-    { src: certCambridge, alt: "Cambridge English" },
-    { src: certGatehouse, alt: "Gatehouse Awards" },
-    { src: certUnida, alt: "UNIDA" },
-  ];
 
   return (
     <>
@@ -91,15 +83,7 @@ function Home() {
                 {t.cta.explore}
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-border/60 pt-5">
-              <span className="text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                {l === "it" ? "Accreditamenti" : "Accreditations"}
-              </span>
-              {accreditationLogos.map((logo) => (
-                <img key={logo.alt} src={logo.src} alt={logo.alt} loading="lazy" className="h-7 w-auto object-contain" />
-              ))}
-            </div>
-            <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="mt-12 flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex -space-x-1 text-[color:var(--gold)]">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={14} fill="currentColor" />
@@ -248,8 +232,7 @@ function Home() {
             ))}
           </div>
         </div>
-      </Section>
-
+</Section>
       <CTABanner lang={l} />
     </>
   );

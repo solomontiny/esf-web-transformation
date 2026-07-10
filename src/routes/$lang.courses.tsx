@@ -2,20 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 import englishImg from "@/assets/course-english.jpg";
 import spanishImg from "@/assets/course-spanish.jpg";
 import frenchImg from "@/assets/course-french.jpg";
 import italianImg from "@/assets/course-italian.jpg";
-<<<<<<< Updated upstream
-import unidaImg from "@/assets/cert-unida.jpg";
-import gatehouseImg from "@/assets/cert-gatehouse.jpg";
-import cambridgeImg from "@/assets/cert-cambridge.jpg";
-=======
->>>>>>> Stashed changes
 
 export const Route = createFileRoute("/$lang/courses")({
   head: ({ params }) => {
@@ -58,17 +49,6 @@ function CoursesPage() {
           title={t.courses.title}
           lede={t.courses.lede}
         />
-<<<<<<< Updated upstream
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { name: "Cambridge English", logo: cambridgeImg, desc: l === "it" ? "Centro autorizzato · Preparazione ed esami A2 Key → C2 Proficiency" : "Authorised Exam Centre · A2 Key to C2 Proficiency preparation & exams" },
-            { name: "Gatehouse Awards", logo: gatehouseImg, desc: l === "it" ? "Qualifiche di lingua inglese regolamentate nel Regno Unito" : "UK-regulated English language qualifications" },
-            { name: "UNIDA", logo: unidaImg, desc: l === "it" ? "Università per Stranieri \"Dante Alighieri\" · Certificazione CECOL A2 → C2" : "Università per Stranieri \"Dante Alighieri\" · CECOL Italian certification A2 to C2" },
-          ].map((c) => (
-            <div key={c.name} className="rounded-2xl border border-border bg-background p-8 text-center transition hover:shadow-elegant hover:-translate-y-1">
-              <div className="mx-auto flex h-24 items-center justify-center">
-                <img src={c.logo} alt={c.name} loading="lazy" className="max-h-20 w-auto object-contain" />
-=======
 
         <div className="mt-12 space-y-12">
           {t.courses.languages.map((course) => (
@@ -101,7 +81,6 @@ function CoursesPage() {
                 >
                   {t.courses.detailsLabel} <span aria-hidden="true">→</span>
                 </Link>
->>>>>>> Stashed changes
               </div>
             </article>
           ))}

@@ -1,54 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import type { Lang } from "@/i18n/dictionaries";
-<<<<<<< Updated upstream
-import classroom from "@/assets/classroom.jpg";
-import hero from "@/assets/hero.jpg";
-import naples from "@/assets/naples.jpg";
-import slideStudents from "@/assets/slide-students.jpg";
-import slideBooks from "@/assets/slide-books.jpg";
-import slideCert from "@/assets/slide-certificate.jpg";
-import courseEnglish from "@/assets/course-english.jpg";
-import courseFrench from "@/assets/course-french.jpg";
-import courseSpanish from "@/assets/course-spanish.jpg";
-import courseItalian from "@/assets/course-italian.jpg";
-import photoPalace from "@/assets/photo-palace.jpg";
-import photoMuseum from "@/assets/photo-museum.jpg";
-import photoCorporea from "@/assets/photo-corporea.jpg";
-import photoBuilding from "@/assets/photo-building.jpg";
-=======
 import classroomImg from "@/assets/classroom.jpg";
 import heroImg from "@/assets/hero.jpg";
 import naplesImg from "@/assets/naples.jpg";
 import slideStudentsImg from "@/assets/slide-students.jpg";
 import slideBooksImg from "@/assets/slide-books.jpg";
 import slideCertImg from "@/assets/slide-certificate.jpg";
->>>>>>> Stashed changes
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
 type Item = { src: string; alt: string; category: Exclude<Category, "all">; span?: string };
 
 const ITEMS: Item[] = [
-<<<<<<< Updated upstream
-  { src: hero, alt: "ESF students on a class trip", category: "students", span: "md:col-span-2 md:row-span-2" },
-  { src: slideStudents, alt: "Students at the museum", category: "students" },
-  { src: photoBuilding, alt: "ESF studio exterior in Casagiove", category: "studio" },
-  { src: classroom, alt: "ESF classroom with world map", category: "studio" },
-  { src: slideCert, alt: "Study room with library", category: "studio" },
-  { src: photoCorporea, alt: "Students visiting Corporea museum", category: "students", span: "md:col-span-2" },
-  { src: slideBooks, alt: "Study lounge and bookshelf", category: "studio" },
-  { src: photoMuseum, alt: "Interactive museum visit", category: "students" },
-  { src: naples, alt: "Reggia di Caserta gardens", category: "destinations" },
-  { src: photoPalace, alt: "Reggia di Caserta palace", category: "destinations" },
-  { src: courseEnglish, alt: "English destinations", category: "destinations" },
-  { src: courseFrench, alt: "French destinations", category: "destinations" },
-  { src: courseSpanish, alt: "Spanish destinations", category: "destinations" },
-  { src: courseItalian, alt: "Italian destinations", category: "destinations" },
-=======
   {
     src: heroImg,
     alt: "ESF studio interior",
@@ -101,7 +68,6 @@ const ITEMS: Item[] = [
     alt: "Italian culture",
     category: "destinations",
   },
->>>>>>> Stashed changes
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
@@ -129,6 +95,10 @@ function GalleryPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const filtered = useMemo(() => (cat === "all" ? ITEMS : ITEMS.filter((i) => i.category === cat)), [cat]);
+
+  useEffect(() => {
+    setOpenIdx(null);
+  }, [cat]);
 
   const cats: { id: Category; label: string }[] = [
     { id: "all", label: l === "it" ? "Tutte" : "All" },
