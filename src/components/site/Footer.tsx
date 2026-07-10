@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
 import certCambridge from "@/assets/cert-cambridge.jpeg";
 import certGatehouse from "@/assets/cert-gatehouse.jpeg";
-import certUnida from "@/assets/cert-unida.jpeg";
+import sieleImg from "@/assets/cert-siele.jpeg";import certUnida from "@/assets/cert-unida.jpeg";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
@@ -25,9 +25,26 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="mt-8">
             <h4 className="eyebrow">{lang === "it" ? "Accreditamenti" : "Accreditations"}</h4>
             <div className="mt-4 flex flex-wrap items-center gap-6">
-              <img src={certCambridge} alt="Cambridge English" className="h-10 w-auto object-contain" />
-              <img src={certGatehouse} alt="Gatehouse Awards" className="h-10 w-auto object-contain" />
-              <img src={certUnida} alt="UNIDA" className="h-10 w-auto object-contain" />
+       <img
+  src={certCambridge}
+  alt="Cambridge English"
+  className="h-10 w-auto object-contain"
+/>
+<img
+  src={certGatehouse}
+  alt="Gatehouse Awards"
+  className="h-10 w-auto object-contain"
+/>
+<img
+  src={certUnida}
+  alt="UNIDA"
+  className="h-10 w-auto object-contain"
+/>
+<img
+  src={sieleImg}
+  alt="SIELE"
+  className="h-10 w-auto object-contain"
+/>
             </div>
           </div>
         </div>
