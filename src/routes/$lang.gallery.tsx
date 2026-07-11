@@ -32,58 +32,6 @@ type Item = { src: string; alt: string; category: Exclude<Category, "all">; span
 
 const ITEMS: Item[] = [
   {
-    src: heroImg,
-    alt: "ESF studio interior",
-    category: "studio",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    src: slideStudentsImg,
-    alt: "Students in class",
-    category: "students",
-  },
-  {
-    src: naplesImg,
-    alt: "English destinations",
-    category: "destinations",
-  },
-  {
-    src: classroomImg,
-    alt: "Classroom",
-    category: "studio",
-  },
-  {
-    src: slideCertImg,
-    alt: "Certification day",
-    category: "certifications",
-  },
-  {
-    src: heroImg,
-    alt: "French destinations",
-    category: "destinations",
-    span: "md:col-span-2",
-  },
-  {
-    src: slideBooksImg,
-    alt: "Course materials",
-    category: "studio",
-  },
-  {
-    src: slideBooksImg,
-    alt: "Spanish learning",
-    category: "destinations",
-  },
-  {
-    src: naplesImg,
-    alt: "Naples",
-    category: "destinations",
-  },
-  {
-    src: classroomImg,
-    alt: "Italian culture",
-    category: "destinations",
-  },
-  {
   src: destination1Img,
   alt: "ESF Destination 1",
   category: "destinations",
@@ -108,6 +56,32 @@ const ITEMS: Item[] = [
   alt: "ESF Destination 5",
   category: "destinations",
 },
+
+// Studio Images
+{
+  src: studio1Img,
+  alt: "ESF language studio interior",
+  category: "studio",
+  span: "md:col-span-2",
+},
+{
+  src: studio2Img,
+  alt: "ESF classroom environment",
+  category: "studio",
+},
+{
+  src: studio3Img,
+  alt: "ESF learning space",
+  category: "studio",
+},
+{
+  src: studio4Img,
+  alt: "ESF student study area",
+  category: "studio",
+  span: "md:row-span-2",
+},
+
+// Student Images
 {
   src: slideStudentsImg,
   alt: "Students in class",
