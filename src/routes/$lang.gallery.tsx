@@ -19,6 +19,12 @@ import studio1Img from "@/assets/studio-1.jpeg";
 import studio2Img from "@/assets/studio-2.jpeg";
 import studio3Img from "@/assets/studio-3.jpeg";
 import studio4Img from "@/assets/studio-4.jpeg";
+import student1Img from "@/assets/student-1.jpeg";
+import student2Img from "@/assets/student-2.jpeg";
+import student3Img from "@/assets/student-3.jpeg";
+import student4Img from "@/assets/student-4.jpeg";
+import student5Img from "@/assets/student-5.jpeg";
+import student6Img from "@/assets/student-6.jpeg";
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 
@@ -103,26 +109,39 @@ const ITEMS: Item[] = [
   category: "destinations",
 },
 {
-  src: studio1Img,
-  alt: "ESF language studio interior",
-  category: "studio",
-  span: "md:col-span-2",
+  src: slideStudentsImg,
+  alt: "Students in class",
+  category: "students",
 },
 {
-  src: studio2Img,
-  alt: "ESF classroom environment",
-  category: "studio",
+  src: student1Img,
+  alt: "Students learning together",
+  category: "students",
 },
 {
-  src: studio3Img,
-  alt: "ESF learning space",
-  category: "studio",
+  src: student2Img,
+  alt: "Interactive classroom session",
+  category: "students",
 },
 {
-  src: studio4Img,
-  alt: "ESF student study area",
-  category: "studio",
-  span: "md:row-span-2",
+  src: student3Img,
+  alt: "Language workshop",
+  category: "students",
+},
+{
+  src: student4Img,
+  alt: "Group learning",
+  category: "students",
+},
+{
+  src: student5Img,
+  alt: "Students during lesson",
+  category: "students",
+},
+{
+  src: student6Img,
+  alt: "International students",
+  category: "students",
 },
 ];
 
