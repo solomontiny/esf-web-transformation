@@ -4,6 +4,8 @@ import StudentInformationForm, {
   type StudentInformation,
 } from "@/components/quiz/StudentInformationForm";
 import englishQuiz from "@/data/english";
+import { saveQuizResult } from "@/lib/quiz-results";
+import type { QuizResult } from "@/quiz-types";
 export const Route = createFileRoute("/$lang/quiz/$course")({
   component: QuizPage,
 });
@@ -20,6 +22,7 @@ function QuizPage() {
   const [isMovingNext, setIsMovingNext] = useState(false);
   const [showFinishConfirmation, setShowFinishConfirmation] = useState(false);
   const nextInProgress = useRef(false);
+  const hasSavedResult = useRef(false);
 
   const questions = englishQuiz.questions;
   const currentQuestion = questions[currentQuestionIndex];
@@ -85,6 +88,7 @@ function QuizPage() {
     setIsFinished(false);
     setElapsedSeconds(0);
     setShowFinishConfirmation(false);
+    hasSavedResult.current = false;
   }
 
   function moveToQuestion(questionIndex: number) {
@@ -109,6 +113,31 @@ function QuizPage() {
 
   function requestFinish() {
     setShowFinishConfirmation(true);
+  }
+
+  function finishQuiz() {
+    if (!student || hasSavedResult.current) return;
+
+    const result: QuizResult = {
+      full_name: student.fullName,
+      email: student.email,
+      phone: student.phone,
+      nationality: student.nationality,
+      country: student.country,
+      language: englishQuiz.course,
+      course: course.charAt(0).toUpperCase() + course.slice(1),
+      answers: { ...answers },
+      score,
+      percentage,
+      cefr_level: cefrLevel,
+      elapsed_seconds: elapsedSeconds,
+    };
+
+    hasSavedResult.current = true;
+    void saveQuizResult(result).catch((error: unknown) => {
+      console.error("Unable to save quiz result to Supabase:", error);
+    });
+    setIsFinished(true);
   }
 
   return (
@@ -313,7 +342,7 @@ function QuizPage() {
                   {unansweredQuestionCount === 0 && (
                     <button
                       type="button"
-                      onClick={() => setIsFinished(true)}
+                      onClick={finishQuiz}
                       className="rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
                     >
                       Finish test
