@@ -4,6 +4,9 @@ import StudentInformationForm, {
   type StudentInformation,
 } from "@/components/quiz/StudentInformationForm";
 import englishQuiz from "@/data/english";
+import frenchQuiz from "@/data/french";
+import italianQuiz from "@/data/italian";
+import spanishQuiz from "@/data/spanish";
 import { saveQuizResult } from "@/lib/quiz-results";
 import type { QuizResult } from "@/quiz-types";
 export const Route = createFileRoute("/$lang/quiz/$course")({
@@ -24,8 +27,18 @@ function QuizPage() {
   const nextInProgress = useRef(false);
   const hasSavedResult = useRef(false);
 
-  const questions = englishQuiz.questions;
-  const currentQuestion = questions[currentQuestionIndex];
+const quiz =
+  course === "english"
+    ? englishQuiz
+    : course === "french"
+    ? frenchQuiz
+    : course === "italian"
+    ? italianQuiz
+    : course === "spanish"
+    ? spanishQuiz
+    : englishQuiz;
+
+const questions = quiz.questions;  const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswer = currentQuestion
     ? answers[currentQuestion.id]
     : undefined;
@@ -119,19 +132,21 @@ function QuizPage() {
     if (!student || hasSavedResult.current) return;
 
     const result: QuizResult = {
-      full_name: student.fullName,
-      email: student.email,
-      phone: student.phone,
-      nationality: student.nationality,
-      country: student.country,
-      language: englishQuiz.course,
-      course: course.charAt(0).toUpperCase() + course.slice(1),
-      answers: { ...answers },
-      score,
-      percentage,
-      cefr_level: cefrLevel,
-      elapsed_seconds: elapsedSeconds,
-    };
+  full_name: student.fullName,
+  email: student.email,
+  phone: student.phone,
+  nationality: student.nationality,
+  country: student.country,
+
+  language: quiz.course,
+  course: course.charAt(0).toUpperCase() + course.slice(1),
+
+  answers: { ...answers },
+  score,
+  percentage,
+  cefr_level: cefrLevel,
+  elapsed_seconds: elapsedSeconds,
+};
 
     hasSavedResult.current = true;
     void saveQuizResult(result).catch((error: unknown) => {
@@ -149,16 +164,17 @@ function QuizPage() {
       ) : isFinished ? (
         <section className="mx-auto max-w-2xl rounded-3xl border border-blue-100 bg-white p-6 text-center shadow-xl shadow-blue-950/5 sm:p-10">
           <p className="text-sm font-semibold tracking-wider text-blue-700 uppercase">
-            {englishQuiz.course} Placement Test
-          </p>
+  {quiz.course} Placement Test
+</p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Placement Test Complete
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Well done, <strong className="text-slate-900">{student.fullName}</strong>.
           </p>
-          <p className="mt-1 text-sm text-slate-500">Language: {englishQuiz.course}</p>
-
+<p className="mt-1 text-sm text-slate-500">
+  Language: {quiz.course}
+</p>
           <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
             <div className="rounded-2xl bg-blue-50 p-5">
               <p className="text-sm font-medium text-blue-800">Score</p>
