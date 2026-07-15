@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { QuizResult } from "@/quiz-types";
@@ -24,14 +24,38 @@ export const Route = createFileRoute("/admin/results")({
 });
 
 function AdminResultsPage() {
+  const navigate = useNavigate();
   const [results, setResults] = useState<QuizResultRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [languageFilter, setLanguageFilter] = useState("all");
   const [cefrFilter, setCefrFilter] = useState("all");
 
   useEffect(() => {
+    async function checkAuthentication() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        await navigate({ to: "/admin/login", replace: true });
+        return;
+      }
+
+      setIsAuthenticated(true);
+      setIsCheckingAuthentication(false);
+    }
+
+    void checkAuthentication();
+  }, [navigate]);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
     async function loadResults() {
       setIsLoading(true);
       setError(null);
@@ -42,6 +66,9 @@ function AdminResultsPage() {
           "full_name, email, phone, nationality, country, language, course, score, percentage, cefr_level, created_at",
         )
         .order("created_at", { ascending: false });
+
+        console.log("Supabase data:", data);
+console.log("Supabase error:", fetchError);
 
       if (fetchError) {
         console.error("Unable to load quiz results from Supabase:", fetchError);
@@ -54,7 +81,18 @@ function AdminResultsPage() {
     }
 
     void loadResults();
-  }, []);
+  }, [isAuthenticated]);
+
+  async function handleLogout() {
+    setIsLoggingOut(true);
+    const { error: signOutError } = await supabase.auth.signOut();
+
+    if (signOutError) {
+      console.error("Unable to sign out of Supabase:", signOutError);
+    }
+
+    await navigate({ to: "/admin/login", replace: true });
+  }
 
   const languages = useMemo(
     () => [...new Set(results.map((result) => result.language))].sort(),
@@ -77,19 +115,39 @@ function AdminResultsPage() {
     });
   }, [results, searchTerm, languageFilter, cefrFilter]);
 
+  if (isCheckingAuthentication) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+        <p className="rounded-2xl bg-white px-6 py-4 text-slate-600 shadow-sm" role="status">
+          Checking administrator access...
+        </p>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-16">
       <section className="mx-auto max-w-7xl rounded-3xl border border-blue-100 bg-white p-6 shadow-xl shadow-blue-950/5 sm:p-10">
-        <header>
-          <p className="text-sm font-semibold tracking-wider text-blue-700 uppercase">
-            ESF Language Service
-          </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Placement Test Results
-          </h1>
-          <p className="mt-3 text-slate-600">
-            Review completed placement tests and learner recommendations.
-          </p>
+        <header className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold tracking-wider text-blue-700 uppercase">
+              ESF Language Service
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Placement Test Results
+            </h1>
+            <p className="mt-3 text-slate-600">
+              Review completed placement tests and learner recommendations.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+          >
+            {isLoggingOut ? "Logging out..." : "Logout"}
+          </button>
         </header>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
