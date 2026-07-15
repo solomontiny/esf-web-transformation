@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as AdminResultsRouteImport } from './routes/admin.results'
 import { Route as LangServicesRouteImport } from './routes/$lang.services'
 import { Route as LangPaymentRouteImport } from './routes/$lang.payment'
 import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
@@ -35,6 +36,11 @@ const LangIndexRoute = LangIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LangRoute,
+} as any)
+const AdminResultsRoute = AdminResultsRouteImport.update({
+  id: '/admin/results',
+  path: '/admin/results',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LangServicesRoute = LangServicesRouteImport.update({
   id: '/services',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
+  '/admin/results': typeof AdminResultsRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
+  '/admin/results': typeof AdminResultsRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
+  '/admin/results': typeof AdminResultsRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
+    | '/admin/results'
     | '/$lang/'
     | '/$lang/quiz/$course'
   fileRoutesByTo: FileRoutesByTo
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
+    | '/admin/results'
     | '/$lang'
     | '/$lang/quiz/$course'
   id:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/$lang/gallery'
     | '/$lang/payment'
     | '/$lang/services'
+    | '/admin/results'
     | '/$lang/'
     | '/$lang/quiz/$course'
   fileRoutesById: FileRoutesById
@@ -160,6 +172,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangRoute: typeof LangRouteWithChildren
+  AdminResultsRoute: typeof AdminResultsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/$lang/'
       preLoaderRoute: typeof LangIndexRouteImport
       parentRoute: typeof LangRoute
+    }
+    '/admin/results': {
+      id: '/admin/results'
+      path: '/admin/results'
+      fullPath: '/admin/results'
+      preLoaderRoute: typeof AdminResultsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/$lang/services': {
       id: '/$lang/services'
@@ -273,6 +293,7 @@ const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRoute: LangRouteWithChildren,
+  AdminResultsRoute: AdminResultsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
