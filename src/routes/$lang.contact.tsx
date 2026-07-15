@@ -43,6 +43,8 @@ function ContactPage() {
     name: "",
     email: "",
     phone: "",
+    language: course || "",
+    level: "",
     subject: isEnrollment
       ? l === "it"
         ? `Iscrizione${course ? ` — ${course}` : ""}${plan ? ` (${plan})` : ""}`
@@ -62,7 +64,7 @@ function ContactPage() {
     }
   }, [isEnrollment]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
 
@@ -72,6 +74,8 @@ function ContactPage() {
       `${l === "it" ? "Nome" : "Name"}: ${form.name}`,
       `Email: ${form.email}`,
       form.phone ? `${l === "it" ? "Telefono" : "Phone"}: ${form.phone}` : null,
+      `${l === "it" ? "Lingua" : "Language"}: ${form.language}`,
+      `${l === "it" ? "Livello" : "Level"}: ${form.level}`,
       form.subject ? `${l === "it" ? "Oggetto" : "Subject"}: ${form.subject}` : null,
       "",
       form.message,
@@ -156,8 +160,15 @@ function ContactPage() {
                 <Field label={l === "it" ? "Telefono (opzionale)" : "Phone (optional)"}>
                   <input className="input" name="phone" type="tel" value={form.phone} onChange={handleChange} />
                 </Field>
-                <Field label={t.contact.form.subject}>
-                  <input className="input" name="subject" type="text" value={form.subject} onChange={handleChange} />
+                <Field label={l === "it" ? "Language" : "Language"}>
+                  <select className="input" name="language" value={form.language} onChange={handleChange} required>
+                    <option value="">Select language</option><option>English</option><option>Italian</option><option>French</option><option>Spanish</option><option>German</option><option>Portuguese</option><option>Chinese</option><option>Japanese</option><option>Arabic</option>
+                  </select>
+                </Field>
+                <Field label={l === "it" ? "Level" : "Level"}>
+                  <select className="input" name="level" value={form.level} onChange={handleChange} required>
+                    <option value="">Select level</option><option>Basic</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Proficiency</option>
+                  </select>
                 </Field>
                 <Field label={t.contact.form.message}>
                   <textarea required className="input min-h-40 resize-y" name="message" rows={5} value={form.message} onChange={handleChange} />

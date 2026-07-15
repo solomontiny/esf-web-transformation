@@ -19,6 +19,7 @@ import { Route as LangFaqRouteImport } from './routes/$lang.faq'
 import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
 import { Route as LangContactRouteImport } from './routes/$lang.contact'
 import { Route as LangAboutRouteImport } from './routes/$lang.about'
+import { Route as LangQuizCourseRouteImport } from './routes/$lang.quiz.$course'
 
 const LangRoute = LangRouteImport.update({
   id: '/$lang',
@@ -70,6 +71,11 @@ const LangAboutRoute = LangAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => LangRoute,
 } as any)
+const LangQuizCourseRoute = LangQuizCourseRouteImport.update({
+  id: '/quiz/$course',
+  path: '/quiz/$course',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang': typeof LangIndexRoute
+  '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/$lang/payment': typeof LangPaymentRoute
   '/$lang/services': typeof LangServicesRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang/'
+    | '/$lang/quiz/$course'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang'
+    | '/$lang/quiz/$course'
   id:
     | '__root__'
     | '/'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/$lang/payment'
     | '/$lang/services'
     | '/$lang/'
+    | '/$lang/quiz/$course'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -222,6 +234,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangAboutRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/quiz/$course': {
+      id: '/$lang/quiz/$course'
+      path: '/quiz/$course'
+      fullPath: '/$lang/quiz/$course'
+      preLoaderRoute: typeof LangQuizCourseRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
@@ -234,6 +253,7 @@ interface LangRouteChildren {
   LangPaymentRoute: typeof LangPaymentRoute
   LangServicesRoute: typeof LangServicesRoute
   LangIndexRoute: typeof LangIndexRoute
+  LangQuizCourseRoute: typeof LangQuizCourseRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
@@ -245,6 +265,7 @@ const LangRouteChildren: LangRouteChildren = {
   LangPaymentRoute: LangPaymentRoute,
   LangServicesRoute: LangServicesRoute,
   LangIndexRoute: LangIndexRoute,
+  LangQuizCourseRoute: LangQuizCourseRoute,
 }
 
 const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)

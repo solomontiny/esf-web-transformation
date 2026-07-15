@@ -35,11 +35,12 @@ function CoursesPage() {
   const t = getDict(l);
 
   const courseImages = {
-    English: englishImg,
-    Italian: italianImg,
-    French: frenchImg,
-    Spanish: spanishImg,
+    english: englishImg,
+    italian: italianImg,
+    french: frenchImg,
+    spanish: spanishImg,
   } as const;
+  const courseKeys = ["english", "spanish", "french", "italian"] as const;
 
   return (
     <>
@@ -51,14 +52,17 @@ function CoursesPage() {
         />
 
         <div className="mt-12 space-y-12">
-          {t.courses.languages.map((course) => (
-            <article key={course.name} className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
-              <img
-                src={courseImages[course.name as keyof typeof courseImages]}
-                alt={`${course.name} course`}
-                className="h-72 w-full rounded-3xl object-cover shadow-soft"
-              />
-              <div>
+          {t.courses.languages.map((course, index) => {
+            const courseKey = courseKeys[index];
+
+            return (
+              <article key={course.name} className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+                <img
+                  src={courseImages[courseKey]}
+                  alt={`${course.name} course`}
+                  className="h-72 w-full rounded-3xl object-cover shadow-soft"
+                />
+                <div>
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="text-xl font-semibold text-foreground">{course.name}</h3>
                   <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-primary">
@@ -81,9 +85,18 @@ function CoursesPage() {
                 >
                   {t.courses.detailsLabel} <span aria-hidden="true">→</span>
                 </Link>
-              </div>
-            </article>
-          ))}
+                <Link
+                  to="/$lang/quiz/$course"
+                  params={{ lang, course: courseKey }}
+                  className="ml-5 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  {lang === "it" ? "Test di livello" : "Placement test"}
+                  <span aria-hidden="true">→</span>
+                </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </Section>
 
