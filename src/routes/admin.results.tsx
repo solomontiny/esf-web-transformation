@@ -199,14 +199,23 @@ function AdminResultsPage() {
               Review completed placement tests and learner recommendations.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={handleLogout}
-            disabled={isLoggingOut}
-            className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
-          >
-            {isLoggingOut ? "Logging out..." : "Logout"}
-          </button>
+          <div className="flex items-center gap-3">
+  <a
+    href="/en"
+    className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50"
+  >
+    ← Website
+  </a>
+
+  <button
+    type="button"
+    onClick={handleLogout}
+    disabled={isLoggingOut}
+    className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50"
+  >
+    {isLoggingOut ? "Logging out..." : "Logout"}
+  </button>
+</div>
         </header>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
