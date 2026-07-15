@@ -181,6 +181,9 @@ export function Footer({ lang }: { lang: Lang }) {
           </span>
 
           <span>Casagiove · Caserta · Italia</span>
+          <Link to="/admin/login" className="hover:text-primary transition-colors">
+            Admin Login
+          </Link>
         </div>
       </div>
     </footer>

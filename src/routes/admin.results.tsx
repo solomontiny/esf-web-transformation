@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Download, Inbox, Printer } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { QuizResult } from "@/quiz-types";
@@ -18,6 +19,20 @@ type QuizResultRecord = Pick<
 > & {
   created_at: string;
 };
+
+const tableColumns = [
+  "Full Name",
+  "Email",
+  "Phone",
+  "Nationality",
+  "Country",
+  "Language",
+  "Course",
+  "Score",
+  "Percentage",
+  "CEFR Level",
+  "Date Created",
+];
 
 export const Route = createFileRoute("/admin/results")({
   component: AdminResultsPage,
@@ -67,9 +82,6 @@ function AdminResultsPage() {
         )
         .order("created_at", { ascending: false });
 
-        console.log("Supabase data:", data);
-console.log("Supabase error:", fetchError);
-
       if (fetchError) {
         console.error("Unable to load quiz results from Supabase:", fetchError);
         setError("We could not load quiz results. Please try again.");
@@ -106,7 +118,8 @@ console.log("Supabase error:", fetchError);
       const matchesSearch =
         !normalizedSearchTerm ||
         result.full_name.toLowerCase().includes(normalizedSearchTerm) ||
-        result.email.toLowerCase().includes(normalizedSearchTerm);
+        result.email.toLowerCase().includes(normalizedSearchTerm) ||
+        result.phone.toLowerCase().includes(normalizedSearchTerm);
       const matchesLanguage =
         languageFilter === "all" || result.language === languageFilter;
       const matchesCefr = cefrFilter === "all" || result.cefr_level === cefrFilter;
@@ -114,6 +127,52 @@ console.log("Supabase error:", fetchError);
       return matchesSearch && matchesLanguage && matchesCefr;
     });
   }, [results, searchTerm, languageFilter, cefrFilter]);
+
+  const statistics = useMemo(() => {
+    const totalTests = results.length;
+    const averageScore = totalTests
+      ? results.reduce((total, result) => total + result.score, 0) / totalTests
+      : 0;
+
+    return {
+      totalTests,
+      averageScore,
+      levels: ["A1", "A2", "B1", "B2", "C1"].map((level) => ({
+        level,
+        count: results.filter((result) => result.cefr_level === level).length,
+      })),
+    };
+  }, [results]);
+
+  function exportCsv() {
+    const headers = tableColumns;
+    const rows = filteredResults.map((result) => [
+      result.full_name,
+      result.email,
+      result.phone,
+      result.nationality,
+      result.country,
+      result.language,
+      result.course,
+      result.score,
+      result.percentage,
+      result.cefr_level,
+      formatDate(result.created_at),
+    ]);
+    const escapeCsvValue = (value: string | number) =>
+      `"${String(value).replace(/"/g, '""')}"`;
+    const csv = [headers, ...rows]
+      .map((row) => row.map(escapeCsvValue).join(","))
+      .join("\n");
+    const downloadUrl = URL.createObjectURL(
+      new Blob([csv], { type: "text/csv;charset=utf-8" }),
+    );
+    const downloadLink = document.createElement("a");
+    downloadLink.href = downloadUrl;
+    downloadLink.download = "esf-placement-test-results.csv";
+    downloadLink.click();
+    URL.revokeObjectURL(downloadUrl);
+  }
 
   if (isCheckingAuthentication) {
     return (
@@ -150,6 +209,14 @@ console.log("Supabase error:", fetchError);
           </button>
         </header>
 
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+          <StatisticCard label="Total Tests" value={statistics.totalTests} />
+          <StatisticCard label="Average Score" value={statistics.averageScore.toFixed(1)} />
+          {statistics.levels.map(({ level, count }) => (
+            <StatisticCard key={level} label={`${level} Students`} value={count} />
+          ))}
+        </div>
+
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           <label className="block md:col-span-1">
             <span className="text-sm font-medium text-slate-700">Search</span>
@@ -157,7 +224,7 @@ console.log("Supabase error:", fetchError);
               type="search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Name or email"
+              placeholder="Name, email, or phone"
               className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-700 focus:ring-2 focus:ring-blue-100"
             />
           </label>
@@ -195,76 +262,106 @@ console.log("Supabase error:", fetchError);
           </label>
         </div>
 
-        <div className="mt-8 overflow-x-auto rounded-2xl border border-slate-200">
-          {isLoading ? (
-            <p className="p-8 text-center text-slate-600" role="status">
-              Loading quiz results...
-            </p>
-          ) : error ? (
-            <p className="p-8 text-center text-red-700" role="alert">
-              {error}
-            </p>
-          ) : (
-            <table className="w-full min-w-[1200px] border-collapse text-left text-sm">
-              <thead className="bg-blue-50 text-xs tracking-wide text-blue-900 uppercase">
-                <tr>
-                  {[
-                    "Full Name",
-                    "Email",
-                    "Phone",
-                    "Nationality",
-                    "Country",
-                    "Language",
-                    "Course",
-                    "Score",
-                    "Percentage",
-                    "CEFR Level",
-                    "Date Created",
-                  ].map((heading) => (
-                    <th key={heading} scope="col" className="whitespace-nowrap px-4 py-4 font-semibold">
-                      {heading}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700">
-                {filteredResults.length === 0 ? (
-                  <tr>
-                    <td colSpan={11} className="px-4 py-10 text-center text-slate-500">
-                      No quiz results match the selected filters.
-                    </td>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={exportCsv}
+            disabled={isLoading || filteredResults.length === 0}
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+          >
+            <Download size={18} aria-hidden="true" />
+            Export CSV
+          </button>
+          <button
+            type="button"
+            onClick={() => window.print()}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+          >
+            <Printer size={18} aria-hidden="true" />
+            Print
+          </button>
+        </div>
+
+        <div className="mt-8 max-h-[70vh] overflow-auto rounded-2xl border border-slate-200">
+          <table className="w-full min-w-[1200px] border-collapse text-left text-sm">
+            <thead className="sticky top-0 z-10 bg-blue-50 text-xs tracking-wide text-blue-900 uppercase shadow-sm">
+              <tr>
+                {tableColumns.map((heading) => (
+                  <th key={heading} scope="col" className="whitespace-nowrap px-4 py-4 font-semibold">
+                    {heading}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-slate-700">
+              {isLoading ? (
+                Array.from({ length: 6 }, (_, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {tableColumns.map((column) => (
+                      <td key={column} className="px-4 py-4">
+                        <div className="h-4 w-24 animate-pulse rounded bg-slate-200" />
+                      </td>
+                    ))}
                   </tr>
-                ) : (
-                  filteredResults.map((result) => (
-                    <tr key={`${result.email}-${result.created_at}`} className="hover:bg-blue-50/50">
-                      <td className="whitespace-nowrap px-4 py-4 font-semibold text-slate-900">{result.full_name}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.email}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.phone}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.nationality}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.country}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.language}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.course}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.score}</td>
-                      <td className="whitespace-nowrap px-4 py-4">{result.percentage}%</td>
-                      <td className="whitespace-nowrap px-4 py-4">
-                        <span className="rounded-full bg-blue-50 px-3 py-1 font-semibold text-blue-800">
-                          {result.cefr_level}
-                        </span>
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-4">
-                        {new Intl.DateTimeFormat("en-GB", {
-                          dateStyle: "medium",
-                          timeStyle: "short",
-                        }).format(new Date(result.created_at))}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          )}
+                ))
+              ) : error ? (
+                <tr>
+                  <td colSpan={11} className="px-4 py-10 text-center text-red-700" role="alert">
+                    {error}
+                  </td>
+                </tr>
+              ) : filteredResults.length === 0 ? (
+                <tr>
+                  <td colSpan={11} className="px-4 py-14 text-center">
+                    <Inbox className="mx-auto h-10 w-10 text-blue-300" aria-hidden="true" />
+                    <p className="mt-4 font-semibold text-slate-800">No matching results yet</p>
+                    <p className="mt-2 text-slate-500">
+                      Try adjusting your search or filters to find placement test records.
+                    </p>
+                  </td>
+                </tr>
+              ) : (
+                filteredResults.map((result) => (
+                  <tr key={`${result.email}-${result.created_at}`} className="odd:bg-white even:bg-slate-50/70 hover:bg-blue-50/70">
+                    <td className="whitespace-nowrap px-4 py-4 font-semibold text-slate-900">{result.full_name}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.email}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.phone}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.nationality}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.country}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.language}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.course}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.score}</td>
+                    <td className="whitespace-nowrap px-4 py-4">{result.percentage}%</td>
+                    <td className="whitespace-nowrap px-4 py-4">
+                      <span className="rounded-full bg-blue-50 px-3 py-1 font-semibold text-blue-800">
+                        {result.cefr_level}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4">{formatDate(result.created_at)}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </section>
     </main>
   );
+}
+
+function StatisticCard({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-4">
+      <p className="text-sm font-medium text-blue-800">{label}</p>
+      <p className="mt-1 text-2xl font-bold text-slate-900">{value}</p>
+    </div>
+  );
+}
+
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date(date));
 }

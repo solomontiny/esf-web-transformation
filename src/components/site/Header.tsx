@@ -49,6 +49,13 @@ export function Header({ lang }: { lang: Lang }) {
               {n.label}
             </Link>
           ))}
+          <Link
+            to="/admin/login"
+            className="text-sm text-foreground/80 hover:text-primary transition-colors"
+            activeProps={{ className: "text-primary font-medium" }}
+          >
+            Admin Login
+          </Link>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
@@ -86,6 +93,13 @@ export function Header({ lang }: { lang: Lang }) {
                 {n.label}
               </Link>
             ))}
+            <Link
+              to="/admin/login"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-3 text-sm text-foreground hover:bg-secondary"
+            >
+              Admin Login
+            </Link>
             <Link
               to="/$lang/payment"
               params={{ lang }}
