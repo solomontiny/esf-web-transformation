@@ -22,6 +22,7 @@ import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
 import { Route as LangContactRouteImport } from './routes/$lang.contact'
 import { Route as LangAboutRouteImport } from './routes/$lang.about'
 import { Route as LangQuizCourseRouteImport } from './routes/$lang.quiz.$course'
+import { Route as LangCoursesCourseRouteImport } from './routes/$lang.courses.$course'
 
 const LangRoute = LangRouteImport.update({
   id: '/$lang',
@@ -88,13 +89,18 @@ const LangQuizCourseRoute = LangQuizCourseRouteImport.update({
   path: '/quiz/$course',
   getParentRoute: () => LangRoute,
 } as any)
+const LangCoursesCourseRoute = LangCoursesCourseRouteImport.update({
+  id: '/$course',
+  path: '/$course',
+  getParentRoute: () => LangCoursesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
   '/$lang/about': typeof LangAboutRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/courses': typeof LangCoursesRouteWithChildren
   '/$lang/faq': typeof LangFaqRoute
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
@@ -102,13 +108,14 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/results': typeof AdminResultsRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/about': typeof LangAboutRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/courses': typeof LangCoursesRouteWithChildren
   '/$lang/faq': typeof LangFaqRoute
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/results': typeof AdminResultsRoute
   '/$lang': typeof LangIndexRoute
+  '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRoutesById {
@@ -124,7 +132,7 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/$lang/about': typeof LangAboutRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/courses': typeof LangCoursesRoute
+  '/$lang/courses': typeof LangCoursesRouteWithChildren
   '/$lang/faq': typeof LangFaqRoute
   '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/payment': typeof LangPaymentRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/results': typeof AdminResultsRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
 }
 export interface FileRouteTypes {
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/results'
     | '/$lang/'
+    | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/results'
     | '/$lang'
+    | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
   id:
     | '__root__'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/results'
     | '/$lang/'
+    | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
   fileRoutesById: FileRoutesById
 }
@@ -281,13 +293,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangQuizCourseRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/courses/$course': {
+      id: '/$lang/courses/$course'
+      path: '/$course'
+      fullPath: '/$lang/courses/$course'
+      preLoaderRoute: typeof LangCoursesCourseRouteImport
+      parentRoute: typeof LangCoursesRoute
+    }
   }
 }
+
+interface LangCoursesRouteChildren {
+  LangCoursesCourseRoute: typeof LangCoursesCourseRoute
+}
+
+const LangCoursesRouteChildren: LangCoursesRouteChildren = {
+  LangCoursesCourseRoute: LangCoursesCourseRoute,
+}
+
+const LangCoursesRouteWithChildren = LangCoursesRoute._addFileChildren(
+  LangCoursesRouteChildren,
+)
 
 interface LangRouteChildren {
   LangAboutRoute: typeof LangAboutRoute
   LangContactRoute: typeof LangContactRoute
-  LangCoursesRoute: typeof LangCoursesRoute
+  LangCoursesRoute: typeof LangCoursesRouteWithChildren
   LangFaqRoute: typeof LangFaqRoute
   LangGalleryRoute: typeof LangGalleryRoute
   LangPaymentRoute: typeof LangPaymentRoute
@@ -299,7 +330,7 @@ interface LangRouteChildren {
 const LangRouteChildren: LangRouteChildren = {
   LangAboutRoute: LangAboutRoute,
   LangContactRoute: LangContactRoute,
-  LangCoursesRoute: LangCoursesRoute,
+  LangCoursesRoute: LangCoursesRouteWithChildren,
   LangFaqRoute: LangFaqRoute,
   LangGalleryRoute: LangGalleryRoute,
   LangPaymentRoute: LangPaymentRoute,

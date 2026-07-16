@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
@@ -78,13 +78,16 @@ function CoursesPage() {
                   ))}
                 </div>
                 <Link
-                  to="/$lang/contact"
-                  params={{ lang }}
-                  search={{ course: course.name }}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  {t.courses.detailsLabel} <span aria-hidden="true">→</span>
-                </Link>
+  to="/$lang/courses/$course"
+  params={{
+    lang,
+    course: courseKey,
+  }}
+  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary"
+>
+  {t.courses.detailsLabel}
+  <span aria-hidden="true">→</span>
+</Link>
                 <Link
                   to="/$lang/quiz/$course"
                   params={{ lang, course: courseKey }}
