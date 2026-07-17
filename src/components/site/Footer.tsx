@@ -6,7 +6,7 @@ import certCambridge from "@/assets/cert-cambridge.jpeg";
 import certGatehouse from "@/assets/cert-gatehouse.jpeg";
 import sieleImg from "@/assets/cert-siele.jpeg";
 import certUnida from "@/assets/cert-unida.jpeg";
-import certAccreditation from "@/assets/cert-accreditation.jpeg";
+
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
@@ -57,11 +57,7 @@ export function Footer({ lang }: { lang: Lang }) {
                 className="h-10 w-auto object-contain"
               />
 
-              <img
-                src={certAccreditation}
-                alt="Accreditation"
-                className="h-10 w-auto object-contain"
-              />
+              
             </div>
           </div>
         </div>
@@ -95,9 +91,9 @@ export function Footer({ lang }: { lang: Lang }) {
         <div>
           <h4 className="eyebrow">{t.footer.contact}</h4>
 
-          <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2 text-foreground/80">
-              <Phone size={14} className="text-primary shrink-0" />
+          <ul className="mt-6 space-y-5 text-sm">
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <Phone size={18} className="mt-1 text-primary shrink-0" />
               <a
                 href="tel:+393389228520"
                 className="hover:text-primary transition-colors"
@@ -106,8 +102,8 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
-              <MessageCircle size={14} className="text-primary shrink-0" />
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <MessageCircle size={18} className="mt-1 text-primary shrink-0" />
               <a
                 href="tel:+3908231410601"
                 className="hover:text-primary transition-colors"
@@ -116,8 +112,8 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
-              <Mail size={14} className="text-primary shrink-0" />
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <Mail size={18} className="mt-1 text-primary shrink-0" />
               <a
                 href="mailto:info@esflanguageservice.com"
                 className="hover:text-primary transition-colors truncate"
@@ -126,7 +122,7 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
               <a
                 href="https://esflanguageservice.com"
                 target="_blank"
@@ -137,8 +133,8 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
-              <ShieldCheck size={14} className="text-primary shrink-0" />
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <ShieldCheck size={18} className="mt-1 text-primary shrink-0" />
               <a
                 href="mailto:esflanguageservice@pec.it"
                 className="hover:text-primary transition-colors truncate"
@@ -150,8 +146,8 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
-              <FileText size={14} className="text-primary shrink-0" />
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <FileText size={18} className="mt-1 text-primary shrink-0" />
               <span>
                 <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground mr-1">
                   C.F.
@@ -160,8 +156,8 @@ export function Footer({ lang }: { lang: Lang }) {
               </span>
             </li>
 
-            <li className="flex items-center gap-2 text-foreground/80">
-              <Building2 size={14} className="text-primary shrink-0" />
+            <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
+              <Building2 size={18} className="mt-1 text-primary shrink-0" />
               <span>
                 <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground mr-1">
                   P.IVA
