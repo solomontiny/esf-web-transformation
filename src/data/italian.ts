@@ -6,267 +6,303 @@ const italianQuiz: QuizData = {
   questions: [
     {
       id: 1,
-      question: "MY FATHER ....... A VERY FAMOUS DOCTOR",
+      question: "MIO PADRE ....... UN DOTTORE MOLTO FAMOSO",
       options: [
-        "has",
-        "six",
-        "And",
-        "YOU ....... 15 YEARS OLD",
+        "ha",
+        "sei",
+        "è",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 2,
-      question: "you have",
+      question: "TU ....... 15 ANNI",
       options: [
-        "to the",
-        "I have",
-        "....... PAOLO'S SISTER IS VERY CUTE.",
-        "there",
+        "hai",
+        "ai",
+        "ho",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 3,
-      question: "-",
+      question: "....... SORELLA DI PAOLO È MOLTO CARINA.",
       options: [
-        "the",
-        "MY HUSBAND HAS ....... RED CAR.",
-        "a",
-        "a",
+        "la",
+        "-",
+        "lo",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 4,
-      question: "a",
+      question: "MIO MARITO HA ....... MACCHINA ROSSA.",
       options: [
-        "......... WRITES CHILDREN'S BOOKS.",
-        "my mother",
-        "my mother",
-        "my mother",
+        "un’",
+        "una",
+        "uno",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 5,
-      question: "I ....... TV EVERY NIGHT.",
+      question: "......... SCRIVE LIBRI PER BAMBINI.",
       options: [
-        "guards",
-        "look",
-        "I watch",
-        "MY DAUGHTER AND HER FRIENDS ......... EVERY SATURDAY.",
+        "la mia madre",
+        "mia madre",
+        "la mia madra",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 6,
-      question: "they leave",
+      question: "IO ....... LA TV TUTTE LE SERE.",
       options: [
-        "they go out",
-        "they go out",
-        "LUDOVICA ........ AS MUCH AS ......... COMEDY FILMS.",
-        "laugh/look",
+        "guarde",
+        "guardi",
+        "guardo",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 7,
-      question: "laugh/watch",
+      question: "MIA FIGLIA E I SUOI AMICI ......... TUTTI I SABATI.",
       options: [
-        "laugh/look",
-        "GOOD MORNING, I WOULD LIKE A KILO ...... TOMATOES.",
-        "Of",
-        "For",
+        "esciano",
+        "escono",
+        "esciono",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 8,
-      question: "with",
+      question: "LUDOVICA ........ TANTO QUANDO ......... I FILM COMICI.",
       options: [
-        "WE LIVE NEAR ....... STATION.",
-        "Of",
-        "from the",
-        "at the",
+        "rida/guarda",
+        "ride/guarde",
+        "ride/guarda",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 9,
-      question: "..... DANCE THE TANGO?",
+      question: "BUONGIORNO, VORRE UN CHILO ...... POMODORI.",
       options: [
-        "you know",
-        "know",
-        "you know",
-        "LAST WEEK ........VISITING OUR COUSINS.",
+        "di",
+        "per",
+        "con",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 10,
-      question: "they went",
+      question: "NOI ABITIAMO VICINO ....... STAZIONE.",
       options: [
-        "they are gone",
-        "we went",
-        "YESTERDAY EVENING MY FRIENDS AND I ............. PLAYED CARDS.",
-        "you played",
+        "di",
+        "della",
+        "alla",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 11,
-      question: "we played",
+      question: "..... BALLARE IL TANGO?",
       options: [
-        "I'm played",
-        "WHEN ........... IN ROME, I WAS TEN YEARS OLD.",
-        "we lived",
-        "we lived",
+        "sai",
+        "sappi",
+        "conosci",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 12,
-      question: "we lived",
+      question: "LA SETTIMANA SCORSA ........ A TROVARE I NOSTRI CUGINI.",
       options: [
-        "NEXT YEAR MY HUSBAND AND I ............ GOING ON A TRIP TO THE MALDIVES.",
-        "we will go",
-        "will go",
-        "we will go",
+        "sono andati",
+        "stanno andati",
+        "abbiamo andati",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 13,
-      question: "THAT WOMAN, EVERYONE..... LOVES.",
+      question: "IERI SERA IO E I MIEI AMICI ............. A CARTE.",
       options: [
-        "the",
-        "if",
-        "there",
-        "I MET MARIA AND ....... I GAVE HER BOOK BACK.",
+        "avete giocate",
+        "abbiamo giocato",
+        "sono giocato",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 14,
-      question: "the",
+      question: "QUANDO ........... A ROMA, AVEVO DIECI ANNI.",
       options: [
-        "the",
-        "there",
-        "A FIAT CAR IS ........ MORE EXPENSIVE THAN A VOLVO CAR",
-        "the same",
+        "vivavamo",
+        "abbiamo vissuti",
+        "vivevamo",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 15,
-      question: "stretched out",
+      question: "L’ANNO PROSSIMO IO E MIO MARITO ............ A FARE UN VIAGGIO ALLE MALDIVE.",
       options: [
-        "less",
-        "I CAN'T BELIEVE IT! YOU DIDN'T KEEP YOUR PROMISE.",
-        "the",
-        "There",
+        "andremo",
+        "andrà",
+        "andramo",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 16,
-      question: "no",
+      question: "QUELLA DONNA, TUTTI ..... AMANO.",
       options: [
-        "YESTERDAY I SAW THE FILM .......... YOU TALKED TO ME A LOT.",
-        "of which",
-        "whose",
-        "That",
+        "le",
+        "se",
+        "la",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 17,
-      question: "GIULIA, CAN I LEND MY SISTER YOUR BAG? Yes, of course! ................!",
+      question: "HO INCONTRATA MARIA E ....... HO RIDATO IL SUO LIBRO.",
       options: [
-        "prestalale",
-        "lend it to her",
-        "lend it to him",
-        ".......THE TRUTH OR YOU WILL PAY THE CONSEQUENCES.",
+        "le",
+        "lo",
+        "la",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 18,
-      question: "you say",
+      question: "UNA MACCHINA FIAT È ........ COSTOSA DI UNA MACCHINA VOLVO",
       options: [
-        "Of",
-        "he says",
-        "........, HOW MUCH DOES THIS RED DRESS IN THE WINDOW COST?",
-        "Excuse me",
+        "uguale",
+        "steso",
+        "meno",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 19,
-      question: "excuse me",
+      question: "NON ........ POSSO CREDERE! NON HAI MANTENUTO LA PROMESSA.",
       options: [
-        "I apologize",
-        ".......... LEARN ANOTHER LANGUAGE BUT I DON'T HAVE THE TIME.",
-        "would like",
-        "I wanted to",
+        "lo",
+        "ci",
+        "ne",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 20,
-      question: "I would like",
+      question: "IERI HO VISTO IL FILM .......... MI HAI TANTO PARLATO.",
       options: [
-        "I THINK OUR FRIENDS TONIGHT WON'T ......... WITH US.",
-        "come",
-        "they come",
-        "they come",
+        "di cui",
+        "il cui",
+        "che",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 21,
-      question: "I WOULD LIKE .......... YOU TOO TO BE WITH US.",
+      question: "GIULIA, POSSO PRESTARE LA TUA BORSA A MIA SORELLA? Sì, CERTO! ................!",
       options: [
-        "you came",
-        "I came",
-        "you would come",
-        "I THOUGHT YOUR SISTER ....... THE EXAM.",
+        "prestalale",
+        "prestala a lei",
+        "prestagliela",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 22,
-      question: "exceeded",
+      question: "....... LA VERITÀ O NE PAGHERAI LE CONSEGUENZE.",
       options: [
-        "exceeded",
-        "he overcame",
-        "YESTERDAY I WENT TO THE APPOINTMENT ......... I DIDN'T FEEL LIKE IT AT ALL!",
-        "while",
+        "dici",
+        "dì",
+        "dice",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 23,
-      question: "Anyway",
+      question: "........, QUANTO COSTA QUESTO ABITO ROSSO IN VETRINA?",
       options: [
-        "so long as",
-        "I DIDN'T HEAR ....... WHAT YOU SAID ON THE PHONE. THERE WAS TOO MUCH NOISE.",
-        "Nothing",
-        "something",
+        "mi scusi",
+        "mi scusate",
+        "mi scuso",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
     },
     {
       id: 24,
-      question: "some",
+      question: ".......... IMPARARE UN’ALTRA LINGUA MA NON HO IL TEMPO.",
       options: [
-        "I WOULD HAVE GOED OUT WITH ........ BUT NOT WITH HIM.",
-        "anyone",
-        "whoever",
-        "Nobody",
+        "vorrebbe",
+        "volessi",
+        "vorrei",
       ],
-      correctAnswer: 0, // verify against original answer key
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 25,
+      question: "PENSO CHE STASERA I NOSTRI AMICI NON ......... CON NOI.",
+      options: [
+        "vengano",
+        "vengono",
+        "vieneno",
+      ],
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 26,
+      question: "VORREI CHE .......... ANCHE TU CON NOI.",
+      options: [
+        "veniste",
+        "venissi",
+        "verresti",
+      ],
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 27,
+      question: "CREDEVO CHE TUA SORELLA ....... L’ESAME.",
+      options: [
+        "superasse",
+        "superava",
+        "superò",
+      ],
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 28,
+      question: "IERI SONO ANDATO ALL’APPUNTAMENTO ......... NON NE AVESSI AFFATTO VOGLIA!",
+      options: [
+        "sebbene",
+        "comunque",
+        "purché",
+      ],
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 29,
+      question: "NON HO SENTITO ....... DI QUELLO CHE MI HAI DETTO AL TELEFONO. C’ERA TROPPO RUMORE.",
+      options: [
+        "niente",
+        "qualcosa",
+        "qualche",
+      ],
+      correctAnswer: 0, // update with answer key
+    },
+    {
+      id: 30,
+      question: "SAREI USCITA CON ........ MA NON CON LUI.",
+      options: [
+        "qualunque",
+        "chiunque",
+        "nessuno",
+      ],
+      correctAnswer: 0, // update with answer key
     },
   ],
 };
