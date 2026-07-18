@@ -9,29 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
-import { Route as AdminResultsRouteImport } from './routes/admin.results'
-import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as LangServicesRouteImport } from './routes/$lang.services'
-import { Route as LangPaymentRouteImport } from './routes/$lang.payment'
-import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
-import { Route as LangFaqRouteImport } from './routes/$lang.faq'
-import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
-import { Route as LangContactRouteImport } from './routes/$lang.contact'
 import { Route as LangAboutRouteImport } from './routes/$lang.about'
-import { Route as LangQuizCourseRouteImport } from './routes/$lang.quiz.$course'
+import { Route as LangContactRouteImport } from './routes/$lang.contact'
+import { Route as LangCoursesRouteImport } from './routes/$lang.courses'
+import { Route as LangFaqRouteImport } from './routes/$lang.faq'
+import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
+import { Route as LangPaymentRouteImport } from './routes/$lang.payment'
+import { Route as LangServicesRouteImport } from './routes/$lang.services'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminResultsRouteImport } from './routes/admin.results'
 import { Route as LangCoursesCourseRouteImport } from './routes/$lang.courses.$course'
+import { Route as LangQuizCourseRouteImport } from './routes/$lang.quiz.$course'
 
-const LangRoute = LangRouteImport.update({
-  id: '/$lang',
-  path: '/$lang',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LangIndexRoute = LangIndexRouteImport.update({
@@ -39,39 +39,9 @@ const LangIndexRoute = LangIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LangRoute,
 } as any)
-const AdminResultsRoute = AdminResultsRouteImport.update({
-  id: '/admin/results',
-  path: '/admin/results',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LangServicesRoute = LangServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangPaymentRoute = LangPaymentRouteImport.update({
-  id: '/payment',
-  path: '/payment',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangGalleryRoute = LangGalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangFaqRoute = LangFaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangCoursesRoute = LangCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
+const LangAboutRoute = LangAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => LangRoute,
 } as any)
 const LangContactRoute = LangContactRouteImport.update({
@@ -79,20 +49,50 @@ const LangContactRoute = LangContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => LangRoute,
 } as any)
-const LangAboutRoute = LangAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const LangCoursesRoute = LangCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
   getParentRoute: () => LangRoute,
 } as any)
-const LangQuizCourseRoute = LangQuizCourseRouteImport.update({
-  id: '/quiz/$course',
-  path: '/quiz/$course',
+const LangFaqRoute = LangFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => LangRoute,
+} as any)
+const LangGalleryRoute = LangGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPaymentRoute = LangPaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangServicesRoute = LangServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => LangRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResultsRoute = AdminResultsRouteImport.update({
+  id: '/admin/results',
+  path: '/admin/results',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LangCoursesCourseRoute = LangCoursesCourseRouteImport.update({
   id: '/$course',
   path: '/$course',
   getParentRoute: () => LangCoursesRoute,
+} as any)
+const LangQuizCourseRoute = LangQuizCourseRouteImport.update({
+  id: '/quiz/$course',
+  path: '/quiz/$course',
+  getParentRoute: () => LangRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -202,18 +202,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/$lang': {
-      id: '/$lang'
-      path: '/$lang'
-      fullPath: '/$lang'
-      preLoaderRoute: typeof LangRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$lang/': {
@@ -223,53 +223,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangIndexRouteImport
       parentRoute: typeof LangRoute
     }
-    '/admin/results': {
-      id: '/admin/results'
-      path: '/admin/results'
-      fullPath: '/admin/results'
-      preLoaderRoute: typeof AdminResultsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/$lang/services': {
-      id: '/$lang/services'
-      path: '/services'
-      fullPath: '/$lang/services'
-      preLoaderRoute: typeof LangServicesRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/payment': {
-      id: '/$lang/payment'
-      path: '/payment'
-      fullPath: '/$lang/payment'
-      preLoaderRoute: typeof LangPaymentRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/gallery': {
-      id: '/$lang/gallery'
-      path: '/gallery'
-      fullPath: '/$lang/gallery'
-      preLoaderRoute: typeof LangGalleryRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/faq': {
-      id: '/$lang/faq'
-      path: '/faq'
-      fullPath: '/$lang/faq'
-      preLoaderRoute: typeof LangFaqRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/courses': {
-      id: '/$lang/courses'
-      path: '/courses'
-      fullPath: '/$lang/courses'
-      preLoaderRoute: typeof LangCoursesRouteImport
+    '/$lang/about': {
+      id: '/$lang/about'
+      path: '/about'
+      fullPath: '/$lang/about'
+      preLoaderRoute: typeof LangAboutRouteImport
       parentRoute: typeof LangRoute
     }
     '/$lang/contact': {
@@ -279,19 +237,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangContactRouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/about': {
-      id: '/$lang/about'
-      path: '/about'
-      fullPath: '/$lang/about'
-      preLoaderRoute: typeof LangAboutRouteImport
+    '/$lang/courses': {
+      id: '/$lang/courses'
+      path: '/courses'
+      fullPath: '/$lang/courses'
+      preLoaderRoute: typeof LangCoursesRouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/quiz/$course': {
-      id: '/$lang/quiz/$course'
-      path: '/quiz/$course'
-      fullPath: '/$lang/quiz/$course'
-      preLoaderRoute: typeof LangQuizCourseRouteImport
+    '/$lang/faq': {
+      id: '/$lang/faq'
+      path: '/faq'
+      fullPath: '/$lang/faq'
+      preLoaderRoute: typeof LangFaqRouteImport
       parentRoute: typeof LangRoute
+    }
+    '/$lang/gallery': {
+      id: '/$lang/gallery'
+      path: '/gallery'
+      fullPath: '/$lang/gallery'
+      preLoaderRoute: typeof LangGalleryRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/payment': {
+      id: '/$lang/payment'
+      path: '/payment'
+      fullPath: '/$lang/payment'
+      preLoaderRoute: typeof LangPaymentRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/services': {
+      id: '/$lang/services'
+      path: '/services'
+      fullPath: '/$lang/services'
+      preLoaderRoute: typeof LangServicesRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/results': {
+      id: '/admin/results'
+      path: '/admin/results'
+      fullPath: '/admin/results'
+      preLoaderRoute: typeof AdminResultsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/$lang/courses/$course': {
       id: '/$lang/courses/$course'
@@ -299,6 +292,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/$lang/courses/$course'
       preLoaderRoute: typeof LangCoursesCourseRouteImport
       parentRoute: typeof LangCoursesRoute
+    }
+    '/$lang/quiz/$course': {
+      id: '/$lang/quiz/$course'
+      path: '/quiz/$course'
+      fullPath: '/$lang/quiz/$course'
+      preLoaderRoute: typeof LangQuizCourseRouteImport
+      parentRoute: typeof LangRoute
     }
   }
 }
