@@ -51,8 +51,8 @@ export function Header({ lang }: { lang: Lang }) {
           ))}
           <Link
             to="/admin/login"
-            className="text-sm text-foreground/80 hover:text-primary transition-colors"
-            activeProps={{ className: "text-primary font-medium" }}
+            className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition hover:bg-primary/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            activeProps={{ className: "bg-primary/90" }}
           >
             Admin Login
           </Link>
@@ -96,7 +96,7 @@ export function Header({ lang }: { lang: Lang }) {
             <Link
               to="/admin/login"
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-3 text-sm text-foreground hover:bg-secondary"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Admin Login
             </Link>
