@@ -2,7 +2,11 @@ export type Lang = "en" | "it";
 export const LANGS: Lang[] = ["en", "it"];
 export const DEFAULT_LANG: Lang = "en";
 
-export const IT_PLACEHOLDER = "[Traduzione professionale in arrivo]";
+type DeepPartial<T> = T extends (infer U)[]
+  ? DeepPartial<U>[]
+  : T extends object
+    ? { [K in keyof T]?: DeepPartial<T[K]> }
+    : T;
 
 type ServiceDetail = {
   title: string;
@@ -675,92 +679,77 @@ export const en: Dict = {
   },
 };
 
-// Italian skeleton — real translations to be provided by the client.
-const p = IT_PLACEHOLDER;
-export const it: Dict = {
+// Italian translations. Only genuinely translated copy lives here — any field
+// omitted below automatically falls back to the English content in `en`, so no
+// placeholder text is ever shown. If English is also missing, the field is left
+// empty rather than displaying a placeholder.
+const itPartial: DeepPartial<Dict> = {
   nav: { home: "Home", about: "Chi siamo", courses: "Corsi", services: "Servizi", gallery: "Galleria", faq: "FAQ", contact: "Contatti", payment: "Iscriviti" },
-  cta: { book: p, explore: p, contact: p, enroll: p, discover: p, learnMore: p },
-  hero: { eyebrow: "Centro linguistico · Casagiove, Caserta", title: p, titleAccent: p, lede: p },
+  hero: { eyebrow: "Centro linguistico · Casagiove, Caserta" },
   pillars: {
-    title: p,
     items: [
-      { title: "Insegnamento individuale", body: p },
-      { title: "Docenti certificati", body: p },
-      { title: "Approccio moderno", body: p },
-      { title: "Online e in presenza", body: p },
+      { title: "Insegnamento individuale" },
+      { title: "Docenti certificati" },
+      { title: "Approccio moderno" },
+      { title: "Online e in presenza" },
     ],
   },
-  intro: { eyebrow: "ESF Language Services", title: p, body: p },
-  services: {
-    eyebrow: p, title: p, lede: p,
-    items: en.services.items.map((s) => ({ title: s.title, body: p })),
-  },
   courses: {
-    eyebrow: p, title: p, lede: p,
     detailsLabel: "Vedi dettagli", hideLabel: "Nascondi",
     priceLabel: "Da", durationLabel: "Durata", formatLabel: "Formato",
     levelsLabel: "Livelli", includesLabel: "Cosa è incluso",
     syllabusLabel: "Programma", certificationsLabel: "Certificazioni",
-    languages: en.courses.languages.map((c) => ({
-      name: c.name === "English" ? "Inglese" : c.name === "Italian" ? "Italiano" : c.name === "Spanish" ? "Spagnolo" : "Francese",
-      tagline: p, body: p,
-      priceFrom: c.priceFrom, duration: c.duration, format: c.format, levels: c.levels,
-      highlights: c.highlights.map(() => p),
-      syllabus: c.syllabus.map(() => p),
-      certifications: c.certifications,
-    })),
-    levelsTitle: p,
+    languages: [
+      { name: "Inglese" },
+      { name: "Spagnolo" },
+      { name: "Francese" },
+      { name: "Italiano" },
+    ],
     levels: ["Base · A1", "Elementare · A2", "Intermedio · B1", "Intermedio superiore · B2", "Avanzato · C1", "Padronanza · C2"],
-    distanceTitle: p, distanceBody: p,
   },
   about: {
-    eyebrow: "Chi siamo", title: p, body: [p, p],
-    mission: { title: "La nostra missione", body: p },
-    vision: { title: "La nostra visione", body: p },
-    why: { title: "Perché sceglierci", body: p, bullets: en.about.why.bullets.map(() => p) },
-    values: { title: "I nostri valori", body: p },
-    stats: en.about.stats.map((s) => ({ value: s.value, label: p })),
-    goalsTitle: "I nostri obiettivi", goals: p,
-  },
-  detailed: {
-    eyebrow: p, title: p, lede: p,
-    services: en.detailed.services.map((s) => ({
-      title: s.title, intro: p, bullets: s.bullets.map(() => p), outro: p,
-    })),
-  },
-  testimonials: {
-    eyebrow: p, title: p,
-    items: en.testimonials.items.map((t) => ({ quote: p, name: t.name, role: t.role })),
-  },
-  faq: {
-    eyebrow: p, title: p,
-    items: en.faq.items.map(() => ({ q: p, a: p })),
+    eyebrow: "Chi siamo",
+    mission: { title: "La nostra missione" },
+    vision: { title: "La nostra visione" },
+    why: { title: "Perché sceglierci" },
+    values: { title: "I nostri valori" },
+    goalsTitle: "I nostri obiettivi",
   },
   contact: {
-    eyebrow: "Contatti", title: p, lede: p,
+    eyebrow: "Contatti",
     address: "Via Milano, 18 · 81022 Casagiove (CE), Italia",
-    phone: "+39 0823 1410601", whatsapp: "+39 0823 1410601", email: "info@esflanguageservice.com",
-    form: { name: "Nome", email: "Email", subject: "Oggetto", message: "Messaggio", consent: p, submit: "Invia" },
+    phone: "+39 0823 1410601", whatsapp: "+39 0823 1410601",
+    form: { name: "Nome", email: "Email", subject: "Oggetto", message: "Messaggio", submit: "Invia" },
   },
-  payment: {
-    eyebrow: "Iscriviti", title: p, lede: p,
-    plans: en.payment.plans.map((plan) => ({
-      name: plan.name, price: plan.price, period: plan.period,
-      description: p,
-      features: plan.features.map(() => p),
-      featured: plan.featured,
-    })),
-    disclaimer: p,
-    faqTitle: p,
-    faq: en.payment.faq.map(() => ({ q: p, a: p })),
-  },
+  payment: { eyebrow: "Iscriviti" },
   footer: {
-    tagline: p,
     explore: "Naviga", languages: "Lingue", contact: "Contatti",
     rights: "Tutti i diritti riservati.",
   },
-  ctaBanner: { title: p, body: p, action: p },
 };
+
+// Deep-merges Italian overrides onto the English base so missing Italian copy
+// falls back to English. Values present only in the base (never empty here) are
+// preserved; nothing is ever replaced with a placeholder.
+function mergeDict(base: unknown, override: unknown): unknown {
+  if (override === undefined || override === null) return base;
+  if (Array.isArray(base)) {
+    const ov = Array.isArray(override) ? override : [];
+    return base.map((item, i) => mergeDict(item, ov[i]));
+  }
+  if (base !== null && typeof base === "object") {
+    const baseObj = base as Record<string, unknown>;
+    const ovObj = (typeof override === "object" && override !== null ? override : {}) as Record<string, unknown>;
+    const result: Record<string, unknown> = { ...baseObj };
+    for (const key of Object.keys(baseObj)) {
+      result[key] = mergeDict(baseObj[key], ovObj[key]);
+    }
+    return result;
+  }
+  return override;
+}
+
+export const it: Dict = mergeDict(en, itPartial) as Dict;
 
 export const dict = { en, it };
 export function getDict(lang: string): Dict {
