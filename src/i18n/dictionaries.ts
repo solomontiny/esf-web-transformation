@@ -1136,9 +1136,9 @@ const itPartial: DeepPartial<Dict> = {
     eyebrow: "Cosa dicono i nostri studenti",
     title: "Le voci dallo studio",
     items: [
-      { quote: "Gli insegnanti più attenti con cui abbia mai lavorato. In sei mesi sono passata da un B1 a un B2 sicuro — e ora mi diverto davvero a parlare inglese." },
-      { quote: "ESF mi ha preparato per l'IELTS con un piano costruito sui miei punti deboli. Ho superato l'esame con 7.5 al primo tentativo." },
-      { quote: "Abbiamo affidato a ESF l'inglese aziendale del nostro team. I risultati — e la cultura dell'apprendimento — sono stati eccezionali." },
+      { quote: "Gli insegnanti più attenti con cui abbia mai lavorato. In sei mesi sono passata da un B1 a un B2 sicuro — e ora mi diverto davvero a parlare inglese.", role: "Responsabile Marketing" },
+      { quote: "ESF mi ha preparato per l'IELTS con un piano costruito sui miei punti deboli. Ho superato l'esame con 7.5 al primo tentativo.", role: "Studente di Medicina" },
+      { quote: "Abbiamo affidato a ESF l'inglese aziendale del nostro team. I risultati — e la cultura dell'apprendimento — sono stati eccezionali.", role: "Direttrice Risorse Umane" },
     ],
   },
   faq: {
