@@ -3,6 +3,7 @@ import { Check, Target, Eye, Sparkles, Award } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+import { useCmsData, type CmsAbout } from "@/lib/cms";
 import classroomImg from "@/assets/classroom.jpg";
 import naplesImg from "@/assets/naples.jpg";
 
@@ -28,6 +29,19 @@ function AboutPage() {
   const { lang } = Route.useParams();
   const l = lang as Lang;
   const t = getDict(l);
+
+  const fallback: CmsAbout = {
+    eyebrow: t.about.eyebrow,
+    title: t.about.title,
+    body: t.about.body,
+    missionTitle: t.about.mission.title,
+    missionBody: t.about.mission.body,
+    visionTitle: t.about.vision.title,
+    visionBody: t.about.vision.body,
+    stats: t.about.stats,
+  };
+  const cms = useCmsData("about", fallback);
+
   return (
     <>
       {/* Hero */}
@@ -44,13 +58,13 @@ function AboutPage() {
           <div className="max-w-3xl fade-up">
             <div className="eyebrow flex items-center gap-2">
               <Sparkles size={12} className="text-[color:var(--gold)]" />
-              {t.about.eyebrow}
+              {cms.eyebrow}
             </div>
             <h1 className="mt-6 font-serif text-5xl md:text-7xl leading-[1.02] tracking-tight text-ink">
-              {t.about.title}
+              {cms.title}
             </h1>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-foreground/85">
-              {t.about.body.map((p, i) => <p key={i}>{p}</p>)}
+              {cms.body.map((p, i) => <p key={i}>{p}</p>)}
             </div>
           </div>
         </div>
@@ -63,15 +77,15 @@ function AboutPage() {
             <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
               <Target size={26} strokeWidth={1.4} />
             </div>
-            <h2 className="mt-6 font-serif text-3xl text-primary">{t.about.mission.title}</h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85">{t.about.mission.body}</p>
+            <h2 className="mt-6 font-serif text-3xl text-primary">{cms.missionTitle}</h2>
+            <p className="mt-5 text-base leading-relaxed text-foreground/85">{cms.missionBody}</p>
           </div>
           <div className="rounded-3xl border border-border bg-cream p-10 md:p-12">
             <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
               <Eye size={26} strokeWidth={1.4} />
             </div>
-            <h2 className="mt-6 font-serif text-3xl text-primary">{t.about.vision.title}</h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85">{t.about.vision.body}</p>
+            <h2 className="mt-6 font-serif text-3xl text-primary">{cms.visionTitle}</h2>
+            <p className="mt-5 text-base leading-relaxed text-foreground/85">{cms.visionBody}</p>
           </div>
         </div>
       </Section>
@@ -124,7 +138,7 @@ function AboutPage() {
       {/* Stats */}
       <Section tone="dark">
         <div className="grid gap-12 md:grid-cols-4 text-center">
-          {t.about.stats.map((s) => (
+          {cms.stats.map((s) => (
             <div key={s.label}>
               <div className="font-serif text-5xl md:text-6xl text-[color:var(--gold)]">{s.value}</div>
               <div className="mt-3 text-xs uppercase tracking-[0.22em] text-cream/70">{s.label}</div>
@@ -138,7 +152,7 @@ function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <div className="eyebrow">{t.about.goalsTitle}</div>
           <p className="mt-6 font-serif text-2xl md:text-3xl leading-snug text-ink italic">
-            “{t.about.goals}”
+            "{t.about.goals}"
           </p>
         </div>
       </Section>

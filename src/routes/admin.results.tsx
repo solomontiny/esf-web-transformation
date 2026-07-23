@@ -3,6 +3,7 @@ import { Download, Inbox, Printer } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { QuizResult } from "@/quiz-types";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 
 type QuizResultRecord = Pick<
   QuizResult,
@@ -185,8 +186,8 @@ function AdminResultsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-16">
-      <section className="mx-auto max-w-7xl rounded-3xl border border-blue-100 bg-white p-6 shadow-xl shadow-blue-950/5 sm:p-10">
+    <AdminLayout onLogout={handleLogout} isLoggingOut={isLoggingOut}>
+      <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-xl shadow-blue-950/5 sm:p-10">
         <header className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-sm font-semibold tracking-wider text-blue-700 uppercase">
@@ -199,23 +200,6 @@ function AdminResultsPage() {
               Review completed placement tests and learner recommendations.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-  <a
-    href="/en"
-    className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50"
-  >
-    ← Website
-  </a>
-
-  <button
-    type="button"
-    onClick={handleLogout}
-    disabled={isLoggingOut}
-    className="rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-700 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-50"
-  >
-    {isLoggingOut ? "Logging out..." : "Logout"}
-  </button>
-</div>
         </header>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
@@ -355,7 +339,7 @@ function AdminResultsPage() {
           </table>
         </div>
       </section>
-    </main>
+    </AdminLayout>
   );
 }
 

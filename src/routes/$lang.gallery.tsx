@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import type { Lang } from "@/i18n/dictionaries";
+import { fetchGalleryImages, getPublicUrl, type CmsGalleryImage } from "@/lib/cms";
 import classroomImg from "@/assets/classroom.jpg";
 import heroImg from "@/assets/hero.jpg";
 import naplesImg from "@/assets/naples.jpg";
@@ -26,97 +27,30 @@ import student4Img from "@/assets/student-4.jpeg";
 import student5Img from "@/assets/student-5.jpeg";
 import student6Img from "@/assets/student-6.jpeg";
 
-type Category = "all" | "studio" | "students" | "destinations" | "certifications";
+// Suppress unused import warnings for assets kept as fallback
+void [heroImg, naplesImg, slideBooksImg, slideCertImg];
 
+type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 type Item = { src: string; alt: string; category: Exclude<Category, "all">; span?: string };
 
-const ITEMS: Item[] = [
-  {
-  src: destination1Img,
-  alt: "ESF Destination 1",
-  category: "destinations",
-},
-{
-  src: destination2Img,
-  alt: "ESF Destination 2",
-  category: "destinations",
-},
-{
-  src: destination3Img,
-  alt: "ESF Destination 3",
-  category: "destinations",
-},
-{
-  src: destination4Img,
-  alt: "ESF Destination 4",
-  category: "destinations",
-},
-{
-  src: destination5Img,
-  alt: "ESF Destination 5",
-  category: "destinations",
-},
-
-// Studio Images
-{
-  src: studio1Img,
-  alt: "ESF language studio interior",
-  category: "studio",
-  span: "md:col-span-2",
-},
-{
-  src: studio2Img,
-  alt: "ESF classroom environment",
-  category: "studio",
-},
-{
-  src: studio3Img,
-  alt: "ESF learning space",
-  category: "studio",
-},
-{
-  src: studio4Img,
-  alt: "ESF student study area",
-  category: "studio",
-  span: "md:row-span-2",
-},
-
-// Student Images
-{
-  src: slideStudentsImg,
-  alt: "Students in class",
-  category: "students",
-},
-{
-  src: student1Img,
-  alt: "Students learning together",
-  category: "students",
-},
-{
-  src: student2Img,
-  alt: "Interactive classroom session",
-  category: "students",
-},
-{
-  src: student3Img,
-  alt: "Language workshop",
-  category: "students",
-},
-{
-  src: student4Img,
-  alt: "Group learning",
-  category: "students",
-},
-{
-  src: student5Img,
-  alt: "Students during lesson",
-  category: "students",
-},
-{
-  src: student6Img,
-  alt: "International students",
-  category: "students",
-},
+const HARDCODED_ITEMS: Item[] = [
+  { src: destination1Img, alt: "ESF Destination 1", category: "destinations" },
+  { src: destination2Img, alt: "ESF Destination 2", category: "destinations" },
+  { src: destination3Img, alt: "ESF Destination 3", category: "destinations" },
+  { src: destination4Img, alt: "ESF Destination 4", category: "destinations" },
+  { src: destination5Img, alt: "ESF Destination 5", category: "destinations" },
+  { src: studio1Img, alt: "ESF language studio interior", category: "studio", span: "md:col-span-2" },
+  { src: studio2Img, alt: "ESF classroom environment", category: "studio" },
+  { src: studio3Img, alt: "ESF learning space", category: "studio" },
+  { src: studio4Img, alt: "ESF student study area", category: "studio", span: "md:row-span-2" },
+  { src: slideStudentsImg, alt: "Students in class", category: "students" },
+  { src: student1Img, alt: "Students learning together", category: "students" },
+  { src: student2Img, alt: "Interactive classroom session", category: "students" },
+  { src: student3Img, alt: "Language workshop", category: "students" },
+  { src: student4Img, alt: "Group learning", category: "students" },
+  { src: student5Img, alt: "Students during lesson", category: "students" },
+  { src: student6Img, alt: "International students", category: "students" },
+  { src: classroomImg, alt: "ESF classroom", category: "studio" },
 ];
 
 export const Route = createFileRoute("/$lang/gallery")({
@@ -142,12 +76,29 @@ function GalleryPage() {
   const l = lang as Lang;
   const [cat, setCat] = useState<Category>("all");
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-
-  const filtered = useMemo(() => (cat === "all" ? ITEMS : ITEMS.filter((i) => i.category === cat)), [cat]);
+  const [cmsImages, setCmsImages] = useState<CmsGalleryImage[]>([]);
 
   useEffect(() => {
-    setOpenIdx(null);
-  }, [cat]);
+    fetchGalleryImages().then(setCmsImages).catch(() => {});
+  }, []);
+
+  // Build the items list: CMS images first (shown as "studio" category),
+  // then hardcoded fallback items. If CMS has images, they appear at the top.
+  const allItems: Item[] = useMemo(() => {
+    const cmsItems: Item[] = cmsImages.map((img) => ({
+      src: getPublicUrl(img.storage_path),
+      alt: img.caption || "Gallery image",
+      category: "studio" as const,
+    }));
+    return cmsItems.length > 0 ? [...cmsItems, ...HARDCODED_ITEMS] : HARDCODED_ITEMS;
+  }, [cmsImages]);
+
+  const filtered = useMemo(
+    () => (cat === "all" ? allItems : allItems.filter((i) => i.category === cat)),
+    [cat, allItems],
+  );
+
+  useEffect(() => { setOpenIdx(null); }, [cat]);
 
   const cats: { id: Category; label: string }[] = [
     { id: "all", label: l === "it" ? "Tutte" : "All" },

@@ -23,6 +23,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminResultsRouteImport } from './routes/admin.results'
 import { Route as LangCoursesCourseRouteImport } from './routes/$lang.courses.$course'
 import { Route as LangQuizCourseRouteImport } from './routes/$lang.quiz.$course'
+import { Route as AdminCmsSectionRouteImport } from './routes/admin.cms.$section'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -94,6 +95,11 @@ const LangQuizCourseRoute = LangQuizCourseRouteImport.update({
   path: '/quiz/$course',
   getParentRoute: () => LangRoute,
 } as any)
+const AdminCmsSectionRoute = AdminCmsSectionRouteImport.update({
+  id: '/admin/cms/$section',
+  path: '/admin/cms/$section',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/$lang/': typeof LangIndexRoute
   '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
+  '/admin/cms/$section': typeof AdminCmsSectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/$lang': typeof LangIndexRoute
   '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
+  '/admin/cms/$section': typeof AdminCmsSectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/$lang/': typeof LangIndexRoute
   '/$lang/courses/$course': typeof LangCoursesCourseRoute
   '/$lang/quiz/$course': typeof LangQuizCourseRoute
+  '/admin/cms/$section': typeof AdminCmsSectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/$lang/'
     | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
+    | '/admin/cms/$section'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
+    | '/admin/cms/$section'
   id:
     | '__root__'
     | '/'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/$lang/'
     | '/$lang/courses/$course'
     | '/$lang/quiz/$course'
+    | '/admin/cms/$section'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -198,6 +210,7 @@ export interface RootRouteChildren {
   LangRoute: typeof LangRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
   AdminResultsRoute: typeof AdminResultsRoute
+  AdminCmsSectionRoute: typeof AdminCmsSectionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangQuizCourseRouteImport
       parentRoute: typeof LangRoute
     }
+    '/admin/cms/$section': {
+      id: '/admin/cms/$section'
+      path: '/admin/cms/$section'
+      fullPath: '/admin/cms/$section'
+      preLoaderRoute: typeof AdminCmsSectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -346,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   LangRoute: LangRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
   AdminResultsRoute: AdminResultsRoute,
+  AdminCmsSectionRoute: AdminCmsSectionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

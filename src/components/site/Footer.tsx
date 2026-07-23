@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, MessageCircle, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Logo } from "./Logo";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+import { useCmsData, type CmsContact } from "@/lib/cms";
 import certCambridge from "@/assets/cert-cambridge.jpeg";
 import certGatehouse from "@/assets/cert-gatehouse.jpeg";
 import sieleImg from "@/assets/cert-siele.jpeg";
@@ -11,6 +12,17 @@ import certUnida from "@/assets/cert-unida.jpeg";
 export function Footer({ lang }: { lang: Lang }) {
   const t = getDict(lang);
   const year = new Date().getFullYear();
+
+  const fallback: CmsContact = {
+    eyebrow: t.contact.eyebrow,
+    title: t.contact.title,
+    lede: t.contact.lede,
+    address: t.contact.address,
+    phone: t.contact.phone,
+    whatsapp: t.contact.whatsapp,
+    email: t.contact.email,
+  };
+  const cms = useCmsData("contact", fallback);
 
   return (
     <footer className="mt-32 border-t border-border bg-cream">
@@ -24,7 +36,7 @@ export function Footer({ lang }: { lang: Lang }) {
 
           <div className="mt-6 flex items-start gap-3 text-sm text-foreground/80">
             <MapPin size={16} className="mt-0.5 shrink-0 text-primary" />
-            <span>{t.contact.address}</span>
+            <span>{cms.address}</span>
           </div>
 
           <div className="mt-8">
@@ -115,10 +127,10 @@ export function Footer({ lang }: { lang: Lang }) {
             <li className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/70 p-3 text-foreground/80 shadow-sm">
               <Mail size={18} className="mt-1 text-primary shrink-0" />
               <a
-                href="mailto:info@esflanguageservice.com"
+                href={`mailto:${cms.email}`}
                 className="hover:text-primary transition-colors truncate"
               >
-                info@esflanguageservice.com
+                {cms.email}
               </a>
             </li>
 

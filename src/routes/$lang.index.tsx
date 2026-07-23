@@ -9,10 +9,10 @@ import slideCertificate from "@/assets/slide-certificate.jpg";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+import { useCmsData, getPublicUrl, type CmsHome, type CmsTestimonials } from "@/lib/cms";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
-    const t = getDict(params.lang);
     const title = params.lang === "it"
       ? "ESF Language Service — Corsi di inglese, francese, spagnolo e italiano · Caserta"
       : "ESF Language Service — English, French, Spanish & Italian courses in Caserta";
@@ -40,6 +40,25 @@ function Home() {
   const l = lang as Lang;
   const t = getDict(l);
 
+  // CMS overrides — fall back to dictionary values when empty
+  const dictHome: CmsHome = {
+    eyebrow: t.hero.eyebrow,
+    title: t.hero.title,
+    titleAccent: t.hero.titleAccent,
+    lede: t.hero.lede,
+    heroImagePath: "",
+  };
+  const cmsHome = useCmsData("home", dictHome);
+
+  const dictTestimonials: CmsTestimonials = {
+    eyebrow: t.testimonials.eyebrow,
+    title: t.testimonials.title,
+    items: t.testimonials.items,
+  };
+  const cmsTestimonials = useCmsData("testimonials", dictTestimonials);
+
+  const heroSrc = cmsHome.heroImagePath ? getPublicUrl(cmsHome.heroImagePath) : heroImg;
+
   return (
     <>
       {/* HERO */}
@@ -55,17 +74,17 @@ function Home() {
           <div className="lg:col-span-7 fade-up">
             <div className="eyebrow flex items-center gap-2">
               <Sparkles size={12} className="text-[color:var(--gold)]" />
-              {t.hero.eyebrow}
+              {cmsHome.eyebrow}
             </div>
             <h1 className="mt-6 font-serif text-5xl md:text-7xl leading-[1.02] tracking-tight text-ink">
-              {t.hero.title}{" "}
+              {cmsHome.title}{" "}
               <em className="not-italic bg-gradient-to-r from-[color:var(--gold)] to-[oklch(0.55_0.12_78)] bg-clip-text text-transparent italic">
-                {t.hero.titleAccent}
+                {cmsHome.titleAccent}
               </em>
               .
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              {t.hero.lede}
+              {cmsHome.lede}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
@@ -94,7 +113,7 @@ function Home() {
           </div>
 
           <div className="lg:col-span-5 fade-up" style={{ animationDelay: "120ms" }}>
-            <HeroSlider />
+            <HeroSlider heroSrc={heroSrc} />
           </div>
         </div>
       </section>
@@ -182,9 +201,9 @@ function Home() {
 
       {/* TESTIMONIALS */}
       <Section>
-        <SectionHeader eyebrow={t.testimonials.eyebrow} title={t.testimonials.title} />
+        <SectionHeader eyebrow={cmsTestimonials.eyebrow} title={cmsTestimonials.title} />
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {t.testimonials.items.map((it) => (
+          {cmsTestimonials.items.map((it) => (
             <figure key={it.name} className="rounded-3xl border border-border bg-cream p-8">
               <div className="flex text-[color:var(--gold)]">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -192,7 +211,7 @@ function Home() {
                 ))}
               </div>
               <blockquote className="mt-6 font-serif text-xl leading-snug text-ink">
-                “{it.quote}”
+                "{it.quote}"
               </blockquote>
               <figcaption className="mt-8 text-sm">
                 <div className="font-medium text-primary">{it.name}</div>
@@ -232,25 +251,26 @@ function Home() {
             ))}
           </div>
         </div>
-</Section>
+      </Section>
       <CTABanner lang={l} />
     </>
   );
 }
 
-const SLIDES = [
-  { img: heroImg, badge: "A1 → C2", caption: "Every CEFR level, one studio" },
-  { img: slideStudents, badge: "1,200+", caption: "Learners since 2016" },
-  { img: slideBooks, badge: "4 langs", caption: "English · Italian · Spanish · French" },
-  { img: slideCertificate, badge: "Cambridge · CECOL", caption: "Accredited exam centre" },
-  { img: classroomImg, badge: "In studio · Online", caption: "Casagiove & worldwide" },
-];
+function HeroSlider({ heroSrc }: { heroSrc: string }) {
+  const SLIDES = [
+    { img: heroSrc, badge: "A1 → C2", caption: "Every CEFR level, one studio" },
+    { img: slideStudents, badge: "1,200+", caption: "Learners since 2016" },
+    { img: slideBooks, badge: "4 langs", caption: "English · Italian · Spanish · French" },
+    { img: slideCertificate, badge: "Cambridge · CECOL", caption: "Accredited exam centre" },
+    { img: classroomImg, badge: "In studio · Online", caption: "Casagiove & worldwide" },
+  ];
 
-function HeroSlider() {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 4500);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 4500);
+    return () => clearInterval(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const current = SLIDES[idx];
   return (

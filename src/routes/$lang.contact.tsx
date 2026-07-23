@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MapPin, Phone, MessageCircle, Mail, ShieldCheck, FileText, Building2 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+import { useCmsData, type CmsContact } from "@/lib/cms";
 
 type Search = { plan?: string; course?: string };
 
@@ -35,6 +36,18 @@ function ContactPage() {
   const { plan, course } = Route.useSearch();
   const l = lang as Lang;
   const t = getDict(l);
+
+  const fallback: CmsContact = {
+    eyebrow: t.contact.eyebrow,
+    title: t.contact.title,
+    lede: t.contact.lede,
+    address: t.contact.address,
+    phone: t.contact.phone,
+    whatsapp: t.contact.whatsapp,
+    email: t.contact.email,
+  };
+  const cms = useCmsData("contact", fallback);
+
   const [sent, setSent] = useState(false);
 
   const isEnrollment = Boolean(plan || course);
@@ -89,9 +102,9 @@ function ContactPage() {
     <Section>
       <div className="grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <SectionHeader eyebrow={t.contact.eyebrow} title={isEnrollment ? (l === "it" ? "Completa la tua iscrizione" : "Complete your enrolment") : t.contact.title} lede={isEnrollment ? (l === "it" ? "Inserisci i tuoi dati — il tuo messaggio arriverà direttamente al nostro team via WhatsApp." : "Fill in your details — your message goes straight to our team via WhatsApp.") : t.contact.lede} />
+          <SectionHeader eyebrow={cms.eyebrow} title={isEnrollment ? (l === "it" ? "Completa la tua iscrizione" : "Complete your enrolment") : cms.title} lede={isEnrollment ? (l === "it" ? "Inserisci i tuoi dati — il tuo messaggio arriverà direttamente al nostro team via WhatsApp." : "Fill in your details — your message goes straight to our team via WhatsApp.") : cms.lede} />
           <div className="mt-12 space-y-6">
-            <Info icon={<MapPin size={18} />} label="Address" value={t.contact.address} />
+            <Info icon={<MapPin size={18} />} label="Address" value={cms.address} />
             <DualContact
               label={l === "it" ? "Mobile" : "Mobile"}
               display="+39 338 922 8520"
@@ -104,7 +117,7 @@ function ContactPage() {
               telHref="tel:+3908231410601"
               waHref="https://api.whatsapp.com/send?phone=3908231410601"
             />
-            <Info icon={<Mail size={18} />} label="Email" value={t.contact.email} href={`mailto:${t.contact.email}`} />
+            <Info icon={<Mail size={18} />} label="Email" value={cms.email} href={`mailto:${cms.email}`} />
             <Info icon={<ShieldCheck size={18} />} label="PEC" value="esflanguageservice@pec.it" href="mailto:esflanguageservice@pec.it" />
             <Info icon={<FileText size={18} />} label="Codice Fiscale" value="04964450615" />
             <Info icon={<Building2 size={18} />} label="Partita IVA" value="04964450615" />

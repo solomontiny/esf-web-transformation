@@ -3,6 +3,7 @@ import { GraduationCap, Award, FileCheck, Plane, School, Home as HomeIcon, Compa
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CTABanner } from "@/components/site/CTABanner";
 import { getDict, type Lang } from "@/i18n/dictionaries";
+import { useCmsData, type CmsServices } from "@/lib/cms";
 
 const ICONS = [
   Languages, Award, FileCheck, Plane, School, HomeIcon, Compass, GraduationCap, Users,
@@ -32,6 +33,18 @@ function ServicesPage() {
   const l = lang as Lang;
   const t = getDict(l);
 
+  const fallback: CmsServices = {
+    eyebrow: t.detailed.eyebrow,
+    title: t.detailed.title,
+    lede: t.detailed.lede,
+    services: t.detailed.services.map((s) => ({
+      title: s.title,
+      intro: s.intro,
+      bullets: [...s.bullets],
+    })),
+  };
+  const cms = useCmsData("services", fallback);
+
   return (
     <>
       {/* Hero */}
@@ -40,12 +53,12 @@ function ServicesPage() {
           <div className="max-w-3xl fade-up">
             <div className="eyebrow flex items-center gap-2">
               <Sparkles size={12} className="text-[color:var(--gold)]" />
-              {t.detailed.eyebrow}
+              {cms.eyebrow}
             </div>
             <h1 className="mt-6 font-serif text-4xl md:text-6xl leading-[1.05] tracking-tight text-ink">
-              {t.detailed.title}
+              {cms.title}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{t.detailed.lede}</p>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{cms.lede}</p>
           </div>
         </div>
       </section>
@@ -77,12 +90,12 @@ function ServicesPage() {
       {/* Detailed */}
       <Section tone="muted" className="!py-24">
         <div className="space-y-10">
-          {t.detailed.services.map((s, i) => {
+          {cms.services.map((s, i) => {
             const Icon = ICONS[i % ICONS.length];
             return (
               <article
                 id={`service-${i}`}
-                key={s.title}
+                key={s.title || i}
                 className="scroll-mt-24 rounded-3xl border border-border bg-background p-8 md:p-12 shadow-soft"
               >
                 <div className="grid gap-10 md:grid-cols-12">
@@ -100,16 +113,13 @@ function ServicesPage() {
                   <div className="md:col-span-8">
                     <p className="text-base leading-relaxed text-foreground/85">{s.intro}</p>
                     <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                      {s.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-sm text-foreground/80">
+                      {s.bullets.map((b, bi) => (
+                        <li key={bi} className="flex items-start gap-3 text-sm text-foreground/80">
                           <Check size={16} className="mt-0.5 shrink-0 text-[color:var(--gold)]" />
                           <span>{b}</span>
                         </li>
                       ))}
                     </ul>
-                    {s.outro && (
-                      <p className="mt-6 text-sm italic text-muted-foreground">{s.outro}</p>
-                    )}
                     <Link
                       to="/$lang/contact"
                       params={{ lang: l }}
