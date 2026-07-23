@@ -6,11 +6,7 @@ import { CTABanner } from "@/components/site/CTABanner";
 import type { Lang } from "@/i18n/dictionaries";
 import { fetchGalleryImages, getPublicUrl, type CmsGalleryImage } from "@/lib/cms";
 import classroomImg from "@/assets/classroom.jpg";
-import heroImg from "@/assets/hero.jpg";
-import naplesImg from "@/assets/naples.jpg";
 import slideStudentsImg from "@/assets/slide-students.jpg";
-import slideBooksImg from "@/assets/slide-books.jpg";
-import slideCertImg from "@/assets/slide-certificate.jpg";
 import destination1Img from "@/assets/destination-1.jpeg";
 import destination2Img from "@/assets/destination-2.jpeg";
 import destination3Img from "@/assets/destination-3.jpeg";
@@ -26,9 +22,6 @@ import student3Img from "@/assets/student-3.jpeg";
 import student4Img from "@/assets/student-4.jpeg";
 import student5Img from "@/assets/student-5.jpeg";
 import student6Img from "@/assets/student-6.jpeg";
-
-// Suppress unused import warnings for assets kept as fallback
-void [heroImg, naplesImg, slideBooksImg, slideCertImg];
 
 type Category = "all" | "studio" | "students" | "destinations" | "certifications";
 type Item = { src: string; alt: string; category: Exclude<Category, "all">; span?: string };

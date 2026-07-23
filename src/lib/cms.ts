@@ -212,9 +212,6 @@ export async function fetchGalleryImages(): Promise<CmsGalleryImage[]> {
   }
 }
 
-// Suppress unused import warning — Dict is used by consumers of this module
-// (no re-export needed; consumers import directly from @/i18n/dictionaries)
-
 // ── Hook ─────────────────────────────────────────────────────
 
 export function useCmsSection<K extends CmsSectionKey>(section: K) {
